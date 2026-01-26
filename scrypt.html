@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>scrypt – NBA_MVP_Project</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">NBA_MVP_Project</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<div id="cell-0" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install html5lib lxml beautifulsoup4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Requirement already satisfied: html5lib in /Users/zohaib/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages (1.1)
+Requirement already satisfied: lxml in /Users/zohaib/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages (6.0.2)
+Requirement already satisfied: beautifulsoup4 in /Users/zohaib/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages (4.14.2)
+Requirement already satisfied: six&gt;=1.9 in /Users/zohaib/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages (from html5lib) (1.17.0)
+Requirement already satisfied: webencodings in /Users/zohaib/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages (from html5lib) (0.5.1)
+Requirement already satisfied: soupsieve&gt;1.2 in /Users/zohaib/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages (from beautifulsoup4) (2.7)
+Requirement already satisfied: typing-extensions&gt;=4.0.0 in /Users/zohaib/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages (from beautifulsoup4) (4.14.1)
+Note: you may need to restart the kernel to use updated packages.</code></pre>
+</div>
+</div>
+<div id="cell-1" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os <span class="co">#interacts with the operating systems ( such as creating folders/checking files)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd <span class="co">#used to read and clean the data </span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shutil <span class="co">#copying/moving files or directories</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup <span class="im">as</span> bs <span class="co">#extract info such as player stats from a table.</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests <span class="co">#requests usd to get HTML pages</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings<span class="op">;</span> warnings.filterwarnings(<span class="st">"ignore"</span>) <span class="co">#suppress python warnings, may remove this though</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time <span class="co">#helps overloading </span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># unhide all rows and columns #below adjusts how the data is displayed.</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.max_rows'</span>, <span class="dv">50</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.max_columns'</span>, <span class="dv">50</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.width'</span>, <span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/Users/zohaib/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(</code></pre>
+</div>
+</div>
+<div id="cell-2" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.basketball-reference.com/awards/mvp.html#mvp_NBA"</span> <span class="co">#this is the web page we want to scrape</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> requests.get(url) <span class="co">#sends a GET request to the server and gets the pages html, and the content from the html page is stored now in data </span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>soup <span class="op">=</span> bs(data.text, <span class="st">"html.parser"</span>) <span class="co">#converts the text into smth that is searchable now</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> soup.find(<span class="st">'table'</span>, <span class="bu">id</span><span class="op">=</span><span class="st">'mvp_NBA'</span>) </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#mvp_df = pd.read_html(str(table), header=1)[0]</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> table <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    mvp_df <span class="op">=</span> pd.read_html(url, attrs<span class="op">=</span>{<span class="st">'id'</span>: <span class="st">'mvp_NBA'</span>}, header<span class="op">=</span><span class="dv">1</span>, flavor<span class="op">=</span><span class="st">"lxml"</span>)[<span class="dv">0</span>]</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    mvp_df <span class="op">=</span> pd.read_html(<span class="bu">str</span>(table), header<span class="op">=</span><span class="dv">1</span>, flavor<span class="op">=</span><span class="st">"lxml"</span>)[<span class="dv">0</span>]</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>mvp_df.columns <span class="op">=</span> [col.strip() <span class="cf">for</span> col <span class="kw">in</span> mvp_df.columns] </span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">#mvp_df = mvp_df.dropna(subset=[mvp_df.columns[0]]) , test code</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>mvp_df <span class="op">=</span> mvp_df[mvp_df[<span class="st">'Season'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>[:<span class="dv">4</span>].astype(<span class="bu">int</span>) <span class="op">&gt;=</span> <span class="dv">2015</span>]</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">#mvp_df.columns = ['Seasons', 'Players'], test code</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>mvp_df <span class="op">=</span> mvp_df.reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>mvp_df.index <span class="op">=</span> mvp_df.index <span class="op">+</span> <span class="dv">1</span> <span class="co">#now instead of starting at 0 it will start at 1</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (mvp_df)</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     Season   Lg                   Player Voting  Age   Tm   G    MP   PTS   TRB   AST  STL  BLK    FG%    3P%    FT%    WS  WS/48
+1   2024-25  NBA  Shai Gilgeous-Alexander    (V)   26  OKC  76  34.2  32.7   5.0   6.4  1.7  1.0  0.519  0.375  0.898  16.7  0.309
+2   2023-24  NBA            Nikola JokiÄ    (V)   28  DEN  79  34.6  26.4  12.4   9.0  1.4  0.9  0.583  0.359  0.817  17.0  0.299
+3   2022-23  NBA              Joel Embiid    (V)   28  PHI  66  34.6  33.1  10.2   4.2  1.0  1.7  0.548  0.330  0.857  12.3  0.259
+4   2021-22  NBA            Nikola JokiÄ    (V)   26  DEN  74  33.5  27.1  13.8   7.9  1.5  0.9  0.583  0.337  0.810  15.2  0.296
+5   2020-21  NBA            Nikola JokiÄ    (V)   25  DEN  72  34.6  26.4  10.8   8.3  1.3  0.7  0.566  0.388  0.868  15.6  0.301
+6   2019-20  NBA    Giannis Antetokounmpo    (V)   25  MIL  63  30.4  29.5  13.6   5.6  1.0  1.0  0.553  0.304  0.633  11.1  0.279
+7   2018-19  NBA    Giannis Antetokounmpo    (V)   24  MIL  72  32.8  27.7  12.5   5.9  1.3  1.5  0.578  0.256  0.729  14.4  0.292
+8   2017-18  NBA             James Harden    (V)   28  HOU  72  35.4  30.4   5.4   8.8  1.8  0.7  0.449  0.367  0.858  15.4  0.289
+9   2016-17  NBA        Russell Westbrook    (V)   28  OKC  81  34.6  31.6  10.7  10.4  1.6  0.4  0.425  0.343  0.845  13.1  0.224
+10  2015-16  NBA            Stephen Curry    (V)   27  GSW  79  34.2  30.1   5.4   6.7  2.1  0.2  0.504  0.454  0.908  17.9  0.318</code></pre>
+</div>
+</div>
+<div id="cell-3" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#print (mvp_df.info())</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (mvp_df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Season   Lg                   Player Voting  Age   Tm   G    MP   PTS   TRB  AST  STL  BLK    FG%    3P%    FT%    WS  WS/48
+1  2024-25  NBA  Shai Gilgeous-Alexander    (V)   26  OKC  76  34.2  32.7   5.0  6.4  1.7  1.0  0.519  0.375  0.898  16.7  0.309
+2  2023-24  NBA            Nikola JokiÄ    (V)   28  DEN  79  34.6  26.4  12.4  9.0  1.4  0.9  0.583  0.359  0.817  17.0  0.299
+3  2022-23  NBA              Joel Embiid    (V)   28  PHI  66  34.6  33.1  10.2  4.2  1.0  1.7  0.548  0.330  0.857  12.3  0.259
+4  2021-22  NBA            Nikola JokiÄ    (V)   26  DEN  74  33.5  27.1  13.8  7.9  1.5  0.9  0.583  0.337  0.810  15.2  0.296
+5  2020-21  NBA            Nikola JokiÄ    (V)   25  DEN  72  34.6  26.4  10.8  8.3  1.3  0.7  0.566  0.388  0.868  15.6  0.301</code></pre>
+</div>
+</div>
+<div id="cell-4" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>avg_age <span class="op">=</span> mvp_df[<span class="st">'Age'</span>].mean() <span class="co">#this calculates the average age of the mvps since 2015</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"Average age of the MVP since the 2015 season -&gt; "</span>, avg_age) <span class="co">#this prints it out</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Average age of the MVP since the 2015 season -&gt;  26.5</code></pre>
+</div>
+</div>
+<div id="cell-5" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>team_data <span class="op">=</span> []</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> year <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2015</span>,<span class="dv">2026</span>):</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    url <span class="op">=</span> <span class="ss">f"https://www.basketball-reference.com/leagues/NBA_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">_standings.html"</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> requests.get(url)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    soup <span class="op">=</span> bs(data.text, <span class="st">"html.parser"</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    tables <span class="op">=</span> soup.find_all(<span class="st">"table"</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> table <span class="kw">in</span> tables:</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        df <span class="op">=</span> pd.read_html(<span class="bu">str</span>(table))[<span class="dv">0</span>]</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>        df[<span class="st">"Year"</span>] <span class="op">=</span> year</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>        team_data.append(df)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">#^that above collected the team data from 2015 to current, including standings.</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>teams_df <span class="op">=</span> pd.concat(team_data,ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co">#cleaning and merging the east/west standings into one table down below~</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>stat_cols_all <span class="op">=</span> [<span class="st">"W"</span>, <span class="st">"L"</span>, <span class="st">"W/L%"</span>, <span class="st">"GB"</span>, <span class="st">"PS/G"</span>, <span class="st">"PA/G"</span>, <span class="st">"SRS"</span>]</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>stat_cols <span class="op">=</span> [x <span class="cf">for</span> x <span class="kw">in</span> stat_cols_all <span class="cf">if</span> x <span class="kw">in</span> teams_df.columns] <span class="co"># it loops over the columns for whatever of the columns are found</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>base_cols <span class="op">=</span> [<span class="st">"Year"</span>] <span class="op">+</span> stat_cols <span class="co">#makes the base columns = to years and the statistics found</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (stat_cols, base_cols)</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span>[<span class="st">"Eastern Conference"</span>] <span class="op">+</span> base_cols</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>east <span class="op">=</span> teams_df[cols].copy()</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>east <span class="op">=</span> east.dropna( subset<span class="op">=</span>[<span class="st">"Eastern Conference"</span>])</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>var_div <span class="op">=</span> east[<span class="st">"Eastern Conference"</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.contains(<span class="st">"Division"</span>, na<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>east <span class="op">=</span> east[<span class="op">~</span>var_div]</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>east <span class="op">=</span> east.rename(columns<span class="op">=</span>{<span class="st">"Eastern Conference"</span>: <span class="st">"Teams"</span>})</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>east[<span class="st">"Conference"</span>]<span class="op">=</span> <span class="st">"East"</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(east.head(),east.shape)</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> [<span class="st">"Western Conference"</span>] <span class="op">+</span> base_cols</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>west <span class="op">=</span> teams_df[cols].copy()</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>west <span class="op">=</span> west.dropna(subset<span class="op">=</span>[<span class="st">"Western Conference"</span>])</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>var_div <span class="op">=</span> west[<span class="st">"Western Conference"</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.contains(<span class="st">"Division"</span>, na<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>west <span class="op">=</span> west[<span class="op">~</span>var_div]</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>west <span class="op">=</span> west.rename(columns<span class="op">=</span>{<span class="st">"Western Conference"</span>: <span class="st">"Teams"</span>})</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>west[<span class="st">"Conference"</span>]<span class="op">=</span> <span class="st">"West"</span></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(west.head(),west.shape)</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>teams_tidy <span class="op">=</span> pd.concat([east, west], ignore_index<span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (teams_tidy.shape)</span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>east <span class="op">=</span> east.rename(columns<span class="op">=</span>{<span class="st">'Teams'</span>:<span class="st">'Team'</span>}) <span class="co">#renaming the teams in the columns from Teams to Team</span></span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>west <span class="op">=</span> west.rename(columns<span class="op">=</span>{<span class="st">'Teams'</span>:<span class="st">'Team'</span>})</span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_team_name(t):</span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pd.isna(t):</span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> t <span class="co">#means if its empty return it back but if not then -&gt;</span></span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">str</span>(t).replace(<span class="st">'x'</span>,<span class="st">''</span>).replace(<span class="st">'*'</span>,<span class="st">''</span>).replace(<span class="st">'z'</span>,<span class="st">''</span>).replace(<span class="st">'y'</span>,<span class="st">''</span>).strip()     <span class="co">#this cleans the Teams and removes the uneccesary stuff such as : stars, extra letters etc.</span></span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a>east[<span class="st">'Team'</span>] <span class="op">=</span> east[<span class="st">'Team'</span>].<span class="bu">apply</span>(clean_team_name) <span class="co">#we call the clean function and this cleans whatever we apply it top </span></span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>west[<span class="st">'Team'</span>] <span class="op">=</span> west[<span class="st">'Team'</span>].<span class="bu">apply</span>(clean_team_name)</span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.concat([east,west], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> [<span class="st">"W"</span>,<span class="st">"L"</span>,<span class="st">"GB"</span>,<span class="st">"PS/G"</span>,<span class="st">"PA/G"</span>,<span class="st">"SRS"</span>]:</span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> col <span class="kw">in</span> df.columns:</span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a>        df[col]<span class="op">=</span> pd.to_numeric(df[col], errors <span class="op">=</span> <span class="st">"coerce"</span>)</span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"W/L%"</span>] <span class="op">=</span> pd.to_numeric(df[<span class="st">"W/L%"</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.replace(<span class="st">"-"</span>, <span class="st">""</span>), errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"ConferenceRank"</span>]<span class="op">=</span>(</span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a>    df.groupby([<span class="st">"Year"</span>,<span class="st">"Conference"</span>])[<span class="st">"W/L%"</span>]</span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a>    .rank(method<span class="op">=</span><span class="st">"min"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (df.shape)</span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (df.head())</span>
+<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (df.dtypes)</span>
+<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (df[<span class="st">"Team"</span>].nunique())</span>
+<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a><span class="co">#df = pd.concat([east,west], ignore_index=True)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['W', 'L', 'W/L%', 'GB', 'PS/G', 'PA/G', 'SRS'] ['Year', 'W', 'L', 'W/L%', 'GB', 'PS/G', 'PA/G', 'SRS']
+                Teams  Year   W   L  W/L%    GB   PS/G   PA/G    SRS Conference
+1    Toronto Raptors*  2015  49  33  .598     —  104.0  100.9   2.45       East
+2     Boston Celtics*  2015  40  42  .488   9.0  101.4  101.2  -0.40       East
+3      Brooklyn Nets*  2015  38  44  .463  11.0   98.0  100.9  -3.13       East
+4  Philadelphia 76ers  2015  18  64  .220  31.0   92.0  101.0  -9.04       East
+5     New York Knicks  2015  17  65  .207  32.0   91.9  101.2  -9.50       East (315, 10)
+                      Teams  Year   W   L  W/L%    GB   PS/G   PA/G    SRS Conference
+19  Portland Trail Blazers*  2015  51  31  .622     —  102.8   98.6   4.41       West
+20    Oklahoma City Thunder  2015  45  37  .549   6.0  104.0  101.8   2.47       West
+21                Utah Jazz  2015  38  44  .463  13.0   95.1   94.9   0.71       West
+22           Denver Nuggets  2015  30  52  .366  21.0  101.5  105.0  -3.07       West
+23   Minnesota Timberwolves  2015  16  66  .195  35.0   97.8  106.5  -8.00       West (315, 10)
+(630, 10)
+(630, 11)
+                 Team  Year   W   L   W/L%    GB   PS/G   PA/G   SRS Conference  ConferenceRank
+0     Toronto Raptors  2015  49  33  0.598   NaN  104.0  100.9  2.45       East             4.0
+1      Boston Celtics  2015  40  42  0.488   9.0  101.4  101.2 -0.40       East             7.0
+2        Brookln Nets  2015  38  44  0.463  11.0   98.0  100.9 -3.13       East             8.0
+3  Philadelphia 76ers  2015  18  64  0.220  31.0   92.0  101.0 -9.04       East            14.0
+4     New York Knicks  2015  17  65  0.207  32.0   91.9  101.2 -9.50       East            15.0
+Team               object
+Year                int64
+W                   int64
+L                   int64
+W/L%              float64
+GB                float64
+PS/G              float64
+PA/G              float64
+SRS               float64
+Conference         object
+ConferenceRank    float64
+dtype: object
+30</code></pre>
+</div>
+</div>
+<div id="cell-6" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#merge the MVP data and the standings</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>mvp_df[<span class="st">"Year"</span>] <span class="op">=</span> (mvp_df[<span class="st">"Season"</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>[:<span class="dv">4</span>].astype(<span class="bu">int</span>) <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>team_map <span class="op">=</span> {<span class="st">"DEN"</span>: <span class="st">"Denver Nuggets"</span>, </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"PHI"</span>: <span class="st">"Philadelphia 76ers"</span>,  </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MIL"</span>: <span class="st">"Milwaukee Bucks"</span>, </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"HOU"</span>: <span class="st">"Houston Rockets"</span>,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"OKC"</span>: <span class="st">"Oklahoma City Thunder"</span>,</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GSW"</span>: <span class="st">"Golden State Warriors"</span>,</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"CLE"</span>: <span class="st">"Cleveland Cavaliers"</span>,</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"LAL"</span>: <span class="st">"Los Angeles Lakers"</span>,</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"DAL"</span>: <span class="st">"Dallas Mavericks"</span>,</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"BOS"</span>: <span class="st">"Boston Celtics"</span>,</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MIA"</span>: <span class="st">"Miami Heat"</span>,</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"PHX"</span>: <span class="st">"Phoenix Suns"</span>,</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"NYK"</span>: <span class="st">"New York Knicks"</span>,</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SAS"</span>: <span class="st">"San Antonio Spurs"</span>,</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"TOR"</span>: <span class="st">"Toronto Raptors"</span>,</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"BKN"</span>: <span class="st">"Brooklyn Nets"</span>,</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ORL"</span>: <span class="st">"Orlando Magic"</span>,</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"WIZ"</span>: <span class="st">"Washington Wizards"</span>,</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MAVS"</span>: <span class="st">"Dallas Mavericks"</span>,</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MEM"</span>: <span class="st">"Memphis Grizzlies"</span>,</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"UTH"</span>: <span class="st">"Utahd Jazz"</span>,</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ATL"</span>: <span class="st">"Atlanta Hawks"</span>,</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"NOP"</span>: <span class="st">"New Orleans Pelicans"</span>,</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"IND"</span>: <span class="st">"Indiana Pacers"</span>,</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">"DET"</span>: <span class="st">"Detroit Pistons"</span>,</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">"LAC"</span>: <span class="st">"Los Angeles Clippers"</span>,</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">"POR"</span>: <span class="st">"Portland Trailblazers"</span>,</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    <span class="st">"CHA"</span>: <span class="st">"Charlotte Hornets"</span>,</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">"CHI"</span>: <span class="st">"Chicago Bulls"</span>,</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SAC"</span>: <span class="st">"Sacramento Kings"</span>}</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>mvp_df [<span class="st">"Team"</span>] <span class="op">=</span> (</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>    mvp_df[<span class="st">"Tm"</span>]</span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>        .<span class="bu">map</span>(team_map)</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>        .fillna(mvp_df[<span class="st">"Tm"</span>])</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>mvp_keep <span class="op">=</span> mvp_df[[<span class="st">"Player"</span>, <span class="st">"Age"</span>, <span class="st">"Year"</span>, <span class="st">"Team"</span>]]</span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>standings_keep <span class="op">=</span> df[[<span class="st">"Year"</span>, <span class="st">"Team"</span>, <span class="st">"W/L%"</span>, <span class="st">"Conference"</span>, <span class="st">"ConferenceRank"</span>, <span class="st">"SRS"</span>]]</span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>merged <span class="op">=</span> pd.merge(</span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>    mvp_keep, standings_keep, on<span class="op">=</span>[<span class="st">"Year"</span>, <span class="st">"Team"</span>], how<span class="op">=</span><span class="st">"left"</span></span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(merged.head()[[<span class="st">"Player"</span>, <span class="st">"Year"</span>, <span class="st">"Team"</span>, <span class="st">"W/L%"</span>, <span class="st">"Conference"</span>, <span class="st">"ConferenceRank"</span>]])</span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">"ConferenceRank"</span> <span class="kw">in</span> merged.columns:</span>
+<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>    merged[<span class="st">"ConferenceRank"</span>] <span class="op">=</span> merged[<span class="st">"ConferenceRank"</span>].astype(<span class="st">"Int64"</span>)</span>
+<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(merged.shape)</span>
+<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(merged.columns.tolist())</span>
+<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(merged.head(<span class="dv">10</span>))</span>
+<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(merged.isna().<span class="bu">sum</span>())</span>
+<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a><span class="co">#soup = bs(data.text.encode("utf-8"), "html.parser")#</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                    Player  Year                   Team   W/L% Conference  ConferenceRank
+0  Shai Gilgeous-Alexander  2025  Oklahoma City Thunder    NaN        NaN             NaN
+1            Nikola JokiÄ  2024         Denver Nuggets  0.695       West             1.0
+2            Nikola JokiÄ  2024         Denver Nuggets  0.695       West             1.0
+3              Joel Embiid  2023     Philadelphia 76ers  0.659       East             5.0
+4              Joel Embiid  2023     Philadelphia 76ers  0.659       East             5.0
+(18, 8)
+['Player', 'Age', 'Year', 'Team', 'W/L%', 'Conference', 'ConferenceRank', 'SRS']
+                    Player  Age  Year                   Team   W/L% Conference  ConferenceRank   SRS
+0  Shai Gilgeous-Alexander   26  2025  Oklahoma City Thunder    NaN        NaN            &lt;NA&gt;   NaN
+1            Nikola JokiÄ   28  2024         Denver Nuggets  0.695       West               1  5.23
+2            Nikola JokiÄ   28  2024         Denver Nuggets  0.695       West               1  5.23
+3              Joel Embiid   28  2023     Philadelphia 76ers  0.659       East               5  4.37
+4              Joel Embiid   28  2023     Philadelphia 76ers  0.659       East               5  4.37
+5            Nikola JokiÄ   26  2022         Denver Nuggets  0.585       West              11  2.16
+6            Nikola JokiÄ   26  2022         Denver Nuggets  0.585       West              11  2.16
+7            Nikola JokiÄ   25  2021         Denver Nuggets  0.653       West               5  4.82
+8            Nikola JokiÄ   25  2021         Denver Nuggets  0.653       West               5  4.82
+9    Giannis Antetokounmpo   25  2020        Milwaukee Bucks  0.767       East               1  9.41
+Player            0
+Age               0
+Year              0
+Team              0
+W/L%              2
+Conference        2
+ConferenceRank    2
+SRS               2
+dtype: int64</code></pre>
+</div>
+</div>
+<div id="cell-7" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Average Win to Loss </span><span class="sc">% o</span><span class="st">f the MVP's team:"</span> , merged[<span class="st">"W/L%"</span>].mean())</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Average Conference position: "</span>, merged[<span class="st">"ConferenceRank"</span>].mean())</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Average point differential of team: "</span>, merged[<span class="st">"SRS"</span>].mean())</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Conference Rank distribution: "</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(merged[<span class="st">"ConferenceRank"</span>].value_counts().sort_index())</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">#rank_counts = merged["ConferenceRank"].value_counts().sort_index()</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">#print("MVP count by Conference Rank: \n")</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">#for rank , count in rank_counts.items():</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">#print(f"Conference Rank {rank}: {count} MVPs")</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>                                      </span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>merged[<span class="st">"Top5"</span>] <span class="op">=</span> merged[<span class="st">"ConferenceRank"</span>] <span class="op">&lt;=</span> <span class="dv">5</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="sc">% o</span><span class="st">f MVPs from Top 5 teams:"</span>, merged[<span class="st">"Top5"</span>].mean() <span class="op">*</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Average Win to Loss % of the MVP's team: 0.7217500000000001
+Average Conference position:  3.25
+Average point differential of team:  6.5775
+
+Conference Rank distribution: 
+ConferenceRank
+1     10
+5      4
+11     2
+Name: count, dtype: Int64
+
+% of MVPs from Top 5 teams: 87.5</code></pre>
+</div>
+</div>
+<div id="cell-8" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#now we use machine to rank who has the best chance of winning mvp for the upcoming season and rank the top 10.</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>target_year <span class="op">=</span> df[<span class="st">"Year"</span>].<span class="bu">max</span>() <span class="co">#finds the maximum year of the years we have, since mvp data is most helpful when recent</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="ss">f"https://www.basketball-reference.com/leagues/NBA_2026_per_game.html"</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>data_players <span class="op">=</span> requests.get(url)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>soup <span class="op">=</span> bs(data_players.text, <span class="st">"html.parser"</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>player_df  <span class="op">=</span> pd.read_html(<span class="bu">str</span>(soup), header <span class="op">=</span> <span class="dv">0</span>)[<span class="dv">0</span>]</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">#print (player_df.columns)</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">#print (player_df.head(15))</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>stat_cols <span class="op">=</span> [<span class="st">"PTS"</span>, <span class="st">"AST"</span>, <span class="st">"TRB"</span>, <span class="st">"FG%"</span>, <span class="st">"BLK"</span>, <span class="st">"STL"</span>]</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>player_df <span class="op">=</span> player_df[player_df[<span class="st">"Player"</span>].notna()].copy()</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>player_df <span class="op">=</span> player_df[player_df[<span class="st">"Player"</span>] <span class="op">!=</span> <span class="st">"Player"</span>].copy()</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>player_df <span class="op">=</span> player_df[<span class="op">~</span>player_df[<span class="st">"Team"</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.contains(<span class="st">"TM"</span>)].copy()</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (player_df.columns)</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (player_df.head(<span class="dv">15</span>))</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> stat_cols:</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> col <span class="kw">in</span> player_df.columns:</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>        player_df[col] <span class="op">=</span> pd.to_numeric(player_df[col], errors <span class="op">=</span> <span class="st">"coerce"</span>)</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (player_df[stat_cols].dtypes)</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>player_df <span class="op">=</span> (</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>    player_df.sort_values(<span class="st">"G"</span>, ascending<span class="op">=</span><span class="va">False</span>).groupby(<span class="st">"Player"</span>, as_index<span class="op">=</span><span class="va">False</span>).head(<span class="dv">1</span>) <span class="co">#this code fixes it</span></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (player_df[player_df[<span class="st">"Player"</span>].<span class="bu">str</span>.contains(<span class="st">"Luka"</span>, na<span class="op">=</span><span class="va">False</span>)]) <span class="co">#this fixes the luka problem where luka is printed 2x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'eFG%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'Awards'], dtype='object')
+      Rk                   Player   Age Team Pos     G    GS    MP    FG   FGA    FG%   3P   3PA    3P%    2P   2PA    2P%   eFG%   FT   FTA    FT%  ORB  DRB   TRB   AST  STL  BLK  TOV   PF   PTS  Awards
+0    1.0            Luka DonÄiÄ  26.0  LAL  PG  30.0  30.0  36.5  10.5  22.6  0.465  3.3  10.2  0.320   7.2  12.4  0.583  0.537  9.4  11.9  0.789  0.9  7.1   8.0   8.7  1.7  0.5  4.5  2.6  33.6     NaN
+1    2.0  Shai Gilgeous-Alexander  27.0  OKC  PG  38.0  38.0  33.3  10.9  19.9  0.547  2.0   5.1  0.396   8.9  14.8  0.599  0.597  8.1   9.2  0.888  0.4  4.0   4.5   6.4  1.4  0.7  1.9  2.1  31.9     NaN
+2    3.0             Tyrese Maxey  25.0  PHI  PG  36.0  36.0  39.6  10.8  22.4  0.480  3.8   9.2  0.409   7.0  13.3  0.528  0.563  5.7   6.5  0.876  0.3  4.2   4.5   6.7  1.9  0.9  2.6  2.2  30.9     NaN
+3    4.0            Nikola JokiÄ  30.0  DEN   C  32.0  32.0  34.6  10.6  17.5  0.605  2.1   4.8  0.435   8.5  12.7  0.670  0.665  6.3   7.4  0.853  3.0  9.1  12.2  11.0  1.4  0.8  3.5  2.8  29.6     NaN
+4    5.0             Jaylen Brown  29.0  BOS  SF  36.0  36.0  34.3  10.9  21.9  0.495  2.2   5.8  0.376   8.7  16.1  0.538  0.545  5.6   7.2  0.779  1.2  5.3   6.4   5.0  1.0  0.4  3.8  3.1  29.5     NaN
+5    6.0         Donovan Mitchell  29.0  CLE  SG  37.0  37.0  33.8  10.3  20.9  0.492  3.9  10.0  0.386   6.4  10.9  0.589  0.585  5.1   6.0  0.842  0.8  3.8   4.7   5.5  1.5  0.3  3.0  2.6  29.5     NaN
+6    7.0    Giannis Antetokounmpo  31.0  MIL  PF  25.0  25.0  29.2  11.2  17.2  0.647  0.6   1.4  0.400  10.6  15.8  0.669  0.664  6.4   9.6  0.660  3.0  6.7   9.8   5.7  0.9  0.8  3.2  2.7  29.2     NaN
+7    8.0            Jalen Brunson  29.0  NYK  PG  36.0  36.0  35.3  10.3  21.4  0.481  3.1   7.9  0.389   7.2  13.5  0.534  0.553  5.3   6.2  0.852  0.6  2.8   3.3   6.3  0.7  0.1  2.3  2.5  28.9     NaN
+8    9.0          Anthony Edwards  24.0  MIN  SG  33.0  33.0  34.9  10.0  19.9  0.500  3.3   8.2  0.409   6.6  11.8  0.563  0.584  5.6   7.1  0.787  0.6  4.4   5.0   3.8  1.3  0.8  2.7  1.8  28.9     NaN
+9   10.0            Stephen Curry  37.0  GSW  PG  30.0  30.0  32.2   9.4  20.1  0.470  4.7  12.0  0.391   4.7   8.0  0.589  0.587  5.2   5.6  0.929  0.5  3.3   3.8   4.7  1.2  0.5  2.9  2.1  28.8     NaN
+10  11.0            Kawhi Leonard  34.0  LAC  SF  29.0  29.0  33.9   9.8  19.5  0.501  2.8   7.1  0.386   7.0  12.3  0.567  0.572  5.8   6.2  0.939  0.9  5.4   6.4   3.4  2.2  0.7  2.2  1.4  28.1     NaN
+11  12.0          Lauri Markkanen  28.0  UTA  PF  33.0  33.0  36.0   9.5  19.7  0.483  2.9   8.0  0.365   6.6  11.7  0.563  0.557  6.0   6.8  0.884  2.0  5.2   7.2   2.2  1.0  0.5  1.6  2.0  27.9     NaN
+12  13.0          Cade Cunningham  24.0  DET  PG  33.0  33.0  35.6   9.3  19.9  0.465  2.1   6.1  0.340   7.2  13.9  0.520  0.517  6.1   7.3  0.838  1.1  5.1   6.2   9.7  1.5  0.8  4.0  3.4  26.7     NaN
+13  14.0            Austin Reaves  27.0  LAL  SG  23.0  22.0  35.3   8.2  16.2  0.507  2.7   7.4  0.365   5.5   8.8  0.626  0.590  7.5   8.6  0.873  0.7  4.5   5.2   6.3  1.0  0.2  3.3  2.3  26.6     NaN
+14  15.0              Deni Avdija  25.0  POR  SF  40.0  40.0  35.4   7.9  17.0  0.468  2.3   6.5  0.355   5.6  10.5  0.537  0.535  7.9   9.9  0.801  1.0  6.1   7.1   6.9  0.9  0.6  3.9  2.8  26.1     NaN
+PTS    float64
+AST    float64
+TRB    float64
+FG%    float64
+BLK    float64
+STL    float64
+dtype: object
+        Rk         Player   Age Team Pos     G    GS    MP    FG   FGA    FG%   3P   3PA    3P%   2P   2PA    2P%   eFG%   FT   FTA    FT%  ORB  DRB  TRB  AST  STL  BLK  TOV   PF   PTS  Awards
+253  250.0     Luka Garza  27.0  BOS   C  31.0   1.0  16.3   2.7   4.4  0.618  0.7   1.3  0.512  2.0   3.1  0.663  0.695  1.4   1.7  0.796  2.5  1.9  4.4  0.9  0.4  0.5  0.4  2.5   7.5     NaN
+0      1.0  Luka DonÄiÄ  26.0  LAL  PG  30.0  30.0  36.5  10.5  22.6  0.465  3.3  10.2  0.320  7.2  12.4  0.583  0.537  9.4  11.9  0.789  0.9  7.1  8.0  8.7  1.7  0.5  4.5  2.6  33.6     NaN</code></pre>
+</div>
+</div>
+<div id="cell-9" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>target_year <span class="op">=</span> <span class="dv">2026</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>teams_current <span class="op">=</span> df[df[<span class="st">"Year"</span>] <span class="op">==</span> target_year].copy()</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>name_to_abbr <span class="op">=</span> {full: abbr <span class="cf">for</span> abbr, full <span class="kw">in</span> team_map.items()}</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>teams_current[<span class="st">"Team_abbr"</span>] <span class="op">=</span> teams_current[<span class="st">"Team"</span>].<span class="bu">map</span>(name_to_abbr)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> player_df.merge(</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    teams_current[[<span class="st">"Team_abbr"</span>, <span class="st">"W/L%"</span>]],</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    left_on <span class="op">=</span> <span class="st">"Team"</span>, right_on <span class="op">=</span> <span class="st">"Team_abbr"</span>, how <span class="op">=</span> <span class="st">"left"</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> players_df.rename(columns<span class="op">=</span>{<span class="st">"W/L%"</span>: <span class="st">"team_win_pct"</span>})</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(players_df[[<span class="st">"Player"</span>, <span class="st">"Team"</span>, <span class="st">"team_win_pct"</span>]].head(<span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   Player Team  team_win_pct
+0          Jeremiah Fears  NOP           NaN
+1             Jamal Shead  TOR           NaN
+2             Gradey Dick  TOR           NaN
+3           DeMar DeRozan  SAC           NaN
+4             Deni Avdija  POR           NaN
+5            Desmond Bane  ORL           NaN
+6          Scottie Barnes  TOR           NaN
+7            Quinten Post  GSW           NaN
+8          Toumani Camara  POR           NaN
+9           Julius Randle  MIN           NaN
+10             Tyus Jones  ORL           NaN
+11            Rudy Gobert  MIN           NaN
+12          Naji Marshall  DAL           NaN
+13            Derik Queen  NOP           NaN
+14          Anthony Black  ORL           NaN
+15      Russell Westbrook  SAC           NaN
+16  Sandro Mamukelashvili  TOR           NaN
+17          Jarace Walker  IND           NaN
+18               Jay Huff  IND           NaN
+19             Sion James  CHO           NaN</code></pre>
+</div>
+</div>
+<div id="cell-10" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>stat_cols <span class="op">=</span> [<span class="st">"PTS"</span>, <span class="st">"AST"</span>, <span class="st">"TRB"</span>, <span class="st">"STL"</span>, <span class="st">"BLK"</span>, <span class="st">"FG%"</span>, <span class="st">"team_win_pct"</span>]</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (players_df.columns.tolist())</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> stat_cols:</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    col_min <span class="op">=</span> players_df[col].<span class="bu">min</span>()</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    col_max <span class="op">=</span> players_df[col].<span class="bu">max</span>()</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> col_min <span class="op">==</span> col_max:</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>        players_df[col <span class="op">+</span><span class="st">"_norm"</span>] <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>        players_df[col <span class="op">+</span><span class="st">"_norm"</span>] <span class="op">=</span> (players_df[col] <span class="op">-</span> col_min) <span class="op">/</span> (col_max <span class="op">-</span> col_min)</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(player_df.columns)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'eFG%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'Awards', 'Team_abbr', 'team_win_pct']
+Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'eFG%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'Awards'], dtype='object')
+Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'eFG%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'Awards'], dtype='object')
+Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'eFG%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'Awards'], dtype='object')
+Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'eFG%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'Awards'], dtype='object')
+Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'eFG%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'Awards'], dtype='object')
+Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'eFG%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'Awards'], dtype='object')
+Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'eFG%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'Awards'], dtype='object')</code></pre>
+</div>
+</div>
+<div id="cell-11" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>players_df[<span class="st">"Player"</span>] <span class="op">=</span> (</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    players_df[<span class="st">"Player"</span>].<span class="bu">str</span>.encode(<span class="st">"latin1"</span>).<span class="bu">str</span>.decode(<span class="st">"utf-8"</span>))</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> players_df.drop_duplicates(subset<span class="op">=</span>[<span class="st">"Player"</span>])</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>players_df[<span class="st">"mvp_score"</span>] <span class="op">=</span>( </span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a> <span class="co">#this is the formula </span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.20</span> <span class="op">*</span> players_df[<span class="st">"PTS_norm"</span>] <span class="op">+</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.30</span> <span class="op">*</span> players_df[<span class="st">"team_win_pct_norm"</span>] <span class="op">+</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.15</span> <span class="op">*</span> players_df[<span class="st">"AST_norm"</span>] <span class="op">+</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.025</span> <span class="op">*</span> players_df[<span class="st">"STL_norm"</span>] <span class="op">+</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.10</span> <span class="op">*</span> players_df[<span class="st">"TRB_norm"</span>] <span class="op">+</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.025</span> <span class="op">*</span> players_df[<span class="st">"BLK_norm"</span>] <span class="op">+</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.20</span> <span class="op">*</span> players_df[<span class="st">"FG%_norm"</span>] </span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> players_df.sort_values(<span class="st">"mvp_score"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>    players_df[[<span class="st">"Player"</span>, <span class="st">"Team"</span>, <span class="st">"PTS"</span>, <span class="st">"AST"</span>, <span class="st">"TRB"</span>, <span class="st">"team_win_pct"</span>, <span class="st">"mvp_score"</span>]]</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>.head(<span class="dv">10</span>)</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           Player Team   PTS  AST  TRB  team_win_pct  mvp_score
+0  Jeremiah Fears  NOP  14.4  3.1  3.6           NaN        NaN
+1     Jamal Shead  TOR   7.0  5.4  1.7           NaN        NaN
+2     Gradey Dick  TOR   6.0  0.7  1.9           NaN        NaN
+3   DeMar DeRozan  SAC  19.0  3.9  3.3           NaN        NaN
+4     Deni Avdija  POR  26.1  6.9  7.1           NaN        NaN
+5    Desmond Bane  ORL  19.2  4.5  4.6           NaN        NaN
+6  Scottie Barnes  TOR  19.3  5.3  8.3           NaN        NaN
+7    Quinten Post  GSW   8.1  1.5  3.9           NaN        NaN
+8  Toumani Camara  POR  13.1  2.7  5.2           NaN        NaN
+9   Julius Randle  MIN  22.0  5.7  7.1           NaN        NaN</code></pre>
+</div>
+</div>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/Z10457\.github\.io\/nbamvp_project\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
