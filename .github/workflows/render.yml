@@ -17,7 +17,7 @@ jobs:
       - uses: quarto-dev/quarto-actions/setup@v2
       - run: quarto render
       - name: Checkout source code
-        run: 
+        run: | 
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
       - run: quarto publish gh-pages --no-prompt #previously was no-push
