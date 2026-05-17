@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>untitled-2 – NBA_MVP_Project</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-b4677caf2246f20e0a6fc6cb7b53cbb9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">NBA_MVP_Project</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<div id="cell-0" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install html5lib lxml beautifulsoup4</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<div class="ansi-escaped-output">
+<pre>Requirement already satisfied: html5lib in /Users/zohaib/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages (1.1)
+
+Requirement already satisfied: lxml in /Users/zohaib/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages (6.0.2)
+
+Requirement already satisfied: beautifulsoup4 in /Users/zohaib/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages (4.14.2)
+
+Requirement already satisfied: six&gt;=1.9 in /Users/zohaib/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages (from html5lib) (1.17.0)
+
+Requirement already satisfied: webencodings in /Users/zohaib/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages (from html5lib) (0.5.1)
+
+Requirement already satisfied: soupsieve&gt;1.2 in /Users/zohaib/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages (from beautifulsoup4) (2.7)
+
+Requirement already satisfied: typing-extensions&gt;=4.0.0 in /Users/zohaib/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages (from beautifulsoup4) (4.14.1)
+
+
+
+<span class="ansi-bold">[</span><span class="ansi-blue-fg">notice</span><span class="ansi-bold">]</span> A new release of pip is available: <span class="ansi-red-fg">25.3</span> -&gt; <span class="ansi-green-fg">26.0.1</span>
+
+<span class="ansi-bold">[</span><span class="ansi-blue-fg">notice</span><span class="ansi-bold">]</span> To update, run: <span class="ansi-green-fg">pip install --upgrade pip</span>
+
+Note: you may need to restart the kernel to use updated packages.
+</pre>
+</div>
+</div>
+</div>
+<div id="cell-1" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os <span class="co">#interacts with the operating systems ( such as creating folders/checking files)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd <span class="co">#used to read and clean the data </span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shutil <span class="co">#copying/moving files or directories</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup <span class="im">as</span> bs <span class="co">#extract info such as player stats from a table.</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests <span class="co">#requests usd to get HTML pages</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings<span class="op">;</span> warnings.filterwarnings(<span class="st">"ignore"</span>) <span class="co">#suppress python warnings, may remove this though</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time <span class="co">#helps overloading </span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># unhide all rows and columns #below adjusts how the data is displayed.</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.max_rows'</span>, <span class="dv">50</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.max_columns'</span>, <span class="dv">50</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.width'</span>, <span class="dv">1000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/Users/zohaib/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(</code></pre>
+</div>
+</div>
+<div id="cell-2" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.basketball-reference.com/awards/mvp.html#mvp_NBA"</span> <span class="co">#this is the web page we want to scrape</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> requests.get(url) <span class="co">#sends a GET request to the server and gets the pages html, and the content from the html page is stored now in data </span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>soup <span class="op">=</span> bs(data.text, <span class="st">"html.parser"</span>) <span class="co">#converts the text into smth that is searchable now</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> soup.find(<span class="st">'table'</span>, <span class="bu">id</span><span class="op">=</span><span class="st">'mvp_NBA'</span>) </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#mvp_df = pd.read_html(str(table), header=1)[0]</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> table <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    mvp_df <span class="op">=</span> pd.read_html(url, attrs<span class="op">=</span>{<span class="st">'id'</span>: <span class="st">'mvp_NBA'</span>}, header<span class="op">=</span><span class="dv">1</span>, flavor<span class="op">=</span><span class="st">"lxml"</span>)[<span class="dv">0</span>]</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    mvp_df <span class="op">=</span> pd.read_html(<span class="bu">str</span>(table), header<span class="op">=</span><span class="dv">1</span>, flavor<span class="op">=</span><span class="st">"lxml"</span>)[<span class="dv">0</span>]</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>mvp_df.columns <span class="op">=</span> [col.strip() <span class="cf">for</span> col <span class="kw">in</span> mvp_df.columns] </span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">#mvp_df = mvp_df.dropna(subset=[mvp_df.columns[0]]) , test code</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>mvp_df <span class="op">=</span> mvp_df[mvp_df[<span class="st">'Season'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>[:<span class="dv">4</span>].astype(<span class="bu">int</span>) <span class="op">&gt;=</span> <span class="dv">2015</span>]</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">#mvp_df.columns = ['Seasons', 'Players'], test code</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>mvp_df <span class="op">=</span> mvp_df.reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>mvp_df.index <span class="op">=</span> mvp_df.index <span class="op">+</span> <span class="dv">1</span> <span class="co">#now instead of starting at 0 it will start at 1</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (mvp_df)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     Season   Lg                   Player Voting  Age   Tm   G    MP   PTS   TRB   AST  STL  BLK    FG%    3P%    FT%    WS  WS/48
+1   2024-25  NBA  Shai Gilgeous-Alexander    (V)   26  OKC  76  34.2  32.7   5.0   6.4  1.7  1.0  0.519  0.375  0.898  16.7  0.309
+2   2023-24  NBA            Nikola JokiÄ    (V)   28  DEN  79  34.6  26.4  12.4   9.0  1.4  0.9  0.583  0.359  0.817  17.0  0.299
+3   2022-23  NBA              Joel Embiid    (V)   28  PHI  66  34.6  33.1  10.2   4.2  1.0  1.7  0.548  0.330  0.857  12.3  0.259
+4   2021-22  NBA            Nikola JokiÄ    (V)   26  DEN  74  33.5  27.1  13.8   7.9  1.5  0.9  0.583  0.337  0.810  15.2  0.296
+5   2020-21  NBA            Nikola JokiÄ    (V)   25  DEN  72  34.6  26.4  10.8   8.3  1.3  0.7  0.566  0.388  0.868  15.6  0.301
+6   2019-20  NBA    Giannis Antetokounmpo    (V)   25  MIL  63  30.4  29.5  13.6   5.6  1.0  1.0  0.553  0.304  0.633  11.1  0.279
+7   2018-19  NBA    Giannis Antetokounmpo    (V)   24  MIL  72  32.8  27.7  12.5   5.9  1.3  1.5  0.578  0.256  0.729  14.4  0.292
+8   2017-18  NBA             James Harden    (V)   28  HOU  72  35.4  30.4   5.4   8.8  1.8  0.7  0.449  0.367  0.858  15.4  0.289
+9   2016-17  NBA        Russell Westbrook    (V)   28  OKC  81  34.6  31.6  10.7  10.4  1.6  0.4  0.425  0.343  0.845  13.1  0.224
+10  2015-16  NBA            Stephen Curry    (V)   27  GSW  79  34.2  30.1   5.4   6.7  2.1  0.2  0.504  0.454  0.908  17.9  0.318</code></pre>
+</div>
+</div>
+<div id="cell-3" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#print (mvp_df.info())</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (mvp_df.head())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Season   Lg                   Player Voting  Age   Tm   G    MP   PTS   TRB  AST  STL  BLK    FG%    3P%    FT%    WS  WS/48
+1  2024-25  NBA  Shai Gilgeous-Alexander    (V)   26  OKC  76  34.2  32.7   5.0  6.4  1.7  1.0  0.519  0.375  0.898  16.7  0.309
+2  2023-24  NBA            Nikola JokiÄ    (V)   28  DEN  79  34.6  26.4  12.4  9.0  1.4  0.9  0.583  0.359  0.817  17.0  0.299
+3  2022-23  NBA              Joel Embiid    (V)   28  PHI  66  34.6  33.1  10.2  4.2  1.0  1.7  0.548  0.330  0.857  12.3  0.259
+4  2021-22  NBA            Nikola JokiÄ    (V)   26  DEN  74  33.5  27.1  13.8  7.9  1.5  0.9  0.583  0.337  0.810  15.2  0.296
+5  2020-21  NBA            Nikola JokiÄ    (V)   25  DEN  72  34.6  26.4  10.8  8.3  1.3  0.7  0.566  0.388  0.868  15.6  0.301</code></pre>
+</div>
+</div>
+<div id="cell-4" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>avg_age <span class="op">=</span> mvp_df[<span class="st">'Age'</span>].mean() <span class="co">#this calculates the average age of the mvps since 2015</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"Average age of the MVP since the 2015 season -&gt; "</span>, avg_age) <span class="co">#this prints it out</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Average age of the MVP since the 2015 season -&gt;  26.5</code></pre>
+</div>
+</div>
+<div id="cell-5" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>team_data <span class="op">=</span> []</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> year <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2015</span>,<span class="dv">2026</span>):</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    url <span class="op">=</span> <span class="ss">f"https://www.basketball-reference.com/leagues/NBA_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">_standings.html"</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> requests.get(url)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    soup <span class="op">=</span> bs(data.text, <span class="st">"html.parser"</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    tables <span class="op">=</span> soup.find_all(<span class="st">"table"</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> table <span class="kw">in</span> tables:</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        df <span class="op">=</span> pd.read_html(<span class="bu">str</span>(table))[<span class="dv">0</span>]</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        df[<span class="st">"Year"</span>] <span class="op">=</span> year</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        team_data.append(df)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">#^that above collected the team data from 2015 to current, including standings.</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>teams_df <span class="op">=</span> pd.concat(team_data,ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">#cleaning and merging the east/west standings into one table down below~</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>stat_cols_all <span class="op">=</span> [<span class="st">"W"</span>, <span class="st">"L"</span>, <span class="st">"W/L%"</span>, <span class="st">"GB"</span>, <span class="st">"PS/G"</span>, <span class="st">"PA/G"</span>, <span class="st">"SRS"</span>]</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>stat_cols <span class="op">=</span> [x <span class="cf">for</span> x <span class="kw">in</span> stat_cols_all <span class="cf">if</span> x <span class="kw">in</span> teams_df.columns] <span class="co"># it loops over the columns for whatever of the columns are found</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>base_cols <span class="op">=</span> [<span class="st">"Year"</span>] <span class="op">+</span> stat_cols <span class="co">#makes the base columns = to years and the statistics found</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (stat_cols, base_cols)</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span>[<span class="st">"Eastern Conference"</span>] <span class="op">+</span> base_cols</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>east <span class="op">=</span> teams_df[cols].copy()</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>east <span class="op">=</span> east.dropna( subset<span class="op">=</span>[<span class="st">"Eastern Conference"</span>])</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>var_div <span class="op">=</span> east[<span class="st">"Eastern Conference"</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.contains(<span class="st">"Division"</span>, na<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>east <span class="op">=</span> east[<span class="op">~</span>var_div]</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>east <span class="op">=</span> east.rename(columns<span class="op">=</span>{<span class="st">"Eastern Conference"</span>: <span class="st">"Teams"</span>})</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>east[<span class="st">"Conference"</span>]<span class="op">=</span> <span class="st">"East"</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(east.head(),east.shape)</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> [<span class="st">"Western Conference"</span>] <span class="op">+</span> base_cols</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>west <span class="op">=</span> teams_df[cols].copy()</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>west <span class="op">=</span> west.dropna(subset<span class="op">=</span>[<span class="st">"Western Conference"</span>])</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>var_div <span class="op">=</span> west[<span class="st">"Western Conference"</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.contains(<span class="st">"Division"</span>, na<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>west <span class="op">=</span> west[<span class="op">~</span>var_div]</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>west <span class="op">=</span> west.rename(columns<span class="op">=</span>{<span class="st">"Western Conference"</span>: <span class="st">"Teams"</span>})</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>west[<span class="st">"Conference"</span>]<span class="op">=</span> <span class="st">"West"</span></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(west.head(),west.shape)</span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>teams_tidy <span class="op">=</span> pd.concat([east, west], ignore_index<span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (teams_tidy.shape)</span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>east <span class="op">=</span> east.rename(columns<span class="op">=</span>{<span class="st">'Teams'</span>:<span class="st">'Team'</span>}) <span class="co">#renaming the teams in the columns from Teams to Team</span></span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>west <span class="op">=</span> west.rename(columns<span class="op">=</span>{<span class="st">'Teams'</span>:<span class="st">'Team'</span>})</span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix: Check if 'Teams' column exists before trying to rename</span></span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'Teams'</span> <span class="kw">in</span> east.columns:</span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>    east <span class="op">=</span> east.rename(columns<span class="op">=</span>{<span class="st">'Teams'</span>:<span class="st">'Team'</span>})</span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'Teams'</span> <span class="kw">in</span> west.columns:</span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>    west <span class="op">=</span> west.rename(columns<span class="op">=</span>{<span class="st">'Teams'</span>:<span class="st">'Team'</span>})</span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_team_name(t):</span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pd.isna(t):</span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> t <span class="co">#means if its empty return it back but if not then -&gt;</span></span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">str</span>(t).replace(<span class="st">'x'</span>,<span class="st">''</span>).replace(<span class="st">'*'</span>,<span class="st">''</span>).replace(<span class="st">'z'</span>,<span class="st">''</span>).replace(<span class="st">'y'</span>,<span class="st">''</span>).strip()     <span class="co">#this cleans the Teams and removes the uneccesary stuff such as : stars, extra letters etc.</span></span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a>east[<span class="st">'Team'</span>] <span class="op">=</span> east[<span class="st">'Team'</span>].<span class="bu">apply</span>(clean_team_name) <span class="co">#we call the clean function and this cleans whatever we apply it top </span></span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a>west[<span class="st">'Team'</span>] <span class="op">=</span> west[<span class="st">'Team'</span>].<span class="bu">apply</span>(clean_team_name)</span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.concat([east,west], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> [<span class="st">"W"</span>,<span class="st">"L"</span>,<span class="st">"GB"</span>,<span class="st">"PS/G"</span>,<span class="st">"PA/G"</span>,<span class="st">"SRS"</span>]:</span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> col <span class="kw">in</span> df.columns:</span>
+<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a>        df[col]<span class="op">=</span> pd.to_numeric(df[col], errors <span class="op">=</span> <span class="st">"coerce"</span>)</span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"W/L%"</span>] <span class="op">=</span> pd.to_numeric(df[<span class="st">"W/L%"</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.replace(<span class="st">"-"</span>, <span class="st">""</span>), errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"ConferenceRank"</span>]<span class="op">=</span>(</span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a>    df.groupby([<span class="st">"Year"</span>,<span class="st">"Conference"</span>])[<span class="st">"W/L%"</span>]</span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a>    .rank(method<span class="op">=</span><span class="st">"min"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (df.shape)</span>
+<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (df.head())</span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (df.dtypes)</span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (df[<span class="st">"Team"</span>].nunique())</span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a><span class="co">#df = pd.concat([east,west], ignore_index=True)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['W', 'L', 'W/L%', 'GB', 'PS/G', 'PA/G', 'SRS'] ['Year', 'W', 'L', 'W/L%', 'GB', 'PS/G', 'PA/G', 'SRS']
+                Teams  Year   W   L  W/L%    GB   PS/G   PA/G    SRS Conference
+1    Toronto Raptors*  2015  49  33  .598     —  104.0  100.9   2.45       East
+2     Boston Celtics*  2015  40  42  .488   9.0  101.4  101.2  -0.40       East
+3      Brooklyn Nets*  2015  38  44  .463  11.0   98.0  100.9  -3.13       East
+4  Philadelphia 76ers  2015  18  64  .220  31.0   92.0  101.0  -9.04       East
+5     New York Knicks  2015  17  65  .207  32.0   91.9  101.2  -9.50       East (315, 10)
+                      Teams  Year   W   L  W/L%    GB   PS/G   PA/G    SRS Conference
+19  Portland Trail Blazers*  2015  51  31  .622     —  102.8   98.6   4.41       West
+20    Oklahoma City Thunder  2015  45  37  .549   6.0  104.0  101.8   2.47       West
+21                Utah Jazz  2015  38  44  .463  13.0   95.1   94.9   0.71       West
+22           Denver Nuggets  2015  30  52  .366  21.0  101.5  105.0  -3.07       West
+23   Minnesota Timberwolves  2015  16  66  .195  35.0   97.8  106.5  -8.00       West (315, 10)
+(630, 10)
+(630, 11)
+                 Team  Year   W   L   W/L%    GB   PS/G   PA/G   SRS Conference  ConferenceRank
+0     Toronto Raptors  2015  49  33  0.598   NaN  104.0  100.9  2.45       East             4.0
+1      Boston Celtics  2015  40  42  0.488   9.0  101.4  101.2 -0.40       East             7.0
+2        Brookln Nets  2015  38  44  0.463  11.0   98.0  100.9 -3.13       East             8.0
+3  Philadelphia 76ers  2015  18  64  0.220  31.0   92.0  101.0 -9.04       East            14.0
+4     New York Knicks  2015  17  65  0.207  32.0   91.9  101.2 -9.50       East            15.0
+Team               object
+Year                int64
+W                   int64
+L                   int64
+W/L%              float64
+GB                float64
+PS/G              float64
+PA/G              float64
+SRS               float64
+Conference         object
+ConferenceRank    float64
+dtype: object
+30</code></pre>
+</div>
+</div>
+<div id="cell-6" class="cell" data-execution_count="31">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#merge the MVP data and the standings</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>mvp_df[<span class="st">"Year"</span>] <span class="op">=</span> (mvp_df[<span class="st">"Season"</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>[:<span class="dv">4</span>].astype(<span class="bu">int</span>) <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>team_map <span class="op">=</span> {<span class="st">"DEN"</span>: <span class="st">"Denver Nuggets"</span>, </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"PHI"</span>: <span class="st">"Philadelphia 76ers"</span>,  </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MIL"</span>: <span class="st">"Milwaukee Bucks"</span>, </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"HOU"</span>: <span class="st">"Houston Rockets"</span>,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"OKC"</span>: <span class="st">"Oklahoma City Thunder"</span>,</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GSW"</span>: <span class="st">"Golden State Warriors"</span>,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"CLE"</span>: <span class="st">"Cleveland Cavaliers"</span>,</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"LAL"</span>: <span class="st">"Los Angeles Lakers"</span>,</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"DAL"</span>: <span class="st">"Dallas Mavericks"</span>,</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"BOS"</span>: <span class="st">"Boston Celtics"</span>,</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MIA"</span>: <span class="st">"Miami Heat"</span>,</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"PHX"</span>: <span class="st">"Phoenix Suns"</span>,</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"NYK"</span>: <span class="st">"New York Knicks"</span>,</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SAS"</span>: <span class="st">"San Antonio Spurs"</span>,</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"TOR"</span>: <span class="st">"Toronto Raptors"</span>,</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"BKN"</span>: <span class="st">"Brooklyn Nets"</span>,</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ORL"</span>: <span class="st">"Orlando Magic"</span>,</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"WAS"</span>: <span class="st">"Washington Wizards"</span>,</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MAVS"</span>: <span class="st">"Dallas Mavericks"</span>,</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MEM"</span>: <span class="st">"Memphis Grizzlies"</span>,</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"UTA"</span>: <span class="st">"Utah Jazz"</span>,</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ATL"</span>: <span class="st">"Atlanta Hawks"</span>,</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"NOP"</span>: <span class="st">"New Orleans Pelicans"</span>,</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"IND"</span>: <span class="st">"Indiana Pacers"</span>,</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">"DET"</span>: <span class="st">"Detroit Pistons"</span>,</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">"LAC"</span>: <span class="st">"Los Angeles Clippers"</span>,</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">"POR"</span>: <span class="st">"Portland Trail blazers"</span>,</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    <span class="st">"CHA"</span>: <span class="st">"Charlotte Hornets"</span>,</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">"CHI"</span>: <span class="st">"Chicago Bulls"</span>,</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SAC"</span>: <span class="st">"Sacramento Kings"</span>}</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.columns.tolist())</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Team"</span>] <span class="op">=</span> df[<span class="st">"Team"</span>].astype(<span class="bu">str</span>).strip()</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Team"</span>] <span class="op">=</span> df[<span class="st">"Team"</span>].replace(<span class="vs">r"</span><span class="pp">[*</span><span class="ch">\.</span><span class="pp">]</span><span class="vs">"</span>, <span class="st">""</span>, regex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>full_to_abbr <span class="op">=</span> {full: abbr <span class="cf">for</span> abbr, full <span class="kw">in</span> team_map.items()}</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Team"</span>] <span class="op">=</span> df[<span class="st">"Team"</span>].replace(full_to_abbr)</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Team"</span>] <span class="op">=</span> df[<span class="st">"Team"</span>].<span class="bu">str</span>.upper().astype(<span class="bu">str</span>).strip()</span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>mvp_df[<span class="st">"Tm"</span>] <span class="op">=</span>(</span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>    mvp_df[<span class="st">"Tm"</span>]</span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">str</span>.replace(<span class="vs">r"</span><span class="pp">[*</span><span class="ch">\.</span><span class="pp">]</span><span class="vs">"</span>, <span class="st">""</span>, regex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">str</span>.strip()</span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">str</span>.upper()</span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>mvp_df[<span class="st">"Team"</span>] <span class="op">=</span> mvp_df[<span class="st">"Tm"</span>]</span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a><span class="co">#mvp_df ["Team"] = (</span></span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>    <span class="co">#mvp_df["Tm"]</span></span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>        <span class="co">#.map(team_map)</span></span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>        <span class="co">#.fillna(mvp_df["Tm"])</span></span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a><span class="co">#)</span></span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a>mvp_keep <span class="op">=</span> mvp_df[[<span class="st">"Player"</span>, <span class="st">"Age"</span>, <span class="st">"Year"</span>, <span class="st">"Team"</span>]]</span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a>standings_keep <span class="op">=</span> df[[<span class="st">"Year"</span>, <span class="st">"Team"</span>, <span class="st">"W/L%"</span>, <span class="st">"Conference"</span>, <span class="st">"ConferenceRank"</span>, <span class="st">"SRS"</span>]]</span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>merged <span class="op">=</span> pd.merge(</span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a>    mvp_keep, standings_keep, on<span class="op">=</span>[<span class="st">"Year"</span>, <span class="st">"Team"</span>], how<span class="op">=</span><span class="st">"left"</span></span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(merged.head()[[<span class="st">"Player"</span>, <span class="st">"Year"</span>, <span class="st">"Team"</span>, <span class="st">"W/L%"</span>, <span class="st">"Conference"</span>, <span class="st">"ConferenceRank"</span>]])</span>
+<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">"ConferenceRank"</span> <span class="kw">in</span> merged.columns:</span>
+<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a>    merged[<span class="st">"ConferenceRank"</span>] <span class="op">=</span> merged[<span class="st">"ConferenceRank"</span>].astype(<span class="st">"Int64"</span>)</span>
+<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(merged.shape)</span>
+<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(merged.columns.tolist())</span>
+<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(merged.head(<span class="dv">10</span>))</span>
+<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(merged.isna().<span class="bu">sum</span>())</span>
+<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a><span class="co">#soup = bs(data.text.encode("utf-8"), "html.parser")#</span></span>
+<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">"Team"</span>].unique()[:<span class="dv">30</span>])</span>
+<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[df[<span class="st">"Team"</span>].isna()])</span>
+<span id="cb12-81"><a href="#cb12-81" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['Team', 'Year', 'W', 'L', 'W/L%', 'GB', 'PS/G', 'PA/G', 'SRS', 'Conference', 'ConferenceRank']</code></pre>
+</div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
+<span class="ansi-green-fg">/var/folders/hv/mjnpgkf51zxcvfllt181h_sr0000gn/T/ipykernel_66295/1668460625.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">---&gt; 38</span><span class="ansi-red-fg"> </span><span class="ansi-red-fg">#merge the MVP data and the standings</span>
+<span class="ansi-green-fg ansi-bold">     39</span> 
+<span class="ansi-green-fg ansi-bold">     40</span> mvp_df<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">"Year"</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">(</span>mvp_df<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">"Season"</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">.</span>astype<span class="ansi-blue-fg">(</span>str<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>str<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">:</span><span class="ansi-cyan-fg">4</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">.</span>astype<span class="ansi-blue-fg">(</span>int<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">+</span> <span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">     41</span> 
+
+<span class="ansi-green-fg">~/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(self, name)</span>
+<span class="ansi-green-fg ansi-bold">   6317</span>             <span class="ansi-green-fg">and</span> name <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">in</span> self<span class="ansi-blue-fg">.</span>_accessors
+<span class="ansi-green-fg ansi-bold">   6318</span>             <span class="ansi-green-fg">and</span> self<span class="ansi-blue-fg">.</span>_info_axis<span class="ansi-blue-fg">.</span>_can_hold_identifiers_and_holds_name<span class="ansi-blue-fg">(</span>name<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">   6319</span>         ):
+<span class="ansi-green-fg ansi-bold">   6320</span>             <span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">[</span>name<span class="ansi-blue-fg">]</span>
+<span class="ansi-green-fg">-&gt; 6321</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> object<span class="ansi-blue-fg">.</span>__getattribute__<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> name<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">AttributeError</span>: 'Series' object has no attribute 'strip'</pre>
+</div>
+</div>
+</div>
+<div id="cell-7" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Average Win to Loss </span><span class="sc">% o</span><span class="st">f the MVP's team:"</span> , merged[<span class="st">"W/L%"</span>].mean())</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Average Conference position: "</span>, merged[<span class="st">"ConferenceRank"</span>].mean())</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Average point differential of team: "</span>, merged[<span class="st">"SRS"</span>].mean())</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Conference Rank distribution: "</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(merged[<span class="st">"ConferenceRank"</span>].value_counts().sort_index())</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">#rank_counts = merged["ConferenceRank"].value_counts().sort_index()</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">#print("MVP count by Conference Rank: \n")</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">#for rank , count in rank_counts.items():</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">#print(f"Conference Rank {rank}: {count} MVPs")</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>                                      </span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>merged[<span class="st">"Top5"</span>] <span class="op">=</span> merged[<span class="st">"ConferenceRank"</span>] <span class="op">&lt;=</span> <span class="dv">5</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="sc">% o</span><span class="st">f MVPs from Top 5 teams:"</span>, merged[<span class="st">"Top5"</span>].mean() <span class="op">*</span> <span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Average Win to Loss % of the MVP's team: 0.7217500000000001
+Average Conference position:  3.25
+Average point differential of team:  6.5775
+
+Conference Rank distribution: 
+ConferenceRank
+1     10
+5      4
+11     2
+Name: count, dtype: Int64
+
+% of MVPs from Top 5 teams: 87.5</code></pre>
+</div>
+</div>
+<div id="cell-8" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#now we use machine to rank who has the best chance of winning mvp for the upcoming season and rank the top 10.</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>target_year <span class="op">=</span> df[<span class="st">"Year"</span>].<span class="bu">max</span>() <span class="co">#finds the maximum year of the years we have, since mvp data is most helpful when recent</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="ss">f"https://www.basketball-reference.com/leagues/NBA_2026_per_game.html"</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>data_players <span class="op">=</span> requests.get(url)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>soup <span class="op">=</span> bs(data_players.text, <span class="st">"html.parser"</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>player_df  <span class="op">=</span> pd.read_html(<span class="bu">str</span>(soup), header <span class="op">=</span> <span class="dv">0</span>)[<span class="dv">0</span>]</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#print (player_df.columns)</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">#print (player_df.head(15))</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>stat_cols <span class="op">=</span> [<span class="st">"PTS"</span>, <span class="st">"AST"</span>, <span class="st">"TRB"</span>, <span class="st">"FG%"</span>, <span class="st">"BLK"</span>, <span class="st">"STL"</span>]</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>player_df <span class="op">=</span> player_df[player_df[<span class="st">"Player"</span>].notna()].copy()</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>player_df <span class="op">=</span> player_df[player_df[<span class="st">"Player"</span>] <span class="op">!=</span> <span class="st">"Player"</span>].copy()</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>player_df <span class="op">=</span> player_df[<span class="op">~</span>player_df[<span class="st">"Team"</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.contains(<span class="st">"TM"</span>)].copy()</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (player_df.columns)</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (player_df.head(<span class="dv">10</span>))</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> stat_cols:</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> col <span class="kw">in</span> player_df.columns:</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>        player_df[col] <span class="op">=</span> pd.to_numeric(player_df[col], errors <span class="op">=</span> <span class="st">"coerce"</span>)</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (player_df[stat_cols].dtypes)</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>player_df <span class="op">=</span> (</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>    player_df.sort_values(<span class="st">"G"</span>, ascending<span class="op">=</span><span class="va">False</span>).groupby(<span class="st">"Player"</span>, as_index<span class="op">=</span><span class="va">False</span>).head(<span class="dv">1</span>) <span class="co">#this code fixes it</span></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (player_df[player_df[<span class="st">"Player"</span>].<span class="bu">str</span>.contains(<span class="st">"Luka"</span>, na<span class="op">=</span><span class="va">False</span>)]) <span class="co">#this fixes the luka problem where luka is printed 2x</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'eFG%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'Awards'], dtype='object')
+     Rk                   Player   Age Team Pos     G    GS    MP    FG   FGA    FG%   3P   3PA    3P%   2P   2PA    2P%   eFG%   FT   FTA    FT%  ORB  DRB   TRB   AST  STL  BLK  TOV   PF   PTS      Awards
+0   1.0            Luka DonÄiÄ  26.0  LAL  PG  64.0  64.0  35.8  10.8  22.8  0.476  4.0  10.8  0.366  6.9  11.9  0.575  0.563  7.9  10.1  0.780  0.6  7.1   7.7   8.3  1.6  0.5  4.0  2.4  33.5   CPOY-8,AS
+1   2.0  Shai Gilgeous-Alexander  27.0  OKC  PG  68.0  68.0  33.2  10.8  19.4  0.553  1.7   4.4  0.386  9.1  15.0  0.602  0.597  7.9   9.0  0.879  0.6  3.7   4.3   6.6  1.4  0.8  2.2  2.0  31.1   CPOY-1,AS
+2   3.0          Anthony Edwards  24.0  MIN  SG  61.0  60.0  35.0   9.9  20.2  0.489  3.4   8.4  0.399  6.5  11.8  0.554  0.572  5.7   7.2  0.796  0.6  4.4   5.0   3.7  1.4  0.8  2.9  1.9  28.8   CPOY-3,AS
+3   4.0             Jaylen Brown  29.0  BOS  SF  71.0  71.0  34.4  10.4  21.7  0.477  2.0   5.7  0.347  8.4  16.0  0.523  0.522  6.0   7.5  0.795  1.1  5.8   6.9   5.1  1.0  0.4  3.6  2.7  28.7          AS
+4   5.0             Tyrese Maxey  25.0  PHI  PG  70.0  70.0  38.0   9.9  21.4  0.462  3.1   8.6  0.367  6.8  12.9  0.525  0.536  5.3   6.0  0.892  0.3  3.8   4.1   6.6  1.9  0.8  2.4  2.2  28.3   CPOY-7,AS
+5   6.0            Kawhi Leonard  34.0  LAC  SF  65.0  65.0  32.1   9.8  19.4  0.505  2.6   6.8  0.387  7.1  12.5  0.569  0.573  5.7   6.4  0.892  1.1  5.3   6.4   3.6  1.9  0.4  2.0  1.2  27.9  CPOY-10,AS
+6   7.0         Donovan Mitchell  29.0  CLE  SG  70.0  70.0  33.5   9.7  20.0  0.483  3.2   8.8  0.364  6.5  11.2  0.577  0.563  5.3   6.1  0.865  0.7  3.8   4.5   5.7  1.5  0.3  2.8  2.3  27.9          AS
+7   8.0            Nikola JokiÄ  30.0  DEN   C  65.0  65.0  34.8   9.9  17.4  0.569  1.7   4.5  0.380  8.2  12.9  0.636  0.618  6.1   7.4  0.831  3.0  9.9  12.9  10.7  1.4  0.8  3.7  2.7  27.7   CPOY-6,AS
+8   9.0    Giannis Antetokounmpo  31.0  MIL  PF  36.0  36.0  28.9  10.4  16.6  0.624  0.4   1.3  0.333  9.9  15.4  0.647  0.636  6.4   9.9  0.650  2.7  7.1   9.8   5.4  0.9  0.7  3.2  2.4  27.6          AS
+9  10.0              Joel Embiid  31.0  PHI   C  38.0  38.0  31.6   9.0  18.3  0.489  1.4   4.2  0.333  7.6  14.2  0.535  0.527  7.5   8.8  0.854  2.0  5.7   7.7   3.9  0.6  1.2  2.9  2.2  26.9         NaN
+PTS    float64
+AST    float64
+TRB    float64
+FG%    float64
+BLK    float64
+STL    float64
+dtype: object
+        Rk         Player   Age Team Pos     G    GS    MP    FG   FGA    FG%   3P   3PA    3P%   2P   2PA    2P%   eFG%   FT   FTA    FT%  ORB  DRB  TRB  AST  STL  BLK  TOV   PF   PTS     Awards
+332  279.0     Luka Garza  27.0  BOS   C  69.0   6.0  16.2   3.0   5.2  0.577  0.8   1.8  0.433  2.2   3.3  0.657  0.654  1.3   1.7  0.769  2.3  1.8  4.1  1.0  0.4  0.4  0.7  2.3   8.1        NaN
+0      1.0  Luka DonÄiÄ  26.0  LAL  PG  64.0  64.0  35.8  10.8  22.8  0.476  4.0  10.8  0.366  6.9  11.9  0.575  0.563  7.9  10.1  0.780  0.6  7.1  7.7  8.3  1.6  0.5  4.0  2.4  33.5  CPOY-8,AS</code></pre>
+</div>
+</div>
+<div id="cell-9" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>target_year <span class="op">=</span> <span class="dv">2026</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>teams_current <span class="op">=</span> df[df[<span class="st">"Year"</span>] <span class="op">==</span> target_year].copy()</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>name_to_abbr <span class="op">=</span> {full: abbr <span class="cf">for</span> abbr, full <span class="kw">in</span> team_map.items()}</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>teams_current[<span class="st">"Team_abbr"</span>] <span class="op">=</span> teams_current[<span class="st">"Team"</span>].<span class="bu">map</span>(name_to_abbr)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> player_df.merge(</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    teams_current[[<span class="st">"Team_abbr"</span>, <span class="st">"W/L%"</span>]],</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    left_on <span class="op">=</span> <span class="st">"Team"</span>, right_on <span class="op">=</span> <span class="st">"Team_abbr"</span>, how <span class="op">=</span> <span class="st">"left"</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> players_df.rename(columns<span class="op">=</span>{<span class="st">"W/L%"</span>: <span class="st">"team_win_pct"</span>})</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>top20 <span class="op">=</span> players_df.sort_values(<span class="st">"team_win_pct"</span>, ascending <span class="op">=</span> <span class="va">False</span>).head(<span class="dv">20</span>)</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> player_df.merge(</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    df[[<span class="st">"Year"</span>, <span class="st">"Team"</span>, <span class="st">"W/L%"</span>]],</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    on<span class="op">=</span><span class="st">"Team"</span>,</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    how<span class="op">=</span><span class="st">"left"</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> players_df.rename(columns<span class="op">=</span>{<span class="st">"W/L%"</span>: <span class="st">"team_win_pct"</span>})</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="co">#print(top20[["Player", "Team", "team_win_pct"]].head(20))</span></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(teams_current[[<span class="st">"Team"</span>, <span class="st">"Team_abbr"</span>]].head(<span class="dv">20</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Empty DataFrame
+Columns: [Team, Team_abbr]
+Index: []</code></pre>
+</div>
+</div>
+<div id="cell-10" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>target_year <span class="op">=</span> <span class="dv">2026</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>teams_current <span class="op">=</span> df[df[<span class="st">"Year"</span>] <span class="op">==</span> target_year].copy()</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> player_df.merge(</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    teams_current[[<span class="st">"Team"</span>, <span class="st">"W/L%"</span>]],</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    on<span class="op">=</span><span class="st">"Team"</span>,</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    how<span class="op">=</span><span class="st">"left"</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> players_df.rename(columns<span class="op">=</span>{<span class="st">"W/L%"</span>: <span class="st">"team_win_pct"</span>})</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>top20 <span class="op">=</span> players_df.sort_values(<span class="st">"team_win_pct"</span>, ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">20</span>)</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="co">#print(top20[["Player", "Team", "team_win_pct"]])</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">"Team"</span>].unique()[:<span class="dv">30</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['TOR' 'BOS' 'BKN' 'PHI' 'NYK' 'CLE' 'CHI' 'MIL' 'IND' 'DET' 'ATL' nan
+ 'MIA' 'CHA' 'ORL' 'DEN' 'GSW' 'LAC' 'SAC' 'LAL' 'HOU' 'SAS' 'MAVS' 'NOP']</code></pre>
+</div>
+</div>
+<div id="cell-11" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>stat_cols <span class="op">=</span> [<span class="st">"PTS"</span>, <span class="st">"AST"</span>, <span class="st">"TRB"</span>, <span class="st">"STL"</span>, <span class="st">"BLK"</span>, <span class="st">"FG%"</span>, <span class="st">"team_win_pct"</span>]</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (players_df.columns.tolist())</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> stat_cols:</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    col_min <span class="op">=</span> players_df[col].<span class="bu">min</span>()</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    col_max <span class="op">=</span> players_df[col].<span class="bu">max</span>()</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> col_min <span class="op">==</span> col_max:</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>        players_df[col <span class="op">+</span><span class="st">"_norm"</span>] <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>        players_df[col <span class="op">+</span><span class="st">"_norm"</span>] <span class="op">=</span> (players_df[col] <span class="op">-</span> col_min) <span class="op">/</span> (col_max <span class="op">-</span> col_min)</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(player_df.columns)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'eFG%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'Awards', 'team_win_pct']
+Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'eFG%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'Awards'], dtype='object')
+Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'eFG%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'Awards'], dtype='object')
+Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'eFG%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'Awards'], dtype='object')
+Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'eFG%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'Awards'], dtype='object')
+Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'eFG%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'Awards'], dtype='object')
+Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'eFG%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'Awards'], dtype='object')
+Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'eFG%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'Awards'], dtype='object')</code></pre>
+</div>
+</div>
+<div id="cell-12" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>players_df[<span class="st">"Player"</span>] <span class="op">=</span> (</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    players_df[<span class="st">"Player"</span>].<span class="bu">str</span>.encode(<span class="st">"latin1"</span>).<span class="bu">str</span>.decode(<span class="st">"utf-8"</span>))</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> players_df.drop_duplicates(subset<span class="op">=</span>[<span class="st">"Player"</span>])</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>players_df[<span class="st">"mvp_score"</span>] <span class="op">=</span>( </span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a> <span class="co">#this is the formula </span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.20</span> <span class="op">*</span> players_df[<span class="st">"PTS_norm"</span>] <span class="op">+</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.30</span> <span class="op">*</span> players_df[<span class="st">"team_win_pct_norm"</span>] <span class="op">+</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.15</span> <span class="op">*</span> players_df[<span class="st">"AST_norm"</span>] <span class="op">+</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.025</span> <span class="op">*</span> players_df[<span class="st">"STL_norm"</span>] <span class="op">+</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.10</span> <span class="op">*</span> players_df[<span class="st">"TRB_norm"</span>] <span class="op">+</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.025</span> <span class="op">*</span> players_df[<span class="st">"BLK_norm"</span>] <span class="op">+</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.20</span> <span class="op">*</span> players_df[<span class="st">"FG%_norm"</span>] </span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> players_df.sort_values(<span class="st">"mvp_score"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>    players_df[[<span class="st">"Player"</span>, <span class="st">"Team"</span>, <span class="st">"PTS"</span>, <span class="st">"AST"</span>, <span class="st">"TRB"</span>, <span class="st">"team_win_pct"</span>, <span class="st">"mvp_score"</span>]]</span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>.head(<span class="dv">10</span>)</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">UnicodeEncodeError</span>                        Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[17], line 2</span>
+<span class="ansi-green-fg ansi-bold">      1</span> players_df[<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Player</span><span style="color:rgb(175,0,0)">"</span>] <span style="color:rgb(98,98,98)">=</span> (
+<span class="ansi-green-fg">----&gt; 2</span>     <span class="ansi-yellow-bg">players_df</span><span class="ansi-yellow-bg">[</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">"</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">Player</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">"</span><span class="ansi-yellow-bg">]</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">str</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">encode</span><span class="ansi-yellow-bg">(</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">"</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">latin1</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">"</span><span class="ansi-yellow-bg">)</span><span style="color:rgb(98,98,98)">.</span>str<span style="color:rgb(98,98,98)">.</span>decode(<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">utf-8</span><span style="color:rgb(175,0,0)">"</span>))
+<span class="ansi-green-fg ansi-bold">      4</span> players_df <span style="color:rgb(98,98,98)">=</span> players_df<span style="color:rgb(98,98,98)">.</span>drop_duplicates(subset<span style="color:rgb(98,98,98)">=</span>[<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Player</span><span style="color:rgb(175,0,0)">"</span>])
+<span class="ansi-green-fg ansi-bold">      6</span> players_df[<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">mvp_score</span><span style="color:rgb(175,0,0)">"</span>] <span style="color:rgb(98,98,98)">=</span>( 
+<span class="ansi-green-fg ansi-bold">      7</span>  <span style="font-style:italic;color:rgb(95,135,135)">#this is the formula </span>
+<span class="ansi-green-fg ansi-bold">      8</span>     <span style="color:rgb(98,98,98)">0.20</span> <span style="color:rgb(98,98,98)">*</span> players_df[<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">PTS_norm</span><span style="color:rgb(175,0,0)">"</span>] <span style="color:rgb(98,98,98)">+</span>
+<span class="ansi-green-fg">   (...)</span>
+<span class="ansi-green-fg ansi-bold">     15</span> 
+<span class="ansi-green-fg ansi-bold">     16</span> )
+
+File <span class="ansi-green-fg">~/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages/pandas/core/strings/accessor.py:140</span>, in <span class="ansi-cyan-fg">forbid_nonstring_types.&lt;locals&gt;._forbid_nonstring_types.&lt;locals&gt;.wrapper</span><span class="ansi-blue-fg">(self, *args, **kwargs)</span>
+<span class="ansi-green-fg ansi-bold">    135</span>     msg <span style="color:rgb(98,98,98)">=</span> (
+<span class="ansi-green-fg ansi-bold">    136</span>         <span style="color:rgb(175,0,0)">f</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Cannot use .str.</span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>func_name<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span style="color:rgb(175,0,0)"> with values of </span><span style="color:rgb(175,0,0)">"</span>
+<span class="ansi-green-fg ansi-bold">    137</span>         <span style="color:rgb(175,0,0)">f</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">inferred dtype </span><span style="color:rgb(175,0,0)">'</span><span style="font-weight:bold;color:rgb(175,95,135)">{</span><span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>_inferred_dtype<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)">.</span><span style="color:rgb(175,0,0)">"</span>
+<span class="ansi-green-fg ansi-bold">    138</span>     )
+<span class="ansi-green-fg ansi-bold">    139</span>     <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">TypeError</span>(msg)
+<span class="ansi-green-fg">--&gt; 140</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">func</span><span class="ansi-yellow-bg">(</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span>
+
+File <span class="ansi-green-fg">~/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages/pandas/core/strings/accessor.py:2062</span>, in <span class="ansi-cyan-fg">StringMethods.encode</span><span class="ansi-blue-fg">(self, encoding, errors)</span>
+<span class="ansi-green-fg ansi-bold">   2037</span> <span style="color:rgb(175,0,255)">@forbid_nonstring_types</span>([<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">bytes</span><span style="color:rgb(175,0,0)">"</span>])
+<span class="ansi-green-fg ansi-bold">   2038</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span style="color:rgb(0,0,255)">encode</span>(<span style="color:rgb(0,135,0)">self</span>, encoding, errors: <span style="color:rgb(0,135,0)">str</span> <span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">strict</span><span style="color:rgb(175,0,0)">"</span>):
+<span class="ansi-green-fg ansi-bold">   2039</span> <span style="color:rgb(188,188,188)">    </span><span style="font-style:italic;color:rgb(175,0,0)">"""</span>
+<span class="ansi-green-fg ansi-bold">   2040</span> <span style="font-style:italic;color:rgb(175,0,0)">    Encode character string in the Series/Index using indicated encoding.</span>
+<span class="ansi-green-fg ansi-bold">   2041</span> 
+<span class="ansi-green-fg">   (...)</span>
+<span class="ansi-green-fg ansi-bold">   2060</span> <span style="font-style:italic;color:rgb(175,0,0)">    dtype: object</span>
+<span class="ansi-green-fg ansi-bold">   2061</span> <span style="font-style:italic;color:rgb(175,0,0)">    """</span>
+<span class="ansi-green-fg">-&gt; 2062</span>     result <span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_data</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">array</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_str_encode</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">encoding</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">errors</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg ansi-bold">   2063</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>_wrap_result(result, returns_string<span style="color:rgb(98,98,98)">=</span><span style="font-weight:bold;color:rgb(0,135,0)">False</span>)
+
+File <span class="ansi-green-fg">~/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages/pandas/core/strings/object_array.py:278</span>, in <span class="ansi-cyan-fg">ObjectStringArrayMixin._str_encode</span><span class="ansi-blue-fg">(self, encoding, errors)</span>
+<span class="ansi-green-fg ansi-bold">    276</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span style="color:rgb(0,0,255)">_str_encode</span>(<span style="color:rgb(0,135,0)">self</span>, encoding, errors: <span style="color:rgb(0,135,0)">str</span> <span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">strict</span><span style="color:rgb(175,0,0)">"</span>):
+<span class="ansi-green-fg ansi-bold">    277</span>     f <span style="color:rgb(98,98,98)">=</span> <span style="font-weight:bold;color:rgb(0,135,0)">lambda</span> x: x<span style="color:rgb(98,98,98)">.</span>encode(encoding, errors<span style="color:rgb(98,98,98)">=</span>errors)
+<span class="ansi-green-fg">--&gt; 278</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_str_map</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">f</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">dtype</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">object</span><span class="ansi-yellow-bg">)</span>
+
+File <span class="ansi-green-fg">~/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages/pandas/core/strings/object_array.py:82</span>, in <span class="ansi-cyan-fg">ObjectStringArrayMixin._str_map</span><span class="ansi-blue-fg">(self, f, na_value, dtype, convert)</span>
+<span class="ansi-green-fg ansi-bold">     80</span> map_convert <span style="color:rgb(98,98,98)">=</span> convert <span style="font-weight:bold;color:rgb(175,0,255)">and</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> np<span style="color:rgb(98,98,98)">.</span>all(mask)
+<span class="ansi-green-fg ansi-bold">     81</span> <span style="font-weight:bold;color:rgb(0,135,0)">try</span>:
+<span class="ansi-green-fg">---&gt; 82</span>     result <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">lib</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">map_infer_mask</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">arr</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">f</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">mask</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">view</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">np</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">uint8</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">map_convert</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg ansi-bold">     83</span> <span style="font-weight:bold;color:rgb(0,135,0)">except</span> (<span style="font-weight:bold;color:rgb(215,95,95)">TypeError</span>, <span style="font-weight:bold;color:rgb(215,95,95)">AttributeError</span>) <span style="font-weight:bold;color:rgb(0,135,0)">as</span> err:
+<span class="ansi-green-fg ansi-bold">     84</span>     <span style="font-style:italic;color:rgb(95,135,135)"># Reraise the exception if callable `f` got wrong number of args.</span>
+<span class="ansi-green-fg ansi-bold">     85</span>     <span style="font-style:italic;color:rgb(95,135,135)"># The user may want to be warned by this, instead of getting NaN</span>
+<span class="ansi-green-fg ansi-bold">     86</span>     p_err <span style="color:rgb(98,98,98)">=</span> (
+<span class="ansi-green-fg ansi-bold">     87</span>         <span style="color:rgb(175,0,0)">r</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">((takes)|(missing)) (?(2)from </span><span style="color:rgb(175,0,0)">\</span><span style="color:rgb(175,0,0)">d+ to )?</span><span style="color:rgb(175,0,0)">\</span><span style="color:rgb(175,0,0)">d+ </span><span style="color:rgb(175,0,0)">"</span>
+<span class="ansi-green-fg ansi-bold">     88</span>         <span style="color:rgb(175,0,0)">r</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">(?(3)required )positional arguments?</span><span style="color:rgb(175,0,0)">"</span>
+<span class="ansi-green-fg ansi-bold">     89</span>     )
+
+File <span class="ansi-green-fg">pandas/_libs/lib.pyx:2922</span>, in <span class="ansi-cyan-fg">pandas._libs.lib.map_infer_mask</span><span class="ansi-blue-fg">()</span>
+
+File <span class="ansi-green-fg">pandas/_libs/lib.pyx:2959</span>, in <span class="ansi-cyan-fg">pandas._libs.lib._map_infer_mask</span><span class="ansi-blue-fg">()</span>
+
+File <span class="ansi-green-fg">~/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages/pandas/core/strings/object_array.py:277</span>, in <span class="ansi-cyan-fg">ObjectStringArrayMixin._str_encode.&lt;locals&gt;.&lt;lambda&gt;</span><span class="ansi-blue-fg">(x)</span>
+<span class="ansi-green-fg ansi-bold">    276</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span style="color:rgb(0,0,255)">_str_encode</span>(<span style="color:rgb(0,135,0)">self</span>, encoding, errors: <span style="color:rgb(0,135,0)">str</span> <span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">strict</span><span style="color:rgb(175,0,0)">"</span>):
+<span class="ansi-green-fg">--&gt; 277</span>     f <span style="color:rgb(98,98,98)">=</span> <span style="font-weight:bold;color:rgb(0,135,0)">lambda</span> x: <span class="ansi-yellow-bg">x</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">encode</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">encoding</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">errors</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">errors</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg ansi-bold">    278</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>_str_map(f, dtype<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(0,135,0)">object</span>)
+
+<span class="ansi-red-fg">UnicodeEncodeError</span>: 'latin-1' codec can't encode character '\u015e' in position 8: ordinal not in range(256)</pre>
+</div>
+</div>
+</div>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/Z10457\.github\.io\/nbamvp_project\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

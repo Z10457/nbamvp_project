@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>scrypt – NBA_MVP_Project</title>
+<title>untitled-5 – NBA_MVP_Project</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -155,7 +155,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div id="cell-0" class="cell" data-execution_count="14">
+<div id="cell-0" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install html5lib lxml beautifulsoup4</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
@@ -184,7 +184,7 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 </div>
 </div>
-<div id="cell-1" class="cell" data-execution_count="15">
+<div id="cell-1" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os <span class="co">#interacts with the operating systems ( such as creating folders/checking files)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd <span class="co">#used to read and clean the data </span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shutil <span class="co">#copying/moving files or directories</span></span>
@@ -197,53 +197,194 @@ Note: you may need to restart the kernel to use updated packages.
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.max_rows'</span>, <span class="dv">50</span>)</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.max_columns'</span>, <span class="dv">50</span>)</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.width'</span>, <span class="dv">1000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div id="cell-2" class="cell" data-execution_count="16">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.basketball-reference.com/awards/mvp.html#mvp_NBA"</span> <span class="co">#this is the web page we want to scrape</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">2</span>)  <span class="co"># Be respectful to the server, avoid rate limiting, so it wont say html error too many requests.</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>headers <span class="op">=</span> {<span class="st">"User-Agent"</span>: <span class="st">"Mozilla/5.0"</span>} <span class="co">#makes it look like we are not a bot requesting html page, may help with the html error too many requests, but not sure if it will work.</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> requests.get(url, headers<span class="op">=</span>headers) <span class="co">#sends a GET request to the server and gets the pages html, and the content from the html page is stored now in data </span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>soup <span class="op">=</span> bs(data.text, <span class="st">"html.parser"</span>) <span class="co">#converts the text into smth that is searchable now</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> soup.find(<span class="st">'table'</span>, <span class="bu">id</span><span class="op">=</span><span class="st">'mvp_NBA'</span>) </span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">#mvp_df = pd.read_html(str(table), header=1)[0]</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> table <span class="kw">is</span> <span class="va">None</span>:</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    mvp_df <span class="op">=</span> pd.read_html(url, attrs<span class="op">=</span>{<span class="st">'id'</span>: <span class="st">'mvp_NBA'</span>}, header<span class="op">=</span><span class="dv">1</span>, flavor<span class="op">=</span><span class="st">"lxml"</span>)[<span class="dv">0</span>]</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    mvp_df <span class="op">=</span> pd.read_html(<span class="bu">str</span>(table), header<span class="op">=</span><span class="dv">1</span>, flavor<span class="op">=</span><span class="st">"lxml"</span>)[<span class="dv">0</span>]</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>mvp_df.columns <span class="op">=</span> [col.strip() <span class="cf">for</span> col <span class="kw">in</span> mvp_df.columns] </span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co">#mvp_df = mvp_df.dropna(subset=[mvp_df.columns[0]]) , test code</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>mvp_df <span class="op">=</span> mvp_df[mvp_df[<span class="st">'Season'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>[:<span class="dv">4</span>].astype(<span class="bu">int</span>) <span class="op">&gt;=</span> <span class="dv">2015</span>]</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co">#mvp_df.columns = ['Seasons', 'Players'], test code</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>mvp_df <span class="op">=</span> mvp_df.reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>mvp_df.index <span class="op">=</span> mvp_df.index <span class="op">+</span> <span class="dv">1</span> <span class="co">#now instead of starting at 0 it will start at 1</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (mvp_df)</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     Season   Lg                   Player Voting  Age   Tm   G    MP   PTS   TRB   AST  STL  BLK    FG%    3P%    FT%    WS  WS/48
-1   2024-25  NBA  Shai Gilgeous-Alexander    (V)   26  OKC  76  34.2  32.7   5.0   6.4  1.7  1.0  0.519  0.375  0.898  16.7  0.309
-2   2023-24  NBA            Nikola JokiÄ    (V)   28  DEN  79  34.6  26.4  12.4   9.0  1.4  0.9  0.583  0.359  0.817  17.0  0.299
-3   2022-23  NBA              Joel Embiid    (V)   28  PHI  66  34.6  33.1  10.2   4.2  1.0  1.7  0.548  0.330  0.857  12.3  0.259
-4   2021-22  NBA            Nikola JokiÄ    (V)   26  DEN  74  33.5  27.1  13.8   7.9  1.5  0.9  0.583  0.337  0.810  15.2  0.296
-5   2020-21  NBA            Nikola JokiÄ    (V)   25  DEN  72  34.6  26.4  10.8   8.3  1.3  0.7  0.566  0.388  0.868  15.6  0.301
-6   2019-20  NBA    Giannis Antetokounmpo    (V)   25  MIL  63  30.4  29.5  13.6   5.6  1.0  1.0  0.553  0.304  0.633  11.1  0.279
-7   2018-19  NBA    Giannis Antetokounmpo    (V)   24  MIL  72  32.8  27.7  12.5   5.9  1.3  1.5  0.578  0.256  0.729  14.4  0.292
-8   2017-18  NBA             James Harden    (V)   28  HOU  72  35.4  30.4   5.4   8.8  1.8  0.7  0.449  0.367  0.858  15.4  0.289
-9   2016-17  NBA        Russell Westbrook    (V)   28  OKC  81  34.6  31.6  10.7  10.4  1.6  0.4  0.425  0.343  0.845  13.1  0.224
-10  2015-16  NBA            Stephen Curry    (V)   27  GSW  79  34.2  30.1   5.4   6.7  2.1  0.2  0.504  0.454  0.908  17.9  0.318</code></pre>
+<div class="cell-output cell-output-stderr">
+<pre><code>/Users/zohaib/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(</code></pre>
 </div>
 </div>
-<div id="cell-3" class="cell" data-execution_count="17">
+<div id="cell-2" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.basketball-reference.com/awards/mvp.html#mvp_NBA"</span> <span class="co">#this is the web page we want to scrape</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> requests.get(url) <span class="co">#sends a GET request to the server and gets the pages html, and the content from the html page is stored now in data </span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>soup <span class="op">=</span> bs(data.text, <span class="st">"html.parser"</span>) <span class="co">#converts the text into smth that is searchable now</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> soup.find(<span class="st">'table'</span>, <span class="bu">id</span><span class="op">=</span><span class="st">'mvp_NBA'</span>) </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#mvp_df = pd.read_html(str(table), header=1)[0]</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> table <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    mvp_df <span class="op">=</span> pd.read_html(url, attrs<span class="op">=</span>{<span class="st">'id'</span>: <span class="st">'mvp_NBA'</span>}, header<span class="op">=</span><span class="dv">1</span>, flavor<span class="op">=</span><span class="st">"lxml"</span>)[<span class="dv">0</span>]</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    mvp_df <span class="op">=</span> pd.read_html(<span class="bu">str</span>(table), header<span class="op">=</span><span class="dv">1</span>, flavor<span class="op">=</span><span class="st">"lxml"</span>)[<span class="dv">0</span>]</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>mvp_df.columns <span class="op">=</span> [col.strip() <span class="cf">for</span> col <span class="kw">in</span> mvp_df.columns] </span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">#mvp_df = mvp_df.dropna(subset=[mvp_df.columns[0]]) , test code</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>mvp_df <span class="op">=</span> mvp_df[mvp_df[<span class="st">'Season'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>[:<span class="dv">4</span>].astype(<span class="bu">int</span>) <span class="op">&gt;=</span> <span class="dv">2015</span>]</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">#mvp_df.columns = ['Seasons', 'Players'], test code</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>mvp_df <span class="op">=</span> mvp_df.reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>mvp_df.index <span class="op">=</span> mvp_df.index <span class="op">+</span> <span class="dv">1</span> <span class="co">#now instead of starting at 0 it will start at 1</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (mvp_df)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">HTTPError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[3], line 11</span>
+<span class="ansi-green-fg ansi-bold">      9</span> <span style="font-style:italic;color:rgb(95,135,135)">#mvp_df = pd.read_html(str(table), header=1)[0]</span>
+<span class="ansi-green-fg ansi-bold">     10</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> table <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span>:
+<span class="ansi-green-fg">---&gt; 11</span>     mvp_df <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">pd</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">read_html</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">url</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">attrs</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">{</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">'</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">id</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">'</span><span class="ansi-yellow-bg">:</span><span class="ansi-yellow-bg"> </span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">'</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">mvp_NBA</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">'</span><span class="ansi-yellow-bg">}</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">header</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">1</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">flavor</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">"</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">lxml</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">"</span><span class="ansi-yellow-bg">)</span>[<span style="color:rgb(98,98,98)">0</span>]
+<span class="ansi-green-fg ansi-bold">     12</span> <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg ansi-bold">     13</span>     mvp_df <span style="color:rgb(98,98,98)">=</span> pd<span style="color:rgb(98,98,98)">.</span>read_html(<span style="color:rgb(0,135,0)">str</span>(table), header<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(98,98,98)">1</span>, flavor<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">lxml</span><span style="color:rgb(175,0,0)">"</span>)[<span style="color:rgb(98,98,98)">0</span>]
+
+File <span class="ansi-green-fg">~/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages/pandas/io/html.py:1240</span>, in <span class="ansi-cyan-fg">read_html</span><span class="ansi-blue-fg">(io, match, flavor, header, index_col, skiprows, attrs, parse_dates, thousands, encoding, decimal, converters, na_values, keep_default_na, displayed_only, extract_links, dtype_backend, storage_options)</span>
+<span class="ansi-green-fg ansi-bold">   1224</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="color:rgb(0,135,0)">isinstance</span>(io, <span style="color:rgb(0,135,0)">str</span>) <span style="font-weight:bold;color:rgb(175,0,255)">and</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> <span style="color:rgb(0,135,0)">any</span>(
+<span class="ansi-green-fg ansi-bold">   1225</span>     [
+<span class="ansi-green-fg ansi-bold">   1226</span>         is_file_like(io),
+<span class="ansi-green-fg">   (...)</span>
+<span class="ansi-green-fg ansi-bold">   1230</span>     ]
+<span class="ansi-green-fg ansi-bold">   1231</span> ):
+<span class="ansi-green-fg ansi-bold">   1232</span>     warnings<span style="color:rgb(98,98,98)">.</span>warn(
+<span class="ansi-green-fg ansi-bold">   1233</span>         <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Passing literal html to </span><span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)">read_html</span><span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)"> is deprecated and </span><span style="color:rgb(175,0,0)">"</span>
+<span class="ansi-green-fg ansi-bold">   1234</span>         <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">will be removed in a future version. To read from a </span><span style="color:rgb(175,0,0)">"</span>
+<span class="ansi-green-fg">   (...)</span>
+<span class="ansi-green-fg ansi-bold">   1237</span>         stacklevel<span style="color:rgb(98,98,98)">=</span>find_stack_level(),
+<span class="ansi-green-fg ansi-bold">   1238</span>     )
+<span class="ansi-green-fg">-&gt; 1240</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">_parse</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-fg ansi-bold">   1241</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">flavor</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">flavor</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">   1242</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">io</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">io</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">   1243</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">match</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">match</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">   1244</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">header</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">header</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">   1245</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">index_col</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">index_col</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">   1246</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">skiprows</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">skiprows</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">   1247</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">parse_dates</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">parse_dates</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">   1248</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">thousands</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">thousands</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">   1249</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">attrs</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">attrs</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">   1250</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">encoding</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">encoding</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">   1251</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">decimal</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">decimal</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">   1252</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">converters</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">converters</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">   1253</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">na_values</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">na_values</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">   1254</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">keep_default_na</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">keep_default_na</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">   1255</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">displayed_only</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">displayed_only</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">   1256</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">extract_links</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">extract_links</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">   1257</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">dtype_backend</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">dtype_backend</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">   1258</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">storage_options</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">storage_options</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">   1259</span> <span class="ansi-yellow-bg">)</span>
+
+File <span class="ansi-green-fg">~/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages/pandas/io/html.py:983</span>, in <span class="ansi-cyan-fg">_parse</span><span class="ansi-blue-fg">(flavor, io, match, attrs, encoding, displayed_only, extract_links, storage_options, **kwargs)</span>
+<span class="ansi-green-fg ansi-bold">    972</span> p <span style="color:rgb(98,98,98)">=</span> parser(
+<span class="ansi-green-fg ansi-bold">    973</span>     io,
+<span class="ansi-green-fg ansi-bold">    974</span>     compiled_match,
+<span class="ansi-green-fg">   (...)</span>
+<span class="ansi-green-fg ansi-bold">    979</span>     storage_options,
+<span class="ansi-green-fg ansi-bold">    980</span> )
+<span class="ansi-green-fg ansi-bold">    982</span> <span style="font-weight:bold;color:rgb(0,135,0)">try</span>:
+<span class="ansi-green-fg">--&gt; 983</span>     tables <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">p</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">parse_tables</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg ansi-bold">    984</span> <span style="font-weight:bold;color:rgb(0,135,0)">except</span> <span style="font-weight:bold;color:rgb(215,95,95)">ValueError</span> <span style="font-weight:bold;color:rgb(0,135,0)">as</span> caught:
+<span class="ansi-green-fg ansi-bold">    985</span>     <span style="font-style:italic;color:rgb(95,135,135)"># if `io` is an io-like object, check if it's seekable</span>
+<span class="ansi-green-fg ansi-bold">    986</span>     <span style="font-style:italic;color:rgb(95,135,135)"># and try to rewind it before trying the next parser</span>
+<span class="ansi-green-fg ansi-bold">    987</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="color:rgb(0,135,0)">hasattr</span>(io, <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">seekable</span><span style="color:rgb(175,0,0)">"</span>) <span style="font-weight:bold;color:rgb(175,0,255)">and</span> io<span style="color:rgb(98,98,98)">.</span>seekable():
+
+File <span class="ansi-green-fg">~/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages/pandas/io/html.py:249</span>, in <span class="ansi-cyan-fg">_HtmlFrameParser.parse_tables</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-fg ansi-bold">    241</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span style="color:rgb(0,0,255)">parse_tables</span>(<span style="color:rgb(0,135,0)">self</span>):
+<span class="ansi-green-fg ansi-bold">    242</span> <span style="color:rgb(188,188,188)">    </span><span style="font-style:italic;color:rgb(175,0,0)">"""</span>
+<span class="ansi-green-fg ansi-bold">    243</span> <span style="font-style:italic;color:rgb(175,0,0)">    Parse and return all tables from the DOM.</span>
+<span class="ansi-green-fg ansi-bold">    244</span> 
+<span class="ansi-green-fg">   (...)</span>
+<span class="ansi-green-fg ansi-bold">    247</span> <span style="font-style:italic;color:rgb(175,0,0)">    list of parsed (header, body, footer) tuples from tables.</span>
+<span class="ansi-green-fg ansi-bold">    248</span> <span style="font-style:italic;color:rgb(175,0,0)">    """</span>
+<span class="ansi-green-fg">--&gt; 249</span>     tables <span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>_parse_tables(<span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_build_doc</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>, <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>match, <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>attrs)
+<span class="ansi-green-fg ansi-bold">    250</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> (<span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>_parse_thead_tbody_tfoot(table) <span style="font-weight:bold;color:rgb(0,135,0)">for</span> table <span style="font-weight:bold;color:rgb(175,0,255)">in</span> tables)
+
+File <span class="ansi-green-fg">~/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages/pandas/io/html.py:806</span>, in <span class="ansi-cyan-fg">_LxmlFrameParser._build_doc</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-fg ansi-bold">    804</span>             <span style="font-weight:bold;color:rgb(0,135,0)">pass</span>
+<span class="ansi-green-fg ansi-bold">    805</span>     <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg">--&gt; 806</span>         <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> e
+<span class="ansi-green-fg ansi-bold">    807</span> <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg ansi-bold">    808</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> <span style="color:rgb(0,135,0)">hasattr</span>(r, <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">text_content</span><span style="color:rgb(175,0,0)">"</span>):
+
+File <span class="ansi-green-fg">~/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages/pandas/io/html.py:785</span>, in <span class="ansi-cyan-fg">_LxmlFrameParser._build_doc</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-fg ansi-bold">    783</span> <span style="font-weight:bold;color:rgb(0,135,0)">try</span>:
+<span class="ansi-green-fg ansi-bold">    784</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> is_url(<span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>io):
+<span class="ansi-green-fg">--&gt; 785</span>         <span style="font-weight:bold;color:rgb(0,135,0)">with</span> <span class="ansi-yellow-bg">get_handle</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-fg ansi-bold">    786</span> <span class="ansi-yellow-bg">            </span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">io</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">"</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">r</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">storage_options</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">storage_options</span>
+<span class="ansi-green-fg ansi-bold">    787</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">)</span> <span style="font-weight:bold;color:rgb(0,135,0)">as</span> f:
+<span class="ansi-green-fg ansi-bold">    788</span>             r <span style="color:rgb(98,98,98)">=</span> parse(f<span style="color:rgb(98,98,98)">.</span>handle, parser<span style="color:rgb(98,98,98)">=</span>parser)
+<span class="ansi-green-fg ansi-bold">    789</span>     <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg ansi-bold">    790</span>         <span style="font-style:italic;color:rgb(95,135,135)"># try to parse the input in the simplest way</span>
+
+File <span class="ansi-green-fg">~/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages/pandas/io/common.py:728</span>, in <span class="ansi-cyan-fg">get_handle</span><span class="ansi-blue-fg">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="ansi-green-fg ansi-bold">    725</span>     codecs<span style="color:rgb(98,98,98)">.</span>lookup_error(errors)
+<span class="ansi-green-fg ansi-bold">    727</span> <span style="font-style:italic;color:rgb(95,135,135)"># open URLs</span>
+<span class="ansi-green-fg">--&gt; 728</span> ioargs <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">_get_filepath_or_buffer</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-fg ansi-bold">    729</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">path_or_buf</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">    730</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">encoding</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">encoding</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">    731</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">compression</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">compression</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">    732</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">mode</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">mode</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">    733</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">storage_options</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">storage_options</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">    734</span> <span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg ansi-bold">    736</span> handle <span style="color:rgb(98,98,98)">=</span> ioargs<span style="color:rgb(98,98,98)">.</span>filepath_or_buffer
+<span class="ansi-green-fg ansi-bold">    737</span> handles: <span style="color:rgb(0,135,0)">list</span>[BaseBuffer]
+
+File <span class="ansi-green-fg">~/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages/pandas/io/common.py:384</span>, in <span class="ansi-cyan-fg">_get_filepath_or_buffer</span><span class="ansi-blue-fg">(filepath_or_buffer, encoding, compression, mode, storage_options)</span>
+<span class="ansi-green-fg ansi-bold">    382</span> <span style="font-style:italic;color:rgb(95,135,135)"># assuming storage_options is to be interpreted as headers</span>
+<span class="ansi-green-fg ansi-bold">    383</span> req_info <span style="color:rgb(98,98,98)">=</span> urllib<span style="color:rgb(98,98,98)">.</span>request<span style="color:rgb(98,98,98)">.</span>Request(filepath_or_buffer, headers<span style="color:rgb(98,98,98)">=</span>storage_options)
+<span class="ansi-green-fg">--&gt; 384</span> <span style="font-weight:bold;color:rgb(0,135,0)">with</span> <span class="ansi-yellow-bg">urlopen</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">req_info</span><span class="ansi-yellow-bg">)</span> <span style="font-weight:bold;color:rgb(0,135,0)">as</span> req:
+<span class="ansi-green-fg ansi-bold">    385</span>     content_encoding <span style="color:rgb(98,98,98)">=</span> req<span style="color:rgb(98,98,98)">.</span>headers<span style="color:rgb(98,98,98)">.</span>get(<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Content-Encoding</span><span style="color:rgb(175,0,0)">"</span>, <span style="font-weight:bold;color:rgb(0,135,0)">None</span>)
+<span class="ansi-green-fg ansi-bold">    386</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> content_encoding <span style="color:rgb(98,98,98)">==</span> <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">gzip</span><span style="color:rgb(175,0,0)">"</span>:
+<span class="ansi-green-fg ansi-bold">    387</span>         <span style="font-style:italic;color:rgb(95,135,135)"># Override compression based on Content-Encoding header</span>
+
+File <span class="ansi-green-fg">~/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages/pandas/io/common.py:289</span>, in <span class="ansi-cyan-fg">urlopen</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
+<span class="ansi-green-fg ansi-bold">    283</span> <span style="font-style:italic;color:rgb(175,0,0)">"""</span>
+<span class="ansi-green-fg ansi-bold">    284</span> <span style="font-style:italic;color:rgb(175,0,0)">Lazy-import wrapper for stdlib urlopen, as that imports a big chunk of</span>
+<span class="ansi-green-fg ansi-bold">    285</span> <span style="font-style:italic;color:rgb(175,0,0)">the stdlib.</span>
+<span class="ansi-green-fg ansi-bold">    286</span> <span style="font-style:italic;color:rgb(175,0,0)">"""</span>
+<span class="ansi-green-fg ansi-bold">    287</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span><span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(0,0,255)">urllib</span><span style="font-weight:bold;color:rgb(0,0,255)">.</span><span style="font-weight:bold;color:rgb(0,0,255)">request</span>
+<span class="ansi-green-fg">--&gt; 289</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">urllib</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">request</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">urlopen</span><span class="ansi-yellow-bg">(</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span>
+
+File <span class="ansi-green-fg">/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py:214</span>, in <span class="ansi-cyan-fg">urlopen</span><span class="ansi-blue-fg">(url, data, timeout, cafile, capath, cadefault, context)</span>
+<span class="ansi-green-fg ansi-bold">    212</span> <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg ansi-bold">    213</span>     opener <span style="color:rgb(98,98,98)">=</span> _opener
+<span class="ansi-green-fg">--&gt; 214</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">opener</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">open</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">url</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">data</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">timeout</span><span class="ansi-yellow-bg">)</span>
+
+File <span class="ansi-green-fg">/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py:523</span>, in <span class="ansi-cyan-fg">OpenerDirector.open</span><span class="ansi-blue-fg">(self, fullurl, data, timeout)</span>
+<span class="ansi-green-fg ansi-bold">    521</span> <span style="font-weight:bold;color:rgb(0,135,0)">for</span> processor <span style="font-weight:bold;color:rgb(175,0,255)">in</span> <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>process_response<span style="color:rgb(98,98,98)">.</span>get(protocol, []):
+<span class="ansi-green-fg ansi-bold">    522</span>     meth <span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(0,135,0)">getattr</span>(processor, meth_name)
+<span class="ansi-green-fg">--&gt; 523</span>     response <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">meth</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">req</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">response</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg ansi-bold">    525</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> response
+
+File <span class="ansi-green-fg">/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py:632</span>, in <span class="ansi-cyan-fg">HTTPErrorProcessor.http_response</span><span class="ansi-blue-fg">(self, request, response)</span>
+<span class="ansi-green-fg ansi-bold">    629</span> <span style="font-style:italic;color:rgb(95,135,135)"># According to RFC 2616, "2xx" code indicates that the client's</span>
+<span class="ansi-green-fg ansi-bold">    630</span> <span style="font-style:italic;color:rgb(95,135,135)"># request was successfully received, understood, and accepted.</span>
+<span class="ansi-green-fg ansi-bold">    631</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> (<span style="color:rgb(98,98,98)">200</span> <span style="color:rgb(98,98,98)">&lt;</span><span style="color:rgb(98,98,98)">=</span> code <span style="color:rgb(98,98,98)">&lt;</span> <span style="color:rgb(98,98,98)">300</span>):
+<span class="ansi-green-fg">--&gt; 632</span>     response <span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">parent</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">error</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-fg ansi-bold">    633</span> <span class="ansi-yellow-bg">        </span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">'</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">http</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">'</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">request</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">response</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">code</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">msg</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">hdrs</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg ansi-bold">    635</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> response
+
+File <span class="ansi-green-fg">/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py:561</span>, in <span class="ansi-cyan-fg">OpenerDirector.error</span><span class="ansi-blue-fg">(self, proto, *args)</span>
+<span class="ansi-green-fg ansi-bold">    559</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> http_err:
+<span class="ansi-green-fg ansi-bold">    560</span>     args <span style="color:rgb(98,98,98)">=</span> (<span style="color:rgb(0,135,0)">dict</span>, <span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)">default</span><span style="color:rgb(175,0,0)">'</span>, <span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)">http_error_default</span><span style="color:rgb(175,0,0)">'</span>) <span style="color:rgb(98,98,98)">+</span> orig_args
+<span class="ansi-green-fg">--&gt; 561</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_call_chain</span><span class="ansi-yellow-bg">(</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">)</span>
+
+File <span class="ansi-green-fg">/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py:494</span>, in <span class="ansi-cyan-fg">OpenerDirector._call_chain</span><span class="ansi-blue-fg">(self, chain, kind, meth_name, *args)</span>
+<span class="ansi-green-fg ansi-bold">    492</span> <span style="font-weight:bold;color:rgb(0,135,0)">for</span> handler <span style="font-weight:bold;color:rgb(175,0,255)">in</span> handlers:
+<span class="ansi-green-fg ansi-bold">    493</span>     func <span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(0,135,0)">getattr</span>(handler, meth_name)
+<span class="ansi-green-fg">--&gt; 494</span>     result <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">func</span><span class="ansi-yellow-bg">(</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg ansi-bold">    495</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> result <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span>:
+<span class="ansi-green-fg ansi-bold">    496</span>         <span style="font-weight:bold;color:rgb(0,135,0)">return</span> result
+
+File <span class="ansi-green-fg">/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py:641</span>, in <span class="ansi-cyan-fg">HTTPDefaultErrorHandler.http_error_default</span><span class="ansi-blue-fg">(self, req, fp, code, msg, hdrs)</span>
+<span class="ansi-green-fg ansi-bold">    640</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span style="color:rgb(0,0,255)">http_error_default</span>(<span style="color:rgb(0,135,0)">self</span>, req, fp, code, msg, hdrs):
+<span class="ansi-green-fg">--&gt; 641</span>     <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> HTTPError(req<span style="color:rgb(98,98,98)">.</span>full_url, code, msg, hdrs, fp)
+
+<span class="ansi-red-fg">HTTPError</span>: HTTP Error 429: Too Many Requests</pre>
+</div>
+</div>
+</div>
+<div id="cell-3" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#print (mvp_df.info())</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (mvp_df.head())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -255,17 +396,17 @@ Note: you may need to restart the kernel to use updated packages.
 5  2020-21  NBA            Nikola JokiÄ    (V)   25  DEN  72  34.6  26.4  10.8  8.3  1.3  0.7  0.566  0.388  0.868  15.6  0.301</code></pre>
 </div>
 </div>
-<div id="cell-4" class="cell" data-execution_count="18">
+<div id="cell-4" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>avg_age <span class="op">=</span> mvp_df[<span class="st">'Age'</span>].mean() <span class="co">#this calculates the average age of the mvps since 2015</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"Average age of the MVP since the 2015 season -&gt; "</span>, avg_age) <span class="co">#this prints it out</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Average age of the MVP since the 2015 season -&gt;  26.5</code></pre>
 </div>
 </div>
-<div id="cell-5" class="cell" data-execution_count="19">
+<div id="cell-5" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>team_data <span class="op">=</span> []</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> year <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2016</span>,<span class="dv">2026</span>):</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> year <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2015</span>,<span class="dv">2027</span>):</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    url <span class="op">=</span> <span class="ss">f"https://www.basketball-reference.com/leagues/NBA_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">_standings.html"</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> requests.get(url)</span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    soup <span class="op">=</span> bs(data.text, <span class="st">"html.parser"</span>)</span>
@@ -350,26 +491,26 @@ Note: you may need to restart the kernel to use updated packages.
 <span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a><span class="co">#df = pd.concat([east,west], ignore_index=True)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>['W', 'L', 'W/L%', 'GB', 'PS/G', 'PA/G', 'SRS'] ['Year', 'W', 'L', 'W/L%', 'GB', 'PS/G', 'PA/G', 'SRS']
-                  Teams  Year   W   L   W/L%   GB   PS/G   PA/G   SRS Conference
-0  Cleveland Cavaliers*  2016  57  25  0.695    —  104.3   98.3  5.45       East
-1      Toronto Raptors*  2016  56  26  0.683  1.0  102.7   98.2  4.08       East
-2           Miami Heat*  2016  48  34  0.585  9.0  100.0   98.4   1.5       East
-3        Atlanta Hawks*  2016  48  34  0.585  9.0  102.8   99.2  3.49       East
-4       Boston Celtics*  2016  48  34  0.585  9.0  105.7  102.5  2.84       East (300, 10)
-                      Teams  Year   W   L   W/L%    GB   PS/G   PA/G    SRS Conference
-15   Golden State Warriors*  2016  73   9   0.89     —  114.9  104.1  10.38       West
-16       San Antonio Spurs*  2016  67  15  0.817   6.0  103.5   92.9  10.28       West
-17   Oklahoma City Thunder*  2016  55  27  0.671  18.0  110.2  102.9   7.09       West
-18    Los Angeles Clippers*  2016  53  29  0.646  20.0  104.5  100.2   4.13       West
-19  Portland Trail Blazers*  2016  44  38  0.537  29.0  105.1  104.3   0.98       West (300, 10)
-(600, 10)
-(600, 11)
-                  Team  Year   W   L   W/L%   GB   PS/G   PA/G   SRS Conference  ConferenceRank
-0  Cleveland Cavaliers  2016  57  25  0.695  NaN  104.3   98.3  5.45       East             1.0
-1      Toronto Raptors  2016  56  26  0.683  1.0  102.7   98.2  4.08       East             3.0
-2           Miami Heat  2016  48  34  0.585  9.0  100.0   98.4  1.50       East             5.0
-3        Atlanta Hawks  2016  48  34  0.585  9.0  102.8   99.2  3.49       East             5.0
-4       Boston Celtics  2016  48  34  0.585  9.0  105.7  102.5  2.84       East             5.0
+                Teams  Year   W   L  W/L%    GB   PS/G   PA/G    SRS Conference
+1    Toronto Raptors*  2015  49  33  .598     —  104.0  100.9   2.45       East
+2     Boston Celtics*  2015  40  42  .488   9.0  101.4  101.2  -0.40       East
+3      Brooklyn Nets*  2015  38  44  .463  11.0   98.0  100.9  -3.13       East
+4  Philadelphia 76ers  2015  18  64  .220  31.0   92.0  101.0  -9.04       East
+5     New York Knicks  2015  17  65  .207  32.0   91.9  101.2  -9.50       East (315, 10)
+                      Teams  Year   W   L  W/L%    GB   PS/G   PA/G    SRS Conference
+19  Portland Trail Blazers*  2015  51  31  .622     —  102.8   98.6   4.41       West
+20    Oklahoma City Thunder  2015  45  37  .549   6.0  104.0  101.8   2.47       West
+21                Utah Jazz  2015  38  44  .463  13.0   95.1   94.9   0.71       West
+22           Denver Nuggets  2015  30  52  .366  21.0  101.5  105.0  -3.07       West
+23   Minnesota Timberwolves  2015  16  66  .195  35.0   97.8  106.5  -8.00       West (315, 10)
+(630, 10)
+(630, 11)
+                 Team  Year   W   L   W/L%    GB   PS/G   PA/G   SRS Conference  ConferenceRank
+0     Toronto Raptors  2015  49  33  0.598   NaN  104.0  100.9  2.45       East             4.0
+1      Boston Celtics  2015  40  42  0.488   9.0  101.4  101.2 -0.40       East             7.0
+2        Brookln Nets  2015  38  44  0.463  11.0   98.0  100.9 -3.13       East             8.0
+3  Philadelphia 76ers  2015  18  64  0.220  31.0   92.0  101.0 -9.04       East            14.0
+4     New York Knicks  2015  17  65  0.207  32.0   91.9  101.2 -9.50       East            15.0
 Team               object
 Year                int64
 W                   int64
@@ -385,7 +526,7 @@ dtype: object
 30</code></pre>
 </div>
 </div>
-<div id="cell-6" class="cell" data-execution_count="20">
+<div id="cell-6" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#merge the MVP data and the standings</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>mvp_df[<span class="st">"Year"</span>] <span class="op">=</span> (mvp_df[<span class="st">"Season"</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>[:<span class="dv">4</span>].astype(<span class="bu">int</span>) <span class="op">+</span> <span class="dv">1</span>)</span>
@@ -498,16 +639,17 @@ Conference        2
 ConferenceRank    2
 SRS               2
 dtype: int64
-['CLE' 'TOR' 'MIA' 'ATL' 'BOS' 'CHA' 'IND' 'DET' 'CHI' 'WASHINGTON WIARDS'
- 'ORL' 'MIL' 'NYK' 'BROOKLN NETS' 'PHI' 'GSW' 'SAS' 'OKLAHOMA CIT THUNDER'
- 'LAC' 'PORTLAND TRAIL BLAERS' 'MAVS' 'MEMPHIS GRILIES' 'HOU' 'UTAH JA'
- 'SAC' 'DEN' 'NOP' 'MINNESOTA TIMBERWOLVES' 'PHOENI SUNS' 'LAL']
+['TOR' 'BOS' 'BROOKLN NETS' 'PHI' 'NYK' 'CLE' 'CHI' 'MIL' 'IND' 'DET'
+ 'ATL' 'WASHINGTON WIARDS' 'MIA' 'CHA' 'ORL' 'PORTLAND TRAIL BLAERS'
+ 'OKLAHOMA CIT THUNDER' 'UTAH JA' 'DEN' 'MINNESOTA TIMBERWOLVES' 'GSW'
+ 'LAC' 'PHOENI SUNS' 'SAC' 'LAL' 'HOU' 'MEMPHIS GRILIES' 'SAS' 'MAVS'
+ 'NOP']
 Empty DataFrame
 Columns: [Team, Year, W, L, W/L%, GB, PS/G, PA/G, SRS, Conference, ConferenceRank]
 Index: []</code></pre>
 </div>
 </div>
-<div id="cell-7" class="cell" data-execution_count="21">
+<div id="cell-7" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Average Win to Loss </span><span class="sc">% o</span><span class="st">f the MVP's team:"</span> , merged[<span class="st">"W/L%"</span>].mean())</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Average Conference position: "</span>, merged[<span class="st">"ConferenceRank"</span>].mean())</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Average point differential of team: "</span>, merged[<span class="st">"SRS"</span>].mean())</span>
@@ -538,26 +680,26 @@ Name: count, dtype: Int64
 % of MVPs from Top 5 teams: 87.5</code></pre>
 </div>
 </div>
-<div id="cell-8" class="cell" data-execution_count="22">
+<div id="cell-8" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#now we use machine to rank who has the best chance of winning mvp for the upcoming season and rank the top 10.</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>target_year <span class="op">=</span> df[<span class="st">"Year"</span>].<span class="bu">max</span>() <span class="co">#finds the maximum year of the years we have, since mvp data is most helpful when recent</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="ss">f"https://www.basketball-reference.com/leagues/NBA_2026_per_game.html"</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>data_players <span class="op">=</span> requests.get(url) <span class="co">#sends a request to the site to get the raw data.</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>soup <span class="op">=</span> bs(data_players.text, <span class="st">"html.parser"</span>) <span class="co">#this make the raw data viewable(that is what the bs (beautiful soup does)</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>data_players <span class="op">=</span> requests.get(url)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>soup <span class="op">=</span> bs(data_players.text, <span class="st">"html.parser"</span>)</span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>player_df  <span class="op">=</span> pd.read_html(<span class="bu">str</span>(soup), header <span class="op">=</span> <span class="dv">0</span>)[<span class="dv">0</span>] <span class="co">#the pdf.read_html finds all tables on the pages while the [0] sleectes the first table and header , selects first row.</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>player_df  <span class="op">=</span> pd.read_html(<span class="bu">str</span>(soup), header <span class="op">=</span> <span class="dv">0</span>)[<span class="dv">0</span>]</span>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">#print (player_df.columns)</span></span>
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co">#print (player_df.head(15))</span></span>
 <span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>stat_cols <span class="op">=</span> [<span class="st">"PTS"</span>, <span class="st">"AST"</span>, <span class="st">"TRB"</span>, <span class="st">"FG%"</span>, <span class="st">"BLK"</span>, <span class="st">"STL"</span>] <span class="co">#assigning the stats for stat_cols, what we  care about for MVP.</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>stat_cols <span class="op">=</span> [<span class="st">"PTS"</span>, <span class="st">"AST"</span>, <span class="st">"TRB"</span>, <span class="st">"FG%"</span>, <span class="st">"BLK"</span>, <span class="st">"STL"</span>]</span>
 <span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>player_df <span class="op">=</span> player_df[player_df[<span class="st">"Player"</span>].notna()].copy() <span class="co">#this removes the nan tables/columns.</span></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>player_df <span class="op">=</span> player_df[player_df[<span class="st">"Player"</span>] <span class="op">!=</span> <span class="st">"Player"</span>].copy() <span class="co">#this removes copies</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>player_df <span class="op">=</span> player_df[player_df[<span class="st">"Player"</span>].notna()].copy()</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>player_df <span class="op">=</span> player_df[player_df[<span class="st">"Player"</span>] <span class="op">!=</span> <span class="st">"Player"</span>].copy()</span>
 <span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="co">#player_df = player_df[~player_df["Team"].astype(str).str.contains("TM")].copy() #keeps only individual team stats</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>player_df <span class="op">=</span> player_df[<span class="op">~</span>player_df[<span class="st">"Team"</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.contains(<span class="st">"TM"</span>)].copy()</span>
 <span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (player_df.columns)</span>
 <span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (player_df.head(<span class="dv">10</span>))</span>
@@ -598,7 +740,7 @@ dtype: object
 0      1.0  Luka DonÄiÄ  26.0  LAL  PG  64.0  64.0  35.8  10.8  22.8  0.476  4.0  10.8  0.366  6.9  11.9  0.575  0.563  7.9  10.1  0.780  0.6  7.1  7.7  8.3  1.6  0.5  4.0  2.4  33.5  CPOY-8,AS</code></pre>
 </div>
 </div>
-<div id="cell-9" class="cell" data-execution_count="23">
+<div id="cell-9" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>target_year <span class="op">=</span> <span class="dv">2026</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>teams_current <span class="op">=</span> df[df[<span class="st">"Year"</span>] <span class="op">==</span> target_year].copy()</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -630,70 +772,32 @@ Columns: [Team, Team_abbr]
 Index: []</code></pre>
 </div>
 </div>
-<div id="cell-10" class="cell" data-execution_count="24">
+<div id="cell-10" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>target_year <span class="op">=</span> <span class="dv">2026</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix: Standardize team names in df to match player_df</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>team_fix <span class="op">=</span> {</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"WASHINGTON WIARDS"</span>: <span class="st">"WAS"</span>,</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"PORTLAND TRAIL BLAERS"</span>: <span class="st">"POR"</span>,</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"OKLAHOMA CIT THUNDER"</span>: <span class="st">"OKC"</span>,</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"UTAH JA"</span>: <span class="st">"UTA"</span>,</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"PHOENI SUNS"</span>: <span class="st">"PHX"</span>,</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MEMPHIS GRILIES"</span>: <span class="st">"MEM"</span>,</span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MAVS"</span>: <span class="st">"DAL"</span>,</span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"CHO"</span>: <span class="st">"CHA"</span>,</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"BRK"</span>: <span class="st">"BKN"</span></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Team"</span>] <span class="op">=</span> df[<span class="st">"Team"</span>].replace(team_fix)</span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Debug: Check what years are available</span></span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Years in df:"</span>, df[<span class="st">"Year"</span>].unique())</span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the max year available</span></span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>target_year <span class="op">=</span> df[<span class="st">"Year"</span>].<span class="bu">max</span>()</span>
-<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Using target_year: </span><span class="sc">{</span>target_year<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>teams_current <span class="op">=</span> df[df[<span class="st">"Year"</span>] <span class="op">==</span> target_year].copy()</span>
-<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Teams in current year: </span><span class="sc">{</span><span class="bu">len</span>(teams_current)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Now merge</span></span>
-<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> player_df.merge(</span>
-<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>    teams_current[[<span class="st">"Team"</span>, <span class="st">"W/L%"</span>]],</span>
-<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>    on<span class="op">=</span><span class="st">"Team"</span>,</span>
-<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>    how<span class="op">=</span><span class="st">"left"</span></span>
-<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> players_df.rename(columns<span class="op">=</span>{<span class="st">"W/L%"</span>: <span class="st">"team_win_pct"</span>})</span>
-<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Matched players after merge: </span><span class="sc">{</span>players_df[<span class="st">'team_win_pct'</span>]<span class="sc">.</span>notna()<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss"> out of </span><span class="sc">{</span><span class="bu">len</span>(players_df)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove duplicates from earlier merge</span></span>
-<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> players_df.drop_duplicates(subset<span class="op">=</span>[<span class="st">"Player"</span>, <span class="st">"Team"</span>])</span>
-<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"After removing duplicates: </span><span class="sc">{</span><span class="bu">len</span>(players_df)<span class="sc">}</span><span class="ss"> players"</span>)</span>
-<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Sample matched teams:"</span>, players_df[players_df[<span class="st">"team_win_pct"</span>].notna()][[<span class="st">"Player"</span>, <span class="st">"Team"</span>, <span class="st">"team_win_pct"</span>]].head(<span class="dv">10</span>))</span>
-<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>teams_current <span class="op">=</span> df[df[<span class="st">"Year"</span>] <span class="op">==</span> target_year].copy()</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> player_df.merge(</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    teams_current[[<span class="st">"Team"</span>, <span class="st">"W/L%"</span>]],</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    on<span class="op">=</span><span class="st">"Team"</span>,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    how<span class="op">=</span><span class="st">"left"</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> players_df.rename(columns<span class="op">=</span>{<span class="st">"W/L%"</span>: <span class="st">"team_win_pct"</span>})</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>top20 <span class="op">=</span> players_df.sort_values(<span class="st">"team_win_pct"</span>, ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">20</span>)</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="co">#print(top20[["Player", "Team", "team_win_pct"]])</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">"Team"</span>].unique()[:<span class="dv">30</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Years in df: [2016 2017 2018 2019 2020 2021 2022 2023 2024 2025]
-Using target_year: 2025
-Teams in current year: 60
-Matched players after merge: 886 out of 1026
-After removing duplicates: 583 players
-Sample matched teams:                 Player Team  team_win_pct
-2       Jeremiah Fears  NOP         0.256
-4        Javonte Green  DET         0.537
-6        Mikal Bridges  NYK         0.622
-8   Brandin Podziemski  GSW         0.585
-10           Kris Dunn  LAC         0.610
-12      Bub Carrington  WAS         0.220
-14        Jake LaRavia  LAL         0.610
-16        Desmond Bane  ORL         0.500
-18       Reed Sheppard  HOU         0.634
-20      Toumani Camara  POR         0.439</code></pre>
+<pre><code>['TOR' 'BOS' 'BROOKLN NETS' 'PHI' 'NYK' 'CLE' 'CHI' 'MIL' 'IND' 'DET'
+ 'ATL' 'WASHINGTON WIARDS' 'MIA' 'CHA' 'ORL' 'PORTLAND TRAIL BLAERS'
+ 'OKLAHOMA CIT THUNDER' 'UTAH JA' 'DEN' 'MINNESOTA TIMBERWOLVES' 'GSW'
+ 'LAC' 'PHOENI SUNS' 'SAC' 'LAL' 'HOU' 'MEMPHIS GRILIES' 'SAS' 'MAVS'
+ 'NOP']</code></pre>
 </div>
 </div>
-<div id="cell-11" class="cell" data-execution_count="25">
+<div id="cell-11" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>stat_cols <span class="op">=</span> [<span class="st">"PTS"</span>, <span class="st">"AST"</span>, <span class="st">"TRB"</span>, <span class="st">"STL"</span>, <span class="st">"BLK"</span>, <span class="st">"FG%"</span>, <span class="st">"team_win_pct"</span>]</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (players_df.columns.tolist())</span>
@@ -719,65 +823,44 @@ Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%'
 Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'eFG%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'Awards'], dtype='object')</code></pre>
 </div>
 </div>
-<div id="cell-12" class="cell" data-execution_count="26">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>players_df[<span class="st">"Player"</span>] <span class="op">=</span> (</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    players_df[<span class="st">"Player"</span>].<span class="bu">str</span>.encode(<span class="st">"latin1"</span>).<span class="bu">str</span>.decode(<span class="st">"utf-8"</span>))</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> players_df.drop_duplicates(subset<span class="op">=</span>[<span class="st">"Player"</span>])</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for minimum games played (e.g., 50 games)</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>min_games <span class="op">=</span> <span class="dv">58</span></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> players_df[players_df[<span class="st">"G"</span>] <span class="op">&gt;=</span> min_games]</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"After filtering for </span><span class="sc">{</span>min_games<span class="sc">}</span><span class="ss">+ games: </span><span class="sc">{</span><span class="bu">len</span>(players_df)<span class="sc">}</span><span class="ss"> players"</span>)</span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>players_df[<span class="st">"mvp_score"</span>] <span class="op">=</span>( </span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a> <span class="co">#this is the formula </span></span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.25</span> <span class="op">*</span> players_df[<span class="st">"PTS_norm"</span>] <span class="op">+</span></span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.21</span> <span class="op">*</span> players_df[<span class="st">"team_win_pct_norm"</span>] <span class="op">+</span></span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.12</span> <span class="op">*</span> players_df[<span class="st">"AST_norm"</span>] <span class="op">+</span></span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.11</span> <span class="op">*</span> players_df[<span class="st">"STL_norm"</span>] <span class="op">+</span></span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.10</span> <span class="op">*</span> players_df[<span class="st">"TRB_norm"</span>] <span class="op">+</span></span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.11</span> <span class="op">*</span> players_df[<span class="st">"BLK_norm"</span>] <span class="op">+</span></span>
-<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.10</span> <span class="op">*</span> players_df[<span class="st">"FG%_norm"</span>] </span>
-<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> players_df.sort_values(<span class="st">"mvp_score"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Debug: Check for NaN values and data quality</span></span>
-<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== DEBUG INFO ==="</span>)</span>
-<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total players: </span><span class="sc">{</span><span class="bu">len</span>(players_df)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Players with NaN mvp_score: </span><span class="sc">{</span>players_df[<span class="st">'mvp_score'</span>]<span class="sc">.</span>isna()<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Players with NaN team_win_pct: </span><span class="sc">{</span>players_df[<span class="st">'team_win_pct'</span>]<span class="sc">.</span>isna()<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Sample of top players with all stats:"</span>)</span>
-<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(players_df[[<span class="st">"Player"</span>, <span class="st">"Team"</span>, <span class="st">"PTS"</span>, <span class="st">"AST"</span>, <span class="st">"TRB"</span>, <span class="st">"STL"</span>, <span class="st">"BLK"</span>, <span class="st">"FG%_norm"</span>, <span class="st">"team_win_pct"</span>, <span class="st">"PTS_norm"</span>, <span class="st">"team_win_pct_norm"</span>, <span class="st">"mvp_score"</span>]].head(<span class="dv">15</span>))</span>
-<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-12" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>players_df[<span class="st">"Player"</span>] <span class="op">=</span> (</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    players_df[<span class="st">"Player"</span>].<span class="bu">str</span>.encode(<span class="st">"latin1"</span>).<span class="bu">str</span>.decode(<span class="st">"utf-8"</span>))</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> players_df.drop_duplicates(subset<span class="op">=</span>[<span class="st">"Player"</span>])</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>players_df[<span class="st">"mvp_score"</span>] <span class="op">=</span>( </span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a> <span class="co">#this is the formula </span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.20</span> <span class="op">*</span> players_df[<span class="st">"PTS_norm"</span>] <span class="op">+</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.50</span> <span class="op">*</span> players_df[<span class="st">"team_win_pct_norm"</span>] <span class="op">+</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.15</span> <span class="op">*</span> players_df[<span class="st">"AST_norm"</span>] <span class="op">+</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.025</span> <span class="op">*</span> players_df[<span class="st">"STL_norm"</span>] <span class="op">+</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.10</span> <span class="op">*</span> players_df[<span class="st">"TRB_norm"</span>] <span class="op">+</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.025</span> <span class="op">*</span> players_df[<span class="st">"BLK_norm"</span>] <span class="op">+</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.20</span> <span class="op">*</span> players_df[<span class="st">"FG%_norm"</span>] </span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> players_df.sort_values(<span class="st">"mvp_score"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>    players_df[[<span class="st">"Player"</span>, <span class="st">"Team"</span>, <span class="st">"PTS"</span>, <span class="st">"AST"</span>, <span class="st">"TRB"</span>, <span class="st">"team_win_pct"</span>, <span class="st">"mvp_score"</span>]]</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>.head(<span class="dv">10</span>)</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>After filtering for 58+ games: 234 players
-=== DEBUG INFO ===
-Total players: 234
-Players with NaN mvp_score: 52
-Players with NaN team_win_pct: 52
-
-Sample of top players with all stats:
-                      Player Team   PTS   AST   TRB  STL  BLK  FG%_norm  team_win_pct  PTS_norm  team_win_pct_norm  mvp_score
-297             Nikola Jokić  DEN  27.7  10.7  12.9  1.4  0.8  0.683073         0.610  0.826866           0.647910   0.716509
-245  Shai Gilgeous-Alexander  OKC  31.1   6.6   4.3  1.4  0.8  0.663866         0.829  0.928358           1.000000   0.701252
-329              Luka Dončić  LAL  33.5   8.3   7.7  1.6  0.5  0.571429         0.610  1.000000           0.647910   0.678905
-202         Donovan Mitchell  CLE  27.9   5.7   4.5  1.5  0.3  0.579832         0.780  0.832836           0.921222   0.630214
-189             Jaylen Brown  BOS  28.7   5.1   6.9  1.0  0.4  0.572629         0.744  0.856716           0.863344   0.618363
-318              Evan Mobley  CLE  18.2   3.6   9.0  0.7  1.7  0.655462         0.780  0.543284           0.921222   0.593806
-334        Victor Wembanyama  SAS  25.0   3.1  11.5  1.0  3.1  0.614646         0.415  0.746269           0.334405   0.592911
-299            Kawhi Leonard  LAC  27.9   3.6   6.4  1.9  0.4  0.606242         0.610  0.832836           0.647910   0.586481
-174           Alperen Şengün  HOU  20.4   6.2   8.9  1.2  1.1  0.623049         0.634  0.608955           0.686495   0.585154
-231            Chet Holmgren  OKC  17.1   1.7   8.9  0.6  1.9  0.668667         0.829  0.510448           1.000000   0.584400
-338          Cade Cunningham  DET  23.9   9.9   5.5  1.4  0.8  0.553421         0.537  0.713433           0.530547   0.584203
-56              Kevin Durant  HOU  26.0   4.8   5.5  0.8  0.9  0.624250         0.634  0.776119           0.686495   0.561614
-162            Jalen Johnson  ATL  22.5   7.9  10.3  1.2  0.4  0.587035         0.488  0.671642           0.451768   0.553011
-395             LeBron James  LAL  20.9   7.2   6.1  1.2  0.6  0.618247         0.610  0.623881           0.647910   0.552070
-110             Jamal Murray  DEN  25.4   7.1   4.4  0.9  0.4  0.579832         0.610  0.758209           0.647910   0.548191</code></pre>
+<pre><code>               Player Team   PTS  AST  TRB  team_win_pct  mvp_score
+0        Oso Ighodaro  PHO   6.5  2.3  5.1           NaN        NaN
+1   Julian Champagnie  SAS  11.1  1.5  5.8           NaN        NaN
+2       Mikal Bridges  NYK  14.4  3.7  3.8           NaN        NaN
+3      Jeremiah Fears  NOP  14.3  3.4  3.7           NaN        NaN
+4  Brandin Podziemski  GSW  13.8  3.7  5.1           NaN        NaN
+5       Reed Sheppard  HOU  13.5  3.4  2.9           NaN        NaN
+6      Toumani Camara  POR  13.4  2.5  5.1           NaN        NaN
+7      Keldon Johnson  SAS  13.2  1.4  5.4           NaN        NaN
+8    Donte DiVincenzo  MIN  12.2  3.8  4.1           NaN        NaN
+9      Bub Carrington  WAS  10.7  4.6  3.4           NaN        NaN</code></pre>
 </div>
 </div>
 
