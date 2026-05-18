@@ -155,7 +155,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div id="cell-0" class="cell" data-execution_count="14">
+<div id="cell-0" class="cell" data-execution_count="131">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install html5lib lxml beautifulsoup4</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
@@ -184,7 +184,7 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 </div>
 </div>
-<div id="cell-1" class="cell" data-execution_count="15">
+<div id="cell-1" class="cell" data-execution_count="132">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os <span class="co">#interacts with the operating systems ( such as creating folders/checking files)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd <span class="co">#used to read and clean the data </span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shutil <span class="co">#copying/moving files or directories</span></span>
@@ -198,7 +198,7 @@ Note: you may need to restart the kernel to use updated packages.
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.max_columns'</span>, <span class="dv">50</span>)</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.width'</span>, <span class="dv">1000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-2" class="cell" data-execution_count="16">
+<div id="cell-2" class="cell" data-execution_count="133">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.basketball-reference.com/awards/mvp.html#mvp_NBA"</span> <span class="co">#this is the web page we want to scrape</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">2</span>)  <span class="co"># Be respectful to the server, avoid rate limiting, so it wont say html error too many requests.</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -243,7 +243,7 @@ Note: you may need to restart the kernel to use updated packages.
 10  2015-16  NBA            Stephen Curry    (V)   27  GSW  79  34.2  30.1   5.4   6.7  2.1  0.2  0.504  0.454  0.908  17.9  0.318</code></pre>
 </div>
 </div>
-<div id="cell-3" class="cell" data-execution_count="17">
+<div id="cell-3" class="cell" data-execution_count="134">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#print (mvp_df.info())</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (mvp_df.head())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -255,99 +255,114 @@ Note: you may need to restart the kernel to use updated packages.
 5  2020-21  NBA            Nikola JokiÄ    (V)   25  DEN  72  34.6  26.4  10.8  8.3  1.3  0.7  0.566  0.388  0.868  15.6  0.301</code></pre>
 </div>
 </div>
-<div id="cell-4" class="cell" data-execution_count="18">
+<div id="cell-4" class="cell" data-execution_count="135">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>avg_age <span class="op">=</span> mvp_df[<span class="st">'Age'</span>].mean() <span class="co">#this calculates the average age of the mvps since 2015</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"Average age of the MVP since the 2015 season -&gt; "</span>, avg_age) <span class="co">#this prints it out</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Average age of the MVP since the 2015 season -&gt;  26.5</code></pre>
 </div>
 </div>
-<div id="cell-5" class="cell" data-execution_count="19">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>team_data <span class="op">=</span> []</span>
+<div id="cell-5" class="cell" data-execution_count="136">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> year <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2016</span>,<span class="dv">2026</span>):</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    url <span class="op">=</span> <span class="ss">f"https://www.basketball-reference.com/leagues/NBA_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">_standings.html"</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> requests.get(url)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    soup <span class="op">=</span> bs(data.text, <span class="st">"html.parser"</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    tables <span class="op">=</span> soup.find_all(<span class="st">"table"</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> table <span class="kw">in</span> tables:</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        df <span class="op">=</span> pd.read_html(<span class="bu">str</span>(table))[<span class="dv">0</span>]</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        df[<span class="st">"Year"</span>] <span class="op">=</span> year</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        team_data.append(df)</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">#^that above collected the team data from 2015 to current, including standings.</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>teams_df <span class="op">=</span> pd.concat(team_data,ignore_index<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">#cleaning and merging the east/west standings into one table down below~</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>stat_cols_all <span class="op">=</span> [<span class="st">"W"</span>, <span class="st">"L"</span>, <span class="st">"W/L%"</span>, <span class="st">"GB"</span>, <span class="st">"PS/G"</span>, <span class="st">"PA/G"</span>, <span class="st">"SRS"</span>]</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>stat_cols <span class="op">=</span> [x <span class="cf">for</span> x <span class="kw">in</span> stat_cols_all <span class="cf">if</span> x <span class="kw">in</span> teams_df.columns] <span class="co"># it loops over the columns for whatever of the columns are found</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>team_data <span class="op">=</span> []</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> year <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2016</span>,<span class="dv">2027</span>):</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    url <span class="op">=</span> <span class="ss">f"https://www.basketball-reference.com/leagues/NBA_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">_standings.html"</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> requests.get(url)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    soup <span class="op">=</span> bs(data.text, <span class="st">"html.parser"</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    tables <span class="op">=</span> soup.find_all(<span class="st">"table"</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> table <span class="kw">in</span> tables:</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        df <span class="op">=</span> pd.read_html(<span class="bu">str</span>(table))[<span class="dv">0</span>]</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        df[<span class="st">"Year"</span>] <span class="op">=</span> year</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        team_data.append(df)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">#^that above collected the team data from 2015 to the year listed in the paranthesis - 1, including standings.</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>teams_df <span class="op">=</span> pd.concat(team_data,ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co">#cleaning and merging the east/west standings into one table down below~</span></span>
 <span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>base_cols <span class="op">=</span> [<span class="st">"Year"</span>] <span class="op">+</span> stat_cols <span class="co">#makes the base columns = to years and the statistics found</span></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (stat_cols, base_cols)</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span>[<span class="st">"Eastern Conference"</span>] <span class="op">+</span> base_cols</span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>east <span class="op">=</span> teams_df[cols].copy()</span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>east <span class="op">=</span> east.dropna( subset<span class="op">=</span>[<span class="st">"Eastern Conference"</span>])</span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>var_div <span class="op">=</span> east[<span class="st">"Eastern Conference"</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.contains(<span class="st">"Division"</span>, na<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>east <span class="op">=</span> east[<span class="op">~</span>var_div]</span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>east <span class="op">=</span> east.rename(columns<span class="op">=</span>{<span class="st">"Eastern Conference"</span>: <span class="st">"Teams"</span>})</span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>east[<span class="st">"Conference"</span>]<span class="op">=</span> <span class="st">"East"</span></span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(east.head(),east.shape)</span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> [<span class="st">"Western Conference"</span>] <span class="op">+</span> base_cols</span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>west <span class="op">=</span> teams_df[cols].copy()</span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>west <span class="op">=</span> west.dropna(subset<span class="op">=</span>[<span class="st">"Western Conference"</span>])</span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>var_div <span class="op">=</span> west[<span class="st">"Western Conference"</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.contains(<span class="st">"Division"</span>, na<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>west <span class="op">=</span> west[<span class="op">~</span>var_div]</span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>west <span class="op">=</span> west.rename(columns<span class="op">=</span>{<span class="st">"Western Conference"</span>: <span class="st">"Teams"</span>})</span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>west[<span class="st">"Conference"</span>]<span class="op">=</span> <span class="st">"West"</span></span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(west.head(),west.shape)</span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>teams_tidy <span class="op">=</span> pd.concat([east, west], ignore_index<span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (teams_tidy.shape)</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>stat_cols_all <span class="op">=</span> [<span class="st">"W"</span>, <span class="st">"L"</span>, <span class="st">"W/L%"</span>, <span class="st">"GB"</span>, <span class="st">"PS/G"</span>, <span class="st">"PA/G"</span>, <span class="st">"SRS"</span>]</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>stat_cols <span class="op">=</span> [x <span class="cf">for</span> x <span class="kw">in</span> stat_cols_all <span class="cf">if</span> x <span class="kw">in</span> teams_df.columns] <span class="co"># it loops over the columns for whatever of the columns are found</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>base_cols <span class="op">=</span> [<span class="st">"Year"</span>] <span class="op">+</span> stat_cols <span class="co">#makes the base columns = to years and the statistics found</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (stat_cols, base_cols)</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span>[<span class="st">"Eastern Conference"</span>] <span class="op">+</span> base_cols</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>east <span class="op">=</span> teams_df[cols].copy()</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>east <span class="op">=</span> east.dropna( subset<span class="op">=</span>[<span class="st">"Eastern Conference"</span>])</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>var_div <span class="op">=</span> east[<span class="st">"Eastern Conference"</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.contains(<span class="st">"Division"</span>, na<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>east <span class="op">=</span> east[<span class="op">~</span>var_div]</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>east <span class="op">=</span> east.rename(columns<span class="op">=</span>{<span class="st">"Eastern Conference"</span>: <span class="st">"Teams"</span>})</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>east[<span class="st">"Conference"</span>]<span class="op">=</span> <span class="st">"East"</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(east.head(),east.shape)</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> [<span class="st">"Western Conference"</span>] <span class="op">+</span> base_cols</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>west <span class="op">=</span> teams_df[cols].copy()</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>west <span class="op">=</span> west.dropna(subset<span class="op">=</span>[<span class="st">"Western Conference"</span>])</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>var_div <span class="op">=</span> west[<span class="st">"Western Conference"</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.contains(<span class="st">"Division"</span>, na<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>west <span class="op">=</span> west[<span class="op">~</span>var_div]</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>west <span class="op">=</span> west.rename(columns<span class="op">=</span>{<span class="st">"Western Conference"</span>: <span class="st">"Teams"</span>})</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>west[<span class="st">"Conference"</span>]<span class="op">=</span> <span class="st">"West"</span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(west.head(),west.shape)</span>
 <span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>east <span class="op">=</span> east.rename(columns<span class="op">=</span>{<span class="st">'Teams'</span>:<span class="st">'Team'</span>}) <span class="co">#renaming the teams in the columns from Teams to Team</span></span>
-<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>west <span class="op">=</span> west.rename(columns<span class="op">=</span>{<span class="st">'Teams'</span>:<span class="st">'Team'</span>})</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>teams_tidy <span class="op">=</span> pd.concat([east, west], ignore_index<span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (teams_tidy.shape)</span>
 <span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_team_name(t):</span>
-<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pd.isna(t):</span>
-<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> t <span class="co">#means if its empty return it back but if not then -&gt;</span></span>
-<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">str</span>(t).replace(<span class="st">'x'</span>,<span class="st">''</span>).replace(<span class="st">'*'</span>,<span class="st">''</span>).replace(<span class="st">'z'</span>,<span class="st">''</span>).replace(<span class="st">'y'</span>,<span class="st">''</span>).strip()     <span class="co">#this cleans the Teams and removes the uneccesary stuff such as : stars, extra letters etc.</span></span>
-<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>east[<span class="st">'Team'</span>] <span class="op">=</span> east[<span class="st">'Team'</span>].<span class="bu">apply</span>(clean_team_name) <span class="co">#we call the clean function and this cleans whatever we apply it top </span></span>
-<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>west[<span class="st">'Team'</span>] <span class="op">=</span> west[<span class="st">'Team'</span>].<span class="bu">apply</span>(clean_team_name)</span>
-<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.concat([east,west], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix: Remove duplicate columns if any</span></span>
-<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.loc[:, <span class="op">~</span>df.columns.duplicated()]</span>
-<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure "Team" is a Series, not a DataFrame</span></span>
-<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">isinstance</span>(df[<span class="st">"Team"</span>], pd.DataFrame):</span>
-<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"Team"</span>] <span class="op">=</span> df[<span class="st">"Team"</span>].iloc[:, <span class="dv">0</span>]</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>east <span class="op">=</span> east.rename(columns<span class="op">=</span>{<span class="st">'Teams'</span>:<span class="st">'Team'</span>}) <span class="co">#renaming the teams in the columns from Teams to Team</span></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>west <span class="op">=</span> west.rename(columns<span class="op">=</span>{<span class="st">'Teams'</span>:<span class="st">'Team'</span>})</span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_team_name(t):</span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pd.isna(t):</span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> t <span class="co">#means if its empty return it back but if not then -&gt;</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> <span class="bu">str</span>(t)</span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> re.sub(<span class="vs">r"</span><span class="ch">\*</span><span class="vs">"</span>, <span class="st">""</span>, t)</span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> re.sub(<span class="vs">r"</span><span class="ch">\(</span><span class="dv">\d</span><span class="op">+</span><span class="ch">\)</span><span class="vs">"</span>, <span class="st">""</span>, t)</span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> t.strip()</span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>east[<span class="st">'Team'</span>] <span class="op">=</span> east[<span class="st">'Team'</span>].<span class="bu">apply</span>(clean_team_name) <span class="co">#we call the clean function and this cleans whatever we apply it top </span></span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>west[<span class="st">'Team'</span>] <span class="op">=</span> west[<span class="st">'Team'</span>].<span class="bu">apply</span>(clean_team_name)</span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.concat([east,west], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> [<span class="st">"W"</span>,<span class="st">"L"</span>,<span class="st">"GB"</span>,<span class="st">"PS/G"</span>,<span class="st">"PA/G"</span>,<span class="st">"SRS"</span>]:</span>
-<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> col <span class="kw">in</span> df.columns:</span>
-<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>        df[col]<span class="op">=</span> pd.to_numeric(df[col], errors <span class="op">=</span> <span class="st">"coerce"</span>)</span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Team"</span>] <span class="op">=</span> df[<span class="st">"Team"</span>].<span class="bu">map</span>(team_to_abbr)</span>
 <span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"W/L%"</span>] <span class="op">=</span> pd.to_numeric(df[<span class="st">"W/L%"</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.replace(<span class="st">"-"</span>, <span class="st">""</span>), errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
-<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"ConferenceRank"</span>]<span class="op">=</span>(</span>
-<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a>    df.groupby([<span class="st">"Year"</span>,<span class="st">"Conference"</span>])[<span class="st">"W/L%"</span>]</span>
-<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>    .rank(method<span class="op">=</span><span class="st">"min"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix: Remove duplicate columns if any</span></span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.loc[:, <span class="op">~</span>df.columns.duplicated()]</span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure "Team" is a Series, not a DataFrame</span></span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">isinstance</span>(df[<span class="st">"Team"</span>], pd.DataFrame):</span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"Team"</span>] <span class="op">=</span> df[<span class="st">"Team"</span>].iloc[:, <span class="dv">0</span>]</span>
 <span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (df.shape)</span>
-<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (df.head())</span>
-<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (df.dtypes)</span>
-<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (df[<span class="st">"Team"</span>].nunique())</span>
-<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a><span class="co">#df = pd.concat([east,west], ignore_index=True)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[df[<span class="st">"Year"</span>] <span class="op">==</span> <span class="dv">2026</span>].head(<span class="dv">20</span>)) <span class="co">#this is just to check if the data is correct and if the team names are cleaned, we can see that the teams are cleaned and the stats are there for 2026 season</span></span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[df[<span class="st">"Year"</span>] <span class="op">==</span> <span class="dv">2025</span>][<span class="st">"Team"</span>].unique()) <span class="co">#this is just to check if the data is correct and if the team names are cleaned, we can see that the teams are cleaned and the stats are there for 2025 season</span></span>
+<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[df[<span class="st">"Year"</span>] <span class="op">==</span> <span class="dv">2026</span>].shape)</span>
+<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> [<span class="st">"W"</span>,<span class="st">"L"</span>,<span class="st">"GB"</span>,<span class="st">"PS/G"</span>,<span class="st">"PA/G"</span>,<span class="st">"SRS"</span>]:</span>
+<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> col <span class="kw">in</span> df.columns:</span>
+<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a>        df[col]<span class="op">=</span> pd.to_numeric(df[col], errors <span class="op">=</span> <span class="st">"coerce"</span>)</span>
+<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"W/L%"</span>] <span class="op">=</span> pd.to_numeric(df[<span class="st">"W/L%"</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.replace(<span class="st">"-"</span>, <span class="st">""</span>), errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"ConferenceRank"</span>]<span class="op">=</span>(</span>
+<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a>    df.groupby([<span class="st">"Year"</span>,<span class="st">"Conference"</span>])[<span class="st">"W/L%"</span>]</span>
+<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a>    .rank(method<span class="op">=</span><span class="st">"min"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-94"><a href="#cb9-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (df.shape)</span>
+<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (df.head())</span>
+<span id="cb9-97"><a href="#cb9-97" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (df.dtypes)</span>
+<span id="cb9-98"><a href="#cb9-98" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (df[<span class="st">"Team"</span>].nunique())</span>
+<span id="cb9-99"><a href="#cb9-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-100"><a href="#cb9-100" aria-hidden="true" tabindex="-1"></a><span class="co">#df = pd.concat([east,west], ignore_index=True)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>['W', 'L', 'W/L%', 'GB', 'PS/G', 'PA/G', 'SRS'] ['Year', 'W', 'L', 'W/L%', 'GB', 'PS/G', 'PA/G', 'SRS']
                   Teams  Year   W   L   W/L%   GB   PS/G   PA/G   SRS Conference
@@ -355,21 +370,46 @@ Note: you may need to restart the kernel to use updated packages.
 1      Toronto Raptors*  2016  56  26  0.683  1.0  102.7   98.2  4.08       East
 2           Miami Heat*  2016  48  34  0.585  9.0  100.0   98.4   1.5       East
 3        Atlanta Hawks*  2016  48  34  0.585  9.0  102.8   99.2  3.49       East
-4       Boston Celtics*  2016  48  34  0.585  9.0  105.7  102.5  2.84       East (300, 10)
+4       Boston Celtics*  2016  48  34  0.585  9.0  105.7  102.5  2.84       East (330, 10)
                       Teams  Year   W   L   W/L%    GB   PS/G   PA/G    SRS Conference
 15   Golden State Warriors*  2016  73   9   0.89     —  114.9  104.1  10.38       West
 16       San Antonio Spurs*  2016  67  15  0.817   6.0  103.5   92.9  10.28       West
 17   Oklahoma City Thunder*  2016  55  27  0.671  18.0  110.2  102.9   7.09       West
 18    Los Angeles Clippers*  2016  53  29  0.646  20.0  104.5  100.2   4.13       West
-19  Portland Trail Blazers*  2016  44  38  0.537  29.0  105.1  104.3   0.98       West (300, 10)
-(600, 10)
-(600, 11)
-                  Team  Year   W   L   W/L%   GB   PS/G   PA/G   SRS Conference  ConferenceRank
-0  Cleveland Cavaliers  2016  57  25  0.695  NaN  104.3   98.3  5.45       East             1.0
-1      Toronto Raptors  2016  56  26  0.683  1.0  102.7   98.2  4.08       East             3.0
-2           Miami Heat  2016  48  34  0.585  9.0  100.0   98.4  1.50       East             5.0
-3        Atlanta Hawks  2016  48  34  0.585  9.0  102.8   99.2  3.49       East             5.0
-4       Boston Celtics  2016  48  34  0.585  9.0  105.7  102.5  2.84       East             5.0
+19  Portland Trail Blazers*  2016  44  38  0.537  29.0  105.1  104.3   0.98       West (330, 10)
+(660, 10)
+    Team  Year   W   L   W/L%    GB   PS/G   PA/G    SRS Conference
+300  DET  2026  60  22  0.732     —  117.8  109.6   7.53       East
+301  BOS  2026  56  26  0.683   4.0  114.9  107.2   7.37       East
+302  NYK  2026  53  29  0.646   7.0  116.5  110.1   6.05       East
+303  CLE  2026  52  30  0.634   8.0  119.5  115.4   3.78       East
+304  TOR  2026  46  36  0.561  14.0  114.6  111.8   2.75       East
+305  ATL  2026  46  36  0.561  14.0  118.5  116.0   2.38       East
+306  PHI  2026  45  37  0.549  15.0  115.9  116.1  -0.27       East
+307  ORL  2026  45  37  0.549  15.0  115.7  115.1   0.81       East
+308  CHA  2026  44  38  0.537  16.0  116.0  111.2   4.48       East
+309  MIA  2026  43  39  0.524  17.0  120.9  118.5   2.35       East
+310  MIL  2026  32  50   0.39  28.0  110.6  116.8  -6.12       East
+311  CHI  2026  31  51  0.378  29.0  116.3  121.5  -5.09       East
+312  BKN  2026  20  62  0.244  40.0  105.9  115.9   -9.7       East
+313  IND  2026  19  63  0.232  41.0  112.4  120.4  -7.64       East
+314  WAS  2026  17  65  0.207  43.0  112.9  124.9 -11.62       East
+315  BOS  2026  56  26   .683     —  114.9  107.2   7.37       East
+316  NYK  2026  53  29   .646   3.0  116.5  110.1   6.05       East
+317  TOR  2026  46  36   .561  10.0  114.6  111.8   2.75       East
+318  PHI  2026  45  37   .549  11.0  115.9  116.1  -0.27       East
+319  BKN  2026  20  62   .244  36.0  105.9  115.9  -9.70       East
+['CLE' 'BOS' 'NYK' 'IND' 'MIL' 'DET' 'ORL' 'ATL' 'CHI' 'MIA' 'TOR' 'BKN'
+ 'PHI' 'CHA' 'WAS' 'OKC' 'HOU' 'LAL' 'DEN' 'LAC' 'MIN' 'GSW' 'MEM' 'SAC'
+ 'DAL' 'PHX' 'POR' 'SAS' 'NOP' 'UTA']
+(60, 10)
+(660, 11)
+  Team  Year   W   L   W/L%   GB   PS/G   PA/G   SRS Conference  ConferenceRank
+0  CLE  2016  57  25  0.695  NaN  104.3   98.3  5.45       East             1.0
+1  TOR  2016  56  26  0.683  1.0  102.7   98.2  4.08       East             3.0
+2  MIA  2016  48  34  0.585  9.0  100.0   98.4  1.50       East             5.0
+3  ATL  2016  48  34  0.585  9.0  102.8   99.2  3.49       East             5.0
+4  BOS  2016  48  34  0.585  9.0  105.7  102.5  2.84       East             5.0
 Team               object
 Year                int64
 W                   int64
@@ -385,7 +425,7 @@ dtype: object
 30</code></pre>
 </div>
 </div>
-<div id="cell-6" class="cell" data-execution_count="20">
+<div id="cell-6" class="cell" data-execution_count="137">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#merge the MVP data and the standings</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>mvp_df[<span class="st">"Year"</span>] <span class="op">=</span> (mvp_df[<span class="st">"Season"</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>[:<span class="dv">4</span>].astype(<span class="bu">int</span>) <span class="op">+</span> <span class="dv">1</span>)</span>
@@ -471,43 +511,42 @@ dtype: object
 <div class="cell-output cell-output-stdout">
 <pre><code>['Team', 'Year', 'W', 'L', 'W/L%', 'GB', 'PS/G', 'PA/G', 'SRS', 'Conference', 'ConferenceRank']
                     Player  Year Team   W/L% Conference  ConferenceRank
-0  Shai Gilgeous-Alexander  2025  OKC    NaN        NaN             NaN
-1            Nikola JokiÄ  2024  DEN  0.695       West             1.0
+0  Shai Gilgeous-Alexander  2025  OKC  0.829       West             1.0
+1  Shai Gilgeous-Alexander  2025  OKC  0.829       West             1.0
 2            Nikola JokiÄ  2024  DEN  0.695       West             1.0
-3              Joel Embiid  2023  PHI  0.659       East             5.0
+3            Nikola JokiÄ  2024  DEN  0.695       West             1.0
 4              Joel Embiid  2023  PHI  0.659       East             5.0
-(18, 8)
+(20, 8)
 ['Player', 'Age', 'Year', 'Team', 'W/L%', 'Conference', 'ConferenceRank', 'SRS']
-                    Player  Age  Year Team   W/L% Conference  ConferenceRank   SRS
-0  Shai Gilgeous-Alexander   26  2025  OKC    NaN        NaN            &lt;NA&gt;   NaN
-1            Nikola JokiÄ   28  2024  DEN  0.695       West               1  5.23
-2            Nikola JokiÄ   28  2024  DEN  0.695       West               1  5.23
-3              Joel Embiid   28  2023  PHI  0.659       East               5  4.37
-4              Joel Embiid   28  2023  PHI  0.659       East               5  4.37
-5            Nikola JokiÄ   26  2022  DEN  0.585       West              11  2.16
-6            Nikola JokiÄ   26  2022  DEN  0.585       West              11  2.16
-7            Nikola JokiÄ   25  2021  DEN  0.653       West               5  4.82
-8            Nikola JokiÄ   25  2021  DEN  0.653       West               5  4.82
-9    Giannis Antetokounmpo   25  2020  MIL  0.767       East               1  9.41
+                    Player  Age  Year Team   W/L% Conference  ConferenceRank    SRS
+0  Shai Gilgeous-Alexander   26  2025  OKC  0.829       West               1  12.70
+1  Shai Gilgeous-Alexander   26  2025  OKC  0.829       West               1  12.70
+2            Nikola JokiÄ   28  2024  DEN  0.695       West               1   5.23
+3            Nikola JokiÄ   28  2024  DEN  0.695       West               1   5.23
+4              Joel Embiid   28  2023  PHI  0.659       East               5   4.37
+5              Joel Embiid   28  2023  PHI  0.659       East               5   4.37
+6            Nikola JokiÄ   26  2022  DEN  0.585       West              11   2.16
+7            Nikola JokiÄ   26  2022  DEN  0.585       West              11   2.16
+8            Nikola JokiÄ   25  2021  DEN  0.653       West               5   4.82
+9            Nikola JokiÄ   25  2021  DEN  0.653       West               5   4.82
 Player            0
 Age               0
 Year              0
 Team              0
-W/L%              2
-Conference        2
-ConferenceRank    2
-SRS               2
+W/L%              0
+Conference        0
+ConferenceRank    0
+SRS               0
 dtype: int64
-['CLE' 'TOR' 'MIA' 'ATL' 'BOS' 'CHA' 'IND' 'DET' 'CHI' 'WASHINGTON WIARDS'
- 'ORL' 'MIL' 'NYK' 'BROOKLN NETS' 'PHI' 'GSW' 'SAS' 'OKLAHOMA CIT THUNDER'
- 'LAC' 'PORTLAND TRAIL BLAERS' 'MAVS' 'MEMPHIS GRILIES' 'HOU' 'UTAH JA'
- 'SAC' 'DEN' 'NOP' 'MINNESOTA TIMBERWOLVES' 'PHOENI SUNS' 'LAL']
+['CLE' 'TOR' 'MIA' 'ATL' 'BOS' 'CHA' 'IND' 'DET' 'CHI' 'WAS' 'ORL' 'MIL'
+ 'NYK' 'BKN' 'PHI' 'GSW' 'SAS' 'OKC' 'LAC' 'POR' 'DAL' 'MEM' 'HOU' 'UTA'
+ 'SAC' 'DEN' 'NOP' 'MIN' 'PHX' 'LAL']
 Empty DataFrame
 Columns: [Team, Year, W, L, W/L%, GB, PS/G, PA/G, SRS, Conference, ConferenceRank]
 Index: []</code></pre>
 </div>
 </div>
-<div id="cell-7" class="cell" data-execution_count="21">
+<div id="cell-7" class="cell" data-execution_count="138">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Average Win to Loss </span><span class="sc">% o</span><span class="st">f the MVP's team:"</span> , merged[<span class="st">"W/L%"</span>].mean())</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Average Conference position: "</span>, merged[<span class="st">"ConferenceRank"</span>].mean())</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Average point differential of team: "</span>, merged[<span class="st">"SRS"</span>].mean())</span>
@@ -524,21 +563,21 @@ Index: []</code></pre>
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>merged[<span class="st">"Top5"</span>] <span class="op">=</span> merged[<span class="st">"ConferenceRank"</span>] <span class="op">&lt;=</span> <span class="dv">5</span></span>
 <span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="sc">% o</span><span class="st">f MVPs from Top 5 teams:"</span>, merged[<span class="st">"Top5"</span>].mean() <span class="op">*</span> <span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Average Win to Loss % of the MVP's team: 0.7217500000000001
-Average Conference position:  3.25
-Average point differential of team:  6.5775
+<pre><code>Average Win to Loss % of the MVP's team: 0.7176000000000001
+Average Conference position:  3.8
+Average point differential of team:  6.645999999999999
 
 Conference Rank distribution: 
 ConferenceRank
-1     10
+1     12
 5      4
-11     2
+11     4
 Name: count, dtype: Int64
 
-% of MVPs from Top 5 teams: 87.5</code></pre>
+% of MVPs from Top 5 teams: 80.0</code></pre>
 </div>
 </div>
-<div id="cell-8" class="cell" data-execution_count="22">
+<div id="cell-8" class="cell" data-execution_count="139">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#now we use machine to rank who has the best chance of winning mvp for the upcoming season and rank the top 10.</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>target_year <span class="op">=</span> df[<span class="st">"Year"</span>].<span class="bu">max</span>() <span class="co">#finds the maximum year of the years we have, since mvp data is most helpful when recent</span></span>
@@ -598,7 +637,7 @@ dtype: object
 0      1.0  Luka DonÄiÄ  26.0  LAL  PG  64.0  64.0  35.8  10.8  22.8  0.476  4.0  10.8  0.366  6.9  11.9  0.575  0.563  7.9  10.1  0.780  0.6  7.1  7.7  8.3  1.6  0.5  4.0  2.4  33.5  CPOY-8,AS</code></pre>
 </div>
 </div>
-<div id="cell-9" class="cell" data-execution_count="23">
+<div id="cell-9" class="cell" data-execution_count="140">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>target_year <span class="op">=</span> <span class="dv">2026</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>teams_current <span class="op">=</span> df[df[<span class="st">"Year"</span>] <span class="op">==</span> target_year].copy()</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -625,12 +664,30 @@ dtype: object
 <span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="co">#print(top20[["Player", "Team", "team_win_pct"]].head(20))</span></span>
 <span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(teams_current[[<span class="st">"Team"</span>, <span class="st">"Team_abbr"</span>]].head(<span class="dv">20</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Empty DataFrame
-Columns: [Team, Team_abbr]
-Index: []</code></pre>
+<pre><code>    Team Team_abbr
+300  DET       NaN
+301  BOS       NaN
+302  NYK       NaN
+303  CLE       NaN
+304  TOR       NaN
+305  ATL       NaN
+306  PHI       NaN
+307  ORL       NaN
+308  CHA       NaN
+309  MIA       NaN
+310  MIL       NaN
+311  CHI       NaN
+312  BKN       NaN
+313  IND       NaN
+314  WAS       NaN
+315  BOS       NaN
+316  NYK       NaN
+317  TOR       NaN
+318  PHI       NaN
+319  BKN       NaN</code></pre>
 </div>
 </div>
-<div id="cell-10" class="cell" data-execution_count="24">
+<div id="cell-10" class="cell" data-execution_count="141">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>target_year <span class="op">=</span> <span class="dv">2026</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix: Standardize team names in df to match player_df</span></span>
@@ -675,25 +732,25 @@ Index: []</code></pre>
 <span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Sample matched teams:"</span>, players_df[players_df[<span class="st">"team_win_pct"</span>].notna()][[<span class="st">"Player"</span>, <span class="st">"Team"</span>, <span class="st">"team_win_pct"</span>]].head(<span class="dv">10</span>))</span>
 <span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Years in df: [2016 2017 2018 2019 2020 2021 2022 2023 2024 2025]
-Using target_year: 2025
+<pre><code>Years in df: [2016 2017 2018 2019 2020 2021 2022 2023 2024 2025 2026]
+Using target_year: 2026
 Teams in current year: 60
-Matched players after merge: 886 out of 1026
+Matched players after merge: 918 out of 1042
 After removing duplicates: 583 players
 Sample matched teams:                 Player Team  team_win_pct
-2       Jeremiah Fears  NOP         0.256
-4        Javonte Green  DET         0.537
-6        Mikal Bridges  NYK         0.622
-8   Brandin Podziemski  GSW         0.585
-10           Kris Dunn  LAC         0.610
-12      Bub Carrington  WAS         0.220
-14        Jake LaRavia  LAL         0.610
-16        Desmond Bane  ORL         0.500
-18       Reed Sheppard  HOU         0.634
-20      Toumani Camara  POR         0.439</code></pre>
+0     Donte DiVincenzo  MIN         0.598
+3       Jeremiah Fears  NOP         0.317
+5        Javonte Green  DET         0.732
+7        Mikal Bridges  NYK         0.646
+9   Brandin Podziemski  GSW         0.451
+11           Kris Dunn  LAC         0.512
+13      Bub Carrington  WAS         0.207
+15        Jake LaRavia  LAL         0.646
+17        Desmond Bane  ORL         0.549
+19       Reed Sheppard  HOU         0.634</code></pre>
 </div>
 </div>
-<div id="cell-11" class="cell" data-execution_count="25">
+<div id="cell-11" class="cell" data-execution_count="142">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>stat_cols <span class="op">=</span> [<span class="st">"PTS"</span>, <span class="st">"AST"</span>, <span class="st">"TRB"</span>, <span class="st">"STL"</span>, <span class="st">"BLK"</span>, <span class="st">"FG%"</span>, <span class="st">"team_win_pct"</span>]</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (players_df.columns.tolist())</span>
@@ -719,7 +776,7 @@ Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%'
 Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'eFG%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'Awards'], dtype='object')</code></pre>
 </div>
 </div>
-<div id="cell-12" class="cell" data-execution_count="26">
+<div id="cell-12" class="cell" data-execution_count="143">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>players_df[<span class="st">"Player"</span>] <span class="op">=</span> (</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    players_df[<span class="st">"Player"</span>].<span class="bu">str</span>.encode(<span class="st">"latin1"</span>).<span class="bu">str</span>.decode(<span class="st">"utf-8"</span>))</span>
@@ -758,26 +815,26 @@ Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%'
 <pre><code>After filtering for 58+ games: 234 players
 === DEBUG INFO ===
 Total players: 234
-Players with NaN mvp_score: 52
-Players with NaN team_win_pct: 52
+Players with NaN mvp_score: 44
+Players with NaN team_win_pct: 44
 
 Sample of top players with all stats:
                       Player Team   PTS   AST   TRB  STL  BLK  FG%_norm  team_win_pct  PTS_norm  team_win_pct_norm  mvp_score
-297             Nikola Jokić  DEN  27.7  10.7  12.9  1.4  0.8  0.683073         0.610  0.826866           0.647910   0.716509
-245  Shai Gilgeous-Alexander  OKC  31.1   6.6   4.3  1.4  0.8  0.663866         0.829  0.928358           1.000000   0.701252
-329              Luka Dončić  LAL  33.5   8.3   7.7  1.6  0.5  0.571429         0.610  1.000000           0.647910   0.678905
-202         Donovan Mitchell  CLE  27.9   5.7   4.5  1.5  0.3  0.579832         0.780  0.832836           0.921222   0.630214
-189             Jaylen Brown  BOS  28.7   5.1   6.9  1.0  0.4  0.572629         0.744  0.856716           0.863344   0.618363
-318              Evan Mobley  CLE  18.2   3.6   9.0  0.7  1.7  0.655462         0.780  0.543284           0.921222   0.593806
-334        Victor Wembanyama  SAS  25.0   3.1  11.5  1.0  3.1  0.614646         0.415  0.746269           0.334405   0.592911
-299            Kawhi Leonard  LAC  27.9   3.6   6.4  1.9  0.4  0.606242         0.610  0.832836           0.647910   0.586481
-174           Alperen Şengün  HOU  20.4   6.2   8.9  1.2  1.1  0.623049         0.634  0.608955           0.686495   0.585154
-231            Chet Holmgren  OKC  17.1   1.7   8.9  0.6  1.9  0.668667         0.829  0.510448           1.000000   0.584400
-338          Cade Cunningham  DET  23.9   9.9   5.5  1.4  0.8  0.553421         0.537  0.713433           0.530547   0.584203
-56              Kevin Durant  HOU  26.0   4.8   5.5  0.8  0.9  0.624250         0.634  0.776119           0.686495   0.561614
-162            Jalen Johnson  ATL  22.5   7.9  10.3  1.2  0.4  0.587035         0.488  0.671642           0.451768   0.553011
-395             LeBron James  LAL  20.9   7.2   6.1  1.2  0.6  0.618247         0.610  0.623881           0.647910   0.552070
-110             Jamal Murray  DEN  25.4   7.1   4.4  0.9  0.4  0.579832         0.610  0.758209           0.647910   0.548191</code></pre>
+304             Nikola Jokić  DEN  27.7  10.7  12.9  1.4  0.8  0.683073         0.659  0.826866           0.788831   0.746102
+341        Victor Wembanyama  SAS  25.0   3.1  11.5  1.0  3.1  0.614646         0.756  0.746269           0.958115   0.723890
+336              Luka Dončić  LAL  33.5   8.3   7.7  1.6  0.5  0.571429         0.646  1.000000           0.766143   0.703734
+251  Shai Gilgeous-Alexander  OKC  31.1   6.6   4.3  1.4  0.8  0.663866         0.780  0.928358           1.000000   0.701252
+345          Cade Cunningham  DET  23.9   9.9   5.5  1.4  0.8  0.553421         0.732  0.713433           0.916230   0.665197
+195             Jaylen Brown  BOS  28.7   5.1   6.9  1.0  0.4  0.572629         0.683  0.856716           0.830716   0.611511
+210             Tyrese Maxey  PHI  28.3   6.6   4.1  1.9  0.8  0.554622         0.549  0.844776           0.596859   0.603593
+179           Alperen Şengün  HOU  20.4   6.2   8.9  1.2  1.1  0.623049         0.634  0.608955           0.745201   0.597482
+208         Donovan Mitchell  CLE  27.9   5.7   4.5  1.5  0.3  0.579832         0.634  0.832836           0.745201   0.593250
+167            Jalen Johnson  ATL  22.5   7.9  10.3  1.2  0.4  0.587035         0.561  0.671642           0.617801   0.587878
+237            Chet Holmgren  OKC  17.1   1.7   8.9  0.6  1.9  0.668667         0.780  0.510448           1.000000   0.584400
+382          Anthony Edwards  MIN  28.8   3.7   5.0  1.4  0.8  0.587035         0.598  0.859701           0.682373   0.582606
+212              Jalen Duren  DET  19.5   2.0  10.5  0.8  0.8  0.780312         0.732  0.582090           0.916230   0.580767
+114             Jamal Murray  DEN  25.4   7.1   4.4  0.9  0.4  0.579832         0.659  0.758209           0.788831   0.577785
+403             LeBron James  LAL  20.9   7.2   6.1  1.2  0.6  0.618247         0.646  0.623881           0.766143   0.576899</code></pre>
 </div>
 </div>
 
