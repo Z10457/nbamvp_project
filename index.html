@@ -136,8 +136,82 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This is a Quarto website.</p>
-<p>To learn more about Quarto websites visit <a href="https://quarto.org/docs/websites" class="uri">https://quarto.org/docs/websites</a>.</p>
+
+<h1>NBA MVP MACHINE</h1>
+
+<p>This is my MVP prediction dashboard.</p>
+
+<div class="mvp-container">
+
+<button class="mvp-btn" onclick="doSystem()">
+PRESS TO GENERATE MVP
+</button>
+
+<div id="ball-container">
+<img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Basketball.png" id="ball" width="120">
+</div>
+
+</div>
+
+<div id="loader" style="display:none;">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Basketball.png" class="ball">
+
+<div class="loading-text">
+<span id="percent">0%</span>
+<p id="loadingMessage">Loading...</p>
+</div>
+
+<button id="continueButton" onclick="goToData()" style="display:none;">
+Click to view data
+</button>
+
+</div>
+
+<div id="dataContainer"></div>
+
+<script>
+
+function doSystem() {
+
+  const loader = document.getElementById("loader");
+  const loaderText = document.getElementById("percent");
+
+  loader.style.display = "flex";
+
+  let percent = 0;
+
+  let interval = setInterval(() => {
+
+    percent++;
+
+    loaderText.textContent = percent + "%";
+
+    if (percent >= 100) {
+
+      clearInterval(interval);
+
+      document.getElementById("percent").textContent =
+        "100% Completed";
+
+      document.getElementById("loadingMessage").textContent =
+        "Data Loaded!";
+
+      document.getElementById("continueButton").style.display =
+        "block";
+    }
+
+  }, 30);
+}
+
+function goToData() {
+
+  document.getElementById("dataContainer").innerHTML =
+    "<h2>MVP data will go here</h2>";
+}
+
+</script>
+
 
 
 

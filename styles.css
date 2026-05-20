@@ -1,1 +1,194 @@
 /* css styles */
+
+/* ===== GLOBAL PAGE ===== */
+
+body {
+    background: #0f172a;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+/* Remove Quarto default spacing */
+main.content {
+    max-width: 100% !important;
+    padding-top: 0 !important;
+}
+
+/* ===== PAGE CENTER ===== */
+
+.page-center {
+    height: calc(100vh - 60px);
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding-top: 150px;
+}
+
+/* ===== MVP CONTAINER ===== */
+
+.mvp-container {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===== MAIN BUTTON ===== */
+
+.mvp-btn {
+    font-size: 26px;
+
+    padding: 20px 40px;
+
+    border-radius: 15px;
+    border: none;
+
+    background: black;
+    color: white;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+.mvp-btn:hover {
+    background: orange;
+
+    box-shadow: 0 0 20px orange;
+
+    transform: scale(1.05);
+}
+
+/* ===== CENTER BALL ===== */
+
+#ball-container {
+    position: absolute;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+#ball {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ===== LOADER SCREEN ===== */
+
+#loader {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: #0f172a;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+
+    z-index: 9999;
+}
+
+/* ===== LOADING BALL ===== */
+
+.ball {
+    width: 120px;
+
+    filter: drop-shadow(0 0 20px orange);
+
+    animation: bounce 1s infinite ease-in-out;
+}
+
+@keyframes bounce {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-30px);
+    }
+}
+
+/* ===== LOADING TEXT ===== */
+
+.loading-text {
+    text-align: center;
+
+    margin-top: 20px;
+
+    color: white;
+}
+
+#percent {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+#loadingMessage {
+    font-size: 18px;
+}
+
+/* ===== CONTINUE BUTTON ===== */
+
+#continueButton {
+    margin-top: 20px;
+
+    padding: 14px 30px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: orange;
+    color: black;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+#continueButton:hover {
+    transform: scale(1.05);
+
+    box-shadow: 0 0 20px orange;
+}
+
+/* ===== DATA SECTION ===== */
+
+#dataContainer {
+    margin-top: 50px;
+
+    text-align: center;
+
+    color: white;
+}
