@@ -193,6 +193,9 @@ main.content {
 /* ===== DATA SECTION ===== */
 
 #dataContainer {
+
+    display: none;
+
     margin-top: 50px;
 
     text-align: center;

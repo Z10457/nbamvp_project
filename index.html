@@ -199,19 +199,60 @@ function doSystem() {
 
       document.getElementById("continueButton").style.display =
         "block";
+
     }
 
   }, 10);
 }
 
-function goToData() {
+/*function goToData() {
 
-  fetch("mvp_prediction.html")
+  fetch("/mvp_prediction.html")
     .then(response => response.text())
     .then(html => {
-      document.getElementById("dataContainer").innerHTML = html;
+      document.getElementById("dataContainer").innerHTML = "none";
     });
+}*/
+
+function goToData() {
+
+
+ fetch("/mvp_prediction.html")
+   .then(response => response.text())
+   .then(html => {
+
+     // 1. Parse HTML
+     const parser = new DOMParser();
+     const doc = parser.parseFromString(html, "text/html");
+
+     const container = document.getElementById("dataContainer");
+
+     // 2. Inject content
+     container.innerHTML = doc.body.innerHTML;
+
+     container.style.display = "block"; // show data container
+
+     // 3. Keeps loader visible while positioning
+     const loader = document.getElementById("loader");
+
+    // 4. Scroll  (before hiding anything) even though its not working
+    loader.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+
+    // 5. hides button after click to prevent multiple clicks
+    document.getElementById("continueButton").style.display = "none";
+
+    // 6. small delay before fading loader (smooth UX)
+    setTimeout(() => {
+      loader.style.opacity = "0.6";  // how much of the loader screen is visible after loading
+    }, 300);
+
+   });
 }
+
+
 
 </script>
 
