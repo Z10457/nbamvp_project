@@ -1,6 +1,9 @@
 project:
   type: website
 
+resources: 
+  - mvp_prediction.html
+
 website:
   title: "NBA_MVP_Project"
   navbar:
