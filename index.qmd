@@ -1,13 +1,13 @@
 ---
-title: "NBA MVP Project"
+title: "NBA MVP MACHINE"
 format: html
 ---
 
 ```{=html}
 
-<h1>NBA MVP MACHINE</h1>
 
-<p>This is my MVP prediction dashboard.</p>
+
+
 
 <div class="mvp-container">
 
@@ -69,13 +69,16 @@ function doSystem() {
         "block";
     }
 
-  }, 30);
+  }, 10);
 }
 
 function goToData() {
 
-  document.getElementById("dataContainer").innerHTML =
-    "<h2>MVP data will go here</h2>";
+  fetch("mvp_prediction.html")
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById("dataContainer").innerHTML = html;
+    });
 }
 
 </script>
