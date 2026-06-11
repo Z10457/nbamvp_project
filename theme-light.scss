@@ -1,0 +1,30 @@
+/*-- scss:defaults --*/
+
+/* Vapor-inspired light theme */
+
+$primary: #561dbf;
+
+$body-bg: #9b68a4f0;
+$body-color: #212529;
+
+$link-color: #6f42c1;
+$link-hover-color: #59359c;
+
+$navbar-bg: #a581c0;
+
+$card-bg: #ffffff;
+$card-border-color: #dee2e6;
+
+/*-- scss:rules --*/
+
+.mvp-container {
+  color: $body-color;
+}
+
+.mvp-btn {
+  border-radius: 12px;
+}
+
+table {
+  background-color: white;
+}

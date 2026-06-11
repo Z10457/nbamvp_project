@@ -5,16 +5,18 @@ resources:
   - mvp_prediction.html
 
 website:
-  title: "NBA_MVP_Project"
+  title: "NBA MVP MACHINE"
   navbar:
     left:
       - href: index.qmd
-        text: Home
+        text: Home page
       - about.qmd
 
 format:
   html:
-    theme: lux
+    respect-user-color-scheme: true
+    theme: vapor
+      
       #- cosmo
       #- brand
     css: styles.css

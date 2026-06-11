@@ -3,13 +3,22 @@ title: "NBA MVP MACHINE"
 format: html
 ---
 
-```{=html}
+```{python}
+import pandas as pd
 
+from shared import build_players_df
+players_df = build_players_df()
 
+from itables import show
+show(players_df) #this shows the MVP data in a nice table 
 
+import plotly.express as px
+fig = px.scatter(players_df, x="PTS", y="AST", hover_name ="Player")
+fig.show()
+```
 
-
-<div class="mvp-container">
+<!--
+<div class="mvp-container"> 
 
 <button class="mvp-btn" onclick="doSystem()">
 PRESS TO GENERATE MVP
@@ -123,5 +132,5 @@ function goToData() {
 
 
 </script>
+-->
 
-```

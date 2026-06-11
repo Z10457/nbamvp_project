@@ -1,5 +1,9 @@
 ---
-title: "About"
+title: "More info"
 ---
 
-About this site
+About this site:
+
+A MVP prediction machine, however it is not a predicition machine but rather a machine which generates an MVP winner based on a set of criteria. The criteria are based on the player's performance in the regular season, as well as their team's performance. 
+
+
