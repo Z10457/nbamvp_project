@@ -4,16 +4,35 @@ format: html
 ---
 
 ```{python}
+#| code-fold: true
+#| code-summary: "Show code"
 import pandas as pd
-
-from shared import build_players_df
-players_df = build_players_df()
-
 from itables import show
-show(players_df) #this shows the MVP data in a nice table 
+from shared import build_players_df
 
+players_df = build_players_df()
+players_df['MVP Rank'] = players_df['mvp_score'].rank(ascending= False, method='min').astype('Int64')
+
+show(players_df[['MVP Rank', 'Player' ,'mvp_score', 'Age', 'Team', 'Pos', 'PTS', 'mvp_score', 'AST', 'TRB','BLK', 'STL','team_win_pct', '3P%_norm', '2P%_norm']].sort_values('MVP Rank')) # this shows the MVP data in a nice table
+```
+
+```{python}
+#| layout: [[1,1,1,]]
+#| code-fold: true
+#| code-summary: "Show code"
 import plotly.express as px
-fig = px.scatter(players_df, x="PTS", y="AST", hover_name ="Player")
+#import seaborn as sns
+fig = px.scatter(players_df, x="PTS", y="mvp_score", hover_name="Player", title="How does points per game relate to MVP score?", template="plotly_dark", width=500, height=400)
+
+fig.show()
+
+fig = px.scatter(players_df, x="AST", y="mvp_score", hover_name="Player", title="How does assists per game relate to MVP score?", template="plotly_dark", width=500, height=400)
+fig.show()
+
+fig = px.scatter(players_df, x="team_win_pct", y="mvp_score", hover_name="Player", title="How does the winning percentage relate to MVP score?", template="plotly_dark", width=500, height=400)
+fig.show() 
+
+fig = px.scatter(players_df, x="3P%_norm", y="mvp_score", hover_name="Player", title="How does ones' three-point efficiency relate to their MVP score?", template="plotly_dark", width=500, height=400)
 fig.show()
 ```
 

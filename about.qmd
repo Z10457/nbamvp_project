@@ -6,4 +6,13 @@ About this site:
 
 A MVP prediction machine, however it is not a predicition machine but rather a machine which generates an MVP winner based on a set of criteria. The criteria are based on the player's performance in the regular season, as well as their team's performance. 
 
+The calculation which I used to generate the MVP score is as follows: 
+
+25 percent of the score is based on points per game, 25 percent is based on the team's winning percentage, and the remaining 50 percent is based on a combination of other stats such as assists, steals, rebounds, blocks, turnovers, and shooting percentages, which are all normalized and weighted based on their importance in the MVP voting process. The weights for the other stats are as follows: 9 percent for assists, 9 percent for steals, 9 percent for rebounds, 9 percent for blocks, 1 percent for turnovers, 6 percent for three point percentage, 5 percent for two point percentage, and 1 percent each for three point attempts and two point attempts.
+
+Special shoutout to my following peers and mentors who helped me with this project:
+
+- Cameron Rutherford
+- Jonathan 
+
 

@@ -1,5 +1,9 @@
 /* css styles */
 
+h1{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+
 /* ===== GLOBAL PAGE ===== */
 
 /*body {
@@ -7,20 +11,20 @@
     color: rgba(255, 255, 255, 0.766);
     font-family: Arial, Helvetica, sans-serif;
     overflow-x: hidden;
-}*/
+}
 
 h1{
     color: white;
     margin-left: 260px;
 }
 
-/* Remove Quarto default spacing */
+
 main.content {
     max-width: 100% !important;
     padding-top: 0 !important;
 }
 
-/* ===== PAGE CENTER ===== */
+
 
 .page-center {
     height: calc(100vh - 60px);
@@ -32,7 +36,7 @@ main.content {
     padding-top: 150px;
 }
 
-/* ===== MVP CONTAINER ===== */
+
 
 .mvp-container {
     position: relative;
@@ -42,13 +46,13 @@ main.content {
     align-items: center;
 }
 
-/* ===== MAIN BUTTON ===== */
+
 
 .mvp-btn {
     font-size: 26px;
 
     padding: 20px 40px;
-    margin-left: 100px; /*pushes the Press to generate button to the right, making it middle */
+    margin-left: 100px; 
 
     border-radius: 15px;
     border: none;
@@ -69,7 +73,7 @@ main.content {
     transform: scale(1.05);
 }
 
-/* ===== CENTER BALL ===== */
+
 
 #ball-container {
     position: absolute;
@@ -99,7 +103,7 @@ main.content {
     }
 }
 
-/* ===== LOADER SCREEN ===== */
+
 
 #loader {
     position: fixed;
@@ -123,7 +127,7 @@ main.content {
     z-index: 9999;
 }
 
-/* ===== LOADING BALL ===== */
+
 
 .ball {
     width: 120px;
@@ -144,7 +148,7 @@ main.content {
     }
 }
 
-/* ===== LOADING TEXT ===== */
+
 
 .loading-text {
     text-align: center;
@@ -163,7 +167,7 @@ main.content {
     font-size: 18px;
 }
 
-/* ===== CONTINUE BUTTON ===== */
+
 
 #continueButton {
     margin-top: 20px;
@@ -190,7 +194,7 @@ main.content {
     box-shadow: 0 0 20px orange;
 }
 
-/* ===== DATA SECTION ===== */
+
 
 #dataContainer {
 
@@ -201,4 +205,4 @@ main.content {
     text-align: center;
 
     color: white;
-}
+}*/
