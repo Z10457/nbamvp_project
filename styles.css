@@ -4,6 +4,28 @@ h1{
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
 
+.intro-text {
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 4px solid #f7b731;
+    padding: 1.2rem 1.4rem;
+    border-radius: 1rem;
+    color: #e8f7ff;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.intro-text strong {
+    color: #ffd966;
+}
+
+.intro-highlight {
+    color: #ffdd57;
+    font-weight: 600;
+}
+
+
+
 /* ===== GLOBAL PAGE ===== */
 
 /*body {

@@ -3,6 +3,51 @@ title: "NBA MVP MACHINE"
 format: html
 ---
 
+<div class="intro-text">
+<p>This is the <strong>MVP prediction machine</strong>, below are the stats and how the players rank among each other. The MVP score is a custom metric that I created to try to form a MVP winner, it takes into account various stats such as points per game, assists per game, rebounds per game, and more. The higher the MVP score, the better the player's chances of winning the MVP award.</p>
+<p class="intro-highlight">Usually MVP voting is up to top 6, so the 6 players ranked below are the players who had the best regular season.</p>
+</div>
+
+```{python}
+#| code-fold: true
+#| code-summary: "Show MVP winner ages"
+import pandas as pd
+import plotly.express as px
+from pathlib import Path
+
+csv_path = Path('mvp_live.csv') #this cell block will be to showcase, the average age of the MVPs.
+df = pd.read_csv(csv_path)
+
+
+grid= px.scatter(df, x="Season", y="Age", hover_name="Player", title="MVP Winners by Age", template="plotly_dark")
+grid.update_layout(
+    xaxis_title="AGE",
+    yaxis_title="Season",
+    title="Age correlation with MVP winners",
+    showlegend=False
+)
+order = sorted(df['Season'].unique(),key=lambda s: int(s.split('-')[0])) #this is to sort the seasons in order, since they are strings and not numbers, it will sort them by the first number in the string
+
+
+grid.update_xaxes(categoryorder='array',categoryarray=order)
+
+import numpy as np
+import plotly.graph_objects as go
+# Add a trendline using numpy's polyfit
+df_ordered = df.copy()
+df_ordered['start_year'] = df_ordered['Season'].str.split('-').str[0].astype(int)
+df_ordered =df_ordered.sort_values('start_year')
+
+connect_line = go.Scatter( #this code allows us to connect the dots in the graph with a line.
+  x=df_ordered['Season'],
+  y=df_ordered['Age'],
+  mode='lines',
+  line=dict(color='cyan',width=2),
+  showlegend=False
+)
+grid.add_trace(connect_line )
+grid.show()
+```
 ```{python}
 #| code-fold: true
 #| code-summary: "Show code"
@@ -13,28 +58,42 @@ from shared import build_players_df
 players_df = build_players_df()
 players_df['MVP Rank'] = players_df['mvp_score'].rank(ascending= False, method='min').astype('Int64')
 
-show(players_df[['MVP Rank', 'Player' ,'mvp_score', 'Age', 'Team', 'Pos', 'PTS', 'mvp_score', 'AST', 'TRB','BLK', 'STL','team_win_pct', '3P%_norm', '2P%_norm']].sort_values('MVP Rank')) # this shows the MVP data in a nice table
+show(players_df[['MVP Rank', 'Player', 'mvp_score', 'Age', 'Team', 'Pos', 'PTS', 'AST', 'TRB', 'BLK', 'STL', 'team_win_pct', '3P%_norm', '2P%_norm']].sort_values('MVP Rank'),pageLength=6,lengthMenu=[6,12,20,25,30,50],paging=True,layout={'topStart':'pageLength','topEnd':'search','bottomStart':'info','bottomEnd':'paging'})#.head(6))
+ # this shows the MVP data in a nice table
+ #page length allows it to show 6 players at a time, and the length menu allows the user to change how many players they want to see at a time.
+
 ```
 
 ```{python}
-#| layout: [[1,1,1,]]
 #| code-fold: true
 #| code-summary: "Show code"
+#| layout-ncol: 4 
+
 import plotly.express as px
 #import seaborn as sns
-fig = px.scatter(players_df, x="PTS", y="mvp_score", hover_name="Player", title="How does points per game relate to MVP score?", template="plotly_dark", width=500, height=400)
-
+#the above layout code allows the graphs to be next to eachother instead of stacked on top of eachother.
+fig = px.scatter(players_df, x="PTS", y="mvp_score", hover_name="Player", title="PPG relation to MVP", template="plotly_dark")
+#fig.update_layout(height=400, width=400)
 fig.show()
 
-fig = px.scatter(players_df, x="AST", y="mvp_score", hover_name="Player", title="How does assists per game relate to MVP score?", template="plotly_dark", width=500, height=400)
+fig = px.scatter(players_df, x="AST", y="mvp_score", hover_name="Player", title="APG relation to MVP", template="plotly_dark")
+#fig.update_layout(height=400, width=400)
 fig.show()
 
-fig = px.scatter(players_df, x="team_win_pct", y="mvp_score", hover_name="Player", title="How does the winning percentage relate to MVP score?", template="plotly_dark", width=500, height=400)
+fig = px.scatter(players_df, x="team_win_pct", y="mvp_score", hover_name="Player", title="Winning % relation to MVP", template="plotly_dark")
+#fig.update_layout(height=400, width=400)
 fig.show() 
 
-fig = px.scatter(players_df, x="3P%_norm", y="mvp_score", hover_name="Player", title="How does ones' three-point efficiency relate to their MVP score?", template="plotly_dark", width=500, height=400)
+fig = px.scatter(players_df, x="eFG%_norm", y="mvp_score", hover_name="Player", title="EFG % relation to MVP", template="plotly_dark")
+#fig.update_layout(height=400, width=400)
 fig.show()
+
+
 ```
+
+
+
+
 
 <!--
 <div class="mvp-container"> 
