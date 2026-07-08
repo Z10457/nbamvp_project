@@ -67,7 +67,7 @@ show(players_df[['MVP Rank', 'Player', 'mvp_score', 'Age', 'Team', 'Pos', 'PTS',
 ```{python}
 #| code-fold: true
 #| code-summary: "Show code"
-#| layout-ncol: 4 
+#| layout-ncol: 3 
 
 import plotly.express as px
 #import seaborn as sns
@@ -80,20 +80,26 @@ fig = px.scatter(players_df, x="AST", y="mvp_score", hover_name="Player", title=
 #fig.update_layout(height=400, width=400)
 fig.show()
 
-fig = px.scatter(players_df, x="team_win_pct", y="mvp_score", hover_name="Player", title="Winning % relation to MVP", template="plotly_dark")
-#fig.update_layout(height=400, width=400)
-fig.show() 
+players_df['TOTAL_DEFENSIVE_RTNG'] = players_df['STL'] + players_df["BLK"]
+fig = px.scatter(players_df, x="TOTAL_DEFENSIVE_RTNG", y="mvp_score", hover_name="Player", title="STL+BLK per game relation to MVP", template="plotly_dark")
+fig.show()
+
+```
+
+```{python}
+#| code-fold: true
+#| code-summary: "Show code"
+#| layout-ncol: 2
 
 fig = px.scatter(players_df, x="eFG%_norm", y="mvp_score", hover_name="Player", title="EFG % relation to MVP", template="plotly_dark")
 #fig.update_layout(height=400, width=400)
 fig.show()
 
+fig = px.scatter(players_df, x="team_win_pct", y="mvp_score", hover_name="Player", title="Winning % relation to MVP", template="plotly_dark")
+#fig.update_layout(height=400, width=400)
+fig.show() 
 
 ```
-
-
-
-
 
 <!--
 <div class="mvp-container"> 
