@@ -5,7 +5,7 @@ format: html
 
 <div class="intro-text">
 <p>This is the <strong>MVP prediction machine</strong>, below are the stats and how the players rank among each other. The MVP score is a custom metric that I created to try to form a MVP winner, it takes into account various stats such as points per game, assists per game, rebounds per game, and more. The higher the MVP score, the better the player's chances of winning the MVP award.</p>
-<p class="intro-highlight">Usually MVP voting is up to top 6, so the 6 players ranked below are the players who had the best regular season.</p>
+<p class="intro-highlight">The 6 players ranked below are the players who had the best regular season.</p>
 </div>
 
 ```{python}
@@ -58,7 +58,7 @@ from shared import build_players_df
 players_df = build_players_df()
 players_df['MVP Rank'] = players_df['mvp_score'].rank(ascending= False, method='min').astype('Int64')
 
-show(players_df[['MVP Rank', 'Player', 'mvp_score', 'Age', 'Team', 'Pos', 'PTS', 'AST', 'TRB', 'BLK', 'STL', 'team_win_pct', '3P%_norm', '2P%_norm']].sort_values('MVP Rank'),pageLength=6,lengthMenu=[6,12,20,25,30,50],paging=True,layout={'topStart':'pageLength','topEnd':'search','bottomStart':'info','bottomEnd':'paging'})#.head(6))
+show(players_df[['MVP Rank', 'Player', 'mvp_score', 'Age', 'Team', 'Pos', 'PTS', 'AST', 'TRB', 'BLK', 'STL', 'team_win_pct', '3P%_norm', '2P%_norm']].sort_values('MVP Rank'),pageLength=6,lengthMenu=[10,15,20,25,30,50],paging=True,layout={'topStart':'pageLength','topEnd':'search','bottomStart':'info','bottomEnd':'paging'})#.head(6))
  # this shows the MVP data in a nice table
  #page length allows it to show 6 players at a time, and the length menu allows the user to change how many players they want to see at a time.
 
