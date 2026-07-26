@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>untitled-1 – NBA MVP MACHINE</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -71,10 +77,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-2072fda5cbc145fb49682cd264516d29.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-899e4dd3492235e5177e543076368d11.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -153,7 +159,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div id="cell-0" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install html5lib lxml beautifulsoup4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install html5lib lxml beautifulsoup4</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre>Requirement already satisfied: html5lib in /Users/zohaib/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages (1.1)
@@ -182,7 +188,7 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 </div>
 <div id="cell-1" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os <span class="co">#interacts with the operating systems ( such as creating folders/checking files)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os <span class="co">#interacts with the operating systems ( such as creating folders/checking files)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd <span class="co">#used to read and clean the data </span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shutil <span class="co">#copying/moving files or directories</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -193,14 +199,14 @@ Note: you may need to restart the kernel to use updated packages.
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># unhide all rows and columns #below adjusts how the data is displayed.</span></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.max_rows'</span>, <span class="dv">50</span>)</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.max_columns'</span>, <span class="dv">50</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.width'</span>, <span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.width'</span>, <span class="dv">1000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/Users/zohaib/Desktop/cs projects /nba_project/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
   warnings.warn(</code></pre>
 </div>
 </div>
 <div id="cell-2" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.basketball-reference.com/awards/mvp.html#mvp_NBA"</span> <span class="co">#this is the web page we want to scrape</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.basketball-reference.com/awards/mvp.html#mvp_NBA"</span> <span class="co">#this is the web page we want to scrape</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> requests.get(url) <span class="co">#sends a GET request to the server and gets the pages html, and the content from the html page is stored now in data </span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>soup <span class="op">=</span> bs(data.text, <span class="st">"html.parser"</span>) <span class="co">#converts the text into smth that is searchable now</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -225,7 +231,7 @@ Note: you may need to restart the kernel to use updated packages.
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>mvp_df.index <span class="op">=</span> mvp_df.index <span class="op">+</span> <span class="dv">1</span> <span class="co">#now instead of starting at 0 it will start at 1</span></span>
 <span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (mvp_df)</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
@@ -382,8 +388,8 @@ File <span class="ansi-green-fg">/Library/Developer/CommandLineTools/Library/Fra
 </div>
 </div>
 <div id="cell-3" class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#print (mvp_df.info())</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (mvp_df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#print (mvp_df.info())</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (mvp_df.head())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    Season   Lg                   Player Voting  Age   Tm   G    MP   PTS   TRB  AST  STL  BLK    FG%    3P%    FT%    WS  WS/48
 1  2024-25  NBA  Shai Gilgeous-Alexander    (V)   26  OKC  76  34.2  32.7   5.0  6.4  1.7  1.0  0.519  0.375  0.898  16.7  0.309
@@ -394,14 +400,14 @@ File <span class="ansi-green-fg">/Library/Developer/CommandLineTools/Library/Fra
 </div>
 </div>
 <div id="cell-4" class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>avg_age <span class="op">=</span> mvp_df[<span class="st">'Age'</span>].mean() <span class="co">#this calculates the average age of the mvps since 2015</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"Average age of the MVP since the 2015 season -&gt; "</span>, avg_age) <span class="co">#this prints it out</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>avg_age <span class="op">=</span> mvp_df[<span class="st">'Age'</span>].mean() <span class="co">#this calculates the average age of the mvps since 2015</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"Average age of the MVP since the 2015 season -&gt; "</span>, avg_age) <span class="co">#this prints it out</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Average age of the MVP since the 2015 season -&gt;  26.5</code></pre>
 </div>
 </div>
 <div id="cell-5" class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>team_data <span class="op">=</span> []</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>team_data <span class="op">=</span> []</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> year <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2015</span>,<span class="dv">2026</span>):</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    url <span class="op">=</span> <span class="ss">f"https://www.basketball-reference.com/leagues/NBA_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">_standings.html"</span></span>
@@ -478,7 +484,7 @@ File <span class="ansi-green-fg">/Library/Developer/CommandLineTools/Library/Fra
 <span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (df.dtypes)</span>
 <span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (df[<span class="st">"Team"</span>].nunique())</span>
 <span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a><span class="co">#df = pd.concat([east,west], ignore_index=True)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a><span class="co">#df = pd.concat([east,west], ignore_index=True)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>['W', 'L', 'W/L%', 'GB', 'PS/G', 'PA/G', 'SRS'] ['Year', 'W', 'L', 'W/L%', 'GB', 'PS/G', 'PA/G', 'SRS']
                 Teams  Year   W   L  W/L%    GB   PS/G   PA/G    SRS Conference
@@ -517,7 +523,7 @@ dtype: object
 </div>
 </div>
 <div id="cell-6" class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#merge the MVP data and the standings</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#merge the MVP data and the standings</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>mvp_df[<span class="st">"Year"</span>] <span class="op">=</span> (mvp_df[<span class="st">"Season"</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>[:<span class="dv">4</span>].astype(<span class="bu">int</span>) <span class="op">+</span> <span class="dv">1</span>)</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -597,7 +603,7 @@ dtype: object
 <span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">"Team"</span>].unique()[:<span class="dv">30</span>])</span>
 <span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[df[<span class="st">"Team"</span>].isna()])</span>
-<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>['Team', 'Year', 'W', 'L', 'W/L%', 'GB', 'PS/G', 'PA/G', 'SRS', 'Conference', 'ConferenceRank']</code></pre>
 </div>
@@ -623,7 +629,7 @@ dtype: object
 </div>
 </div>
 <div id="cell-7" class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Average Win to Loss </span><span class="sc">% o</span><span class="st">f the MVP's team:"</span> , merged[<span class="st">"W/L%"</span>].mean())</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Average Win to Loss </span><span class="sc">% o</span><span class="st">f the MVP's team:"</span> , merged[<span class="st">"W/L%"</span>].mean())</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Average Conference position: "</span>, merged[<span class="st">"ConferenceRank"</span>].mean())</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Average point differential of team: "</span>, merged[<span class="st">"SRS"</span>].mean())</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -637,7 +643,7 @@ dtype: object
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">#print(f"Conference Rank {rank}: {count} MVPs")</span></span>
 <span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>                                      </span>
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>merged[<span class="st">"Top5"</span>] <span class="op">=</span> merged[<span class="st">"ConferenceRank"</span>] <span class="op">&lt;=</span> <span class="dv">5</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="sc">% o</span><span class="st">f MVPs from Top 5 teams:"</span>, merged[<span class="st">"Top5"</span>].mean() <span class="op">*</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="sc">% o</span><span class="st">f MVPs from Top 5 teams:"</span>, merged[<span class="st">"Top5"</span>].mean() <span class="op">*</span> <span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Average Win to Loss % of the MVP's team: 0.7217500000000001
 Average Conference position:  3.25
@@ -654,7 +660,7 @@ Name: count, dtype: Int64
 </div>
 </div>
 <div id="cell-8" class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#now we use machine to rank who has the best chance of winning mvp for the upcoming season and rank the top 10.</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#now we use machine to rank who has the best chance of winning mvp for the upcoming season and rank the top 10.</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>target_year <span class="op">=</span> df[<span class="st">"Year"</span>].<span class="bu">max</span>() <span class="co">#finds the maximum year of the years we have, since mvp data is most helpful when recent</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -687,7 +693,7 @@ Name: count, dtype: Int64
 <span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>    player_df.sort_values(<span class="st">"G"</span>, ascending<span class="op">=</span><span class="va">False</span>).groupby(<span class="st">"Player"</span>, as_index<span class="op">=</span><span class="va">False</span>).head(<span class="dv">1</span>) <span class="co">#this code fixes it</span></span>
 <span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (player_df[player_df[<span class="st">"Player"</span>].<span class="bu">str</span>.contains(<span class="st">"Luka"</span>, na<span class="op">=</span><span class="va">False</span>)]) <span class="co">#this fixes the luka problem where luka is printed 2x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (player_df[player_df[<span class="st">"Player"</span>].<span class="bu">str</span>.contains(<span class="st">"Luka"</span>, na<span class="op">=</span><span class="va">False</span>)]) <span class="co">#this fixes the luka problem where luka is printed 2x</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'eFG%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'Awards'], dtype='object')
      Rk                   Player   Age Team Pos     G    GS    MP    FG   FGA    FG%   3P   3PA    3P%   2P   2PA    2P%   eFG%   FT   FTA    FT%  ORB  DRB   TRB   AST  STL  BLK  TOV   PF   PTS      Awards
@@ -714,7 +720,7 @@ dtype: object
 </div>
 </div>
 <div id="cell-9" class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>target_year <span class="op">=</span> <span class="dv">2026</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>target_year <span class="op">=</span> <span class="dv">2026</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>teams_current <span class="op">=</span> df[df[<span class="st">"Year"</span>] <span class="op">==</span> target_year].copy()</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>name_to_abbr <span class="op">=</span> {full: abbr <span class="cf">for</span> abbr, full <span class="kw">in</span> team_map.items()}</span>
@@ -738,7 +744,7 @@ dtype: object
 <span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> players_df.rename(columns<span class="op">=</span>{<span class="st">"W/L%"</span>: <span class="st">"team_win_pct"</span>})</span>
 <span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="co">#print(top20[["Player", "Team", "team_win_pct"]].head(20))</span></span>
-<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(teams_current[[<span class="st">"Team"</span>, <span class="st">"Team_abbr"</span>]].head(<span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(teams_current[[<span class="st">"Team"</span>, <span class="st">"Team_abbr"</span>]].head(<span class="dv">20</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Empty DataFrame
 Columns: [Team, Team_abbr]
@@ -746,7 +752,7 @@ Index: []</code></pre>
 </div>
 </div>
 <div id="cell-10" class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>target_year <span class="op">=</span> <span class="dv">2026</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>target_year <span class="op">=</span> <span class="dv">2026</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>teams_current <span class="op">=</span> df[df[<span class="st">"Year"</span>] <span class="op">==</span> target_year].copy()</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -761,14 +767,14 @@ Index: []</code></pre>
 <span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>top20 <span class="op">=</span> players_df.sort_values(<span class="st">"team_win_pct"</span>, ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">20</span>)</span>
 <span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="co">#print(top20[["Player", "Team", "team_win_pct"]])</span></span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">"Team"</span>].unique()[:<span class="dv">30</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">"Team"</span>].unique()[:<span class="dv">30</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>['TOR' 'BOS' 'BKN' 'PHI' 'NYK' 'CLE' 'CHI' 'MIL' 'IND' 'DET' 'ATL' nan
  'MIA' 'CHA' 'ORL' 'DEN' 'GSW' 'LAC' 'SAC' 'LAL' 'HOU' 'SAS' 'MAVS' 'NOP']</code></pre>
 </div>
 </div>
 <div id="cell-11" class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>stat_cols <span class="op">=</span> [<span class="st">"PTS"</span>, <span class="st">"AST"</span>, <span class="st">"TRB"</span>, <span class="st">"STL"</span>, <span class="st">"BLK"</span>, <span class="st">"FG%"</span>, <span class="st">"team_win_pct"</span>]</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>stat_cols <span class="op">=</span> [<span class="st">"PTS"</span>, <span class="st">"AST"</span>, <span class="st">"TRB"</span>, <span class="st">"STL"</span>, <span class="st">"BLK"</span>, <span class="st">"FG%"</span>, <span class="st">"team_win_pct"</span>]</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (players_df.columns.tolist())</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -781,7 +787,7 @@ Index: []</code></pre>
 <span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
 <span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>        players_df[col <span class="op">+</span><span class="st">"_norm"</span>] <span class="op">=</span> (players_df[col] <span class="op">-</span> col_min) <span class="op">/</span> (col_max <span class="op">-</span> col_min)</span>
 <span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(player_df.columns)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(player_df.columns)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'eFG%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'Awards', 'team_win_pct']
 Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'eFG%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'Awards'], dtype='object')
@@ -794,7 +800,7 @@ Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%'
 </div>
 </div>
 <div id="cell-12" class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>players_df[<span class="st">"Player"</span>] <span class="op">=</span> (</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>players_df[<span class="st">"Player"</span>] <span class="op">=</span> (</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    players_df[<span class="st">"Player"</span>].<span class="bu">str</span>.encode(<span class="st">"latin1"</span>).<span class="bu">str</span>.decode(<span class="st">"utf-8"</span>))</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> players_df.drop_duplicates(subset<span class="op">=</span>[<span class="st">"Player"</span>])</span>
@@ -819,7 +825,7 @@ Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%'
 <span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>.head(<span class="dv">10</span>)</span>
 <span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
@@ -940,13 +946,14 @@ File <span class="ansi-green-fg">~/Desktop/cs projects /nba_project/.venv/lib/py
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
