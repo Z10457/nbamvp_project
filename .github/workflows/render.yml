@@ -17,10 +17,20 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: quarto-dev/quarto-actions/setup@v2
-      - run: quarto render
-      - name: Checkout source code
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'  # Specify your Python version
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Render Quarto site
+        run: quarto render
+      - name: Configure Git
         run: | 
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-      - run: quarto publish gh-pages --no-prompt #previously was no-push
+      - name: Publish to GitHub Pages
+        run: quarto publish gh-pages --no-prompt
 
