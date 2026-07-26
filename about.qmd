@@ -1,5 +1,26 @@
 ---
-title: "About"
+title: "More info"
 ---
 
-About this site
+About this site:
+
+A MVP prediction machine, however it is not a predicition machine but rather a machine which generates an MVP winner based on a set of criteria. The criteria are based on the player's performance in the regular season, as well as their team's performance. 
+
+The calculation which I used to generate the MVP score is as follows: 
+
+    0.41 * players_df["team_win_pct_norm"] + 
+    0.29 * players_df["PTS_norm"] + #28 #30
+    0.07 * players_df["AST_norm"] + #6 for the next four then 5 then 8 then 6, 1, 1 #10
+    0.02 * players_df["STL_norm"] + #2
+    0.06 * players_df["TRB_norm"] + #10
+    0.05 * players_df["BLK_norm"] + #2
+    0.01 * players_df["TOV_norm"] + #1
+    0.04 * players_df["eFG%_norm"] +
+    0.05 * players_df["MP_norm"]  = MVP score
+
+Special shoutout to my following peers and mentors who helped me with this project:
+
+- Cameron Rutherford
+- Jonathan 
+
+
