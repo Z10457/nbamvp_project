@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-899e4dd3492235e5177e543076368d11.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-908a615cb2e96660cbaa539daf7747aa.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -135,6 +135,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Home page</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./calculator.html"> 
+<span class="menu-text">Calculate your own MVP</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
 <span class="menu-text">More info</span></a>
   </li>  
@@ -158,7 +162,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div id="cell-0" class="cell" data-execution_count="69">
+<div id="cell-0" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sys.executable)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sys.version)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -168,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [Clang 17.0.0 (clang-1700.6.3.2)]</code></pre>
 </div>
 </div>
-<div id="cell-1" class="cell" data-execution_count="70">
+<div id="cell-1" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install html5lib lxml beautifulsoup4</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install matplotlib</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install itables</span>
@@ -223,7 +227,7 @@ Requirement already satisfied: six&gt;=1.5 in ./.venv/lib/python3.9/site-package
 Note: you may need to restart the kernel to use updated packages.</code></pre>
 </div>
 </div>
-<div id="cell-3" class="cell" data-execution_count="71">
+<div id="cell-3" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os <span class="co">#interacts with the operating systems ( such as creating folders/checking files)</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd <span class="co">#used to read and clean the data </span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shutil <span class="co">#copying/moving files or directories</span></span>
@@ -240,7 +244,7 @@ Note: you may need to restart the kernel to use updated packages.</code></pre>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.max_columns'</span>, <span class="dv">50</span>)</span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.width'</span>, <span class="dv">1000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-4" class="cell" data-execution_count="72">
+<div id="cell-4" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>team_map <span class="op">=</span> {</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"DEN"</span>: <span class="st">"Denver Nuggets"</span>,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"PHI"</span>: <span class="st">"Philadelphia 76ers"</span>,</span>
@@ -277,11 +281,11 @@ Note: you may need to restart the kernel to use updated packages.</code></pre>
 <span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>team_to_abbr <span class="op">=</span> {full:abbr <span class="cf">for</span> abbr, full <span class="kw">in</span> team_map.items()}</span>
 <span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="co">'''df["Team"] = df["Team"].map(team_to_abbr) '''</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="72">
+<div class="cell-output cell-output-display" data-execution_count="22">
 <pre><code>'df["Team"] = df["Team"].map(team_to_abbr) '</code></pre>
 </div>
 </div>
-<div id="cell-5" class="cell" data-execution_count="73">
+<div id="cell-5" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.basketball-reference.com/awards/mvp.html#mvp_NBA"</span> <span class="co">#this is the web page we want to scrape</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">2</span>)  <span class="co"># Be respectful to the server, avoid rate limiting, so it wont say html error too many requests.</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -328,7 +332,7 @@ Note: you may need to restart the kernel to use updated packages.</code></pre>
 11  2015-16  NBA            Stephen Curry    (V)   27  GSW  79  34.2  30.1   5.4   6.7  2.1  0.2  0.504  0.454  0.908  17.9  0.318</code></pre>
 </div>
 </div>
-<div id="cell-6" class="cell" data-execution_count="74">
+<div id="cell-6" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#print (mvp_df.info())</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (mvp_df.head())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -340,14 +344,14 @@ Note: you may need to restart the kernel to use updated packages.</code></pre>
 5  2021-22  NBA            Nikola JokiÄ    (V)   26  DEN  74  33.5  27.1  13.8  7.9  1.5  0.9  0.583  0.337  0.810  15.2  0.296</code></pre>
 </div>
 </div>
-<div id="cell-7" class="cell" data-execution_count="75">
+<div id="cell-7" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>avg_age <span class="op">=</span> mvp_df[<span class="st">'Age'</span>].mean() <span class="co">#this calculates the average age of the mvps since 2015</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"Average age of the MVP since the 2015 season -&gt; "</span>, avg_age) <span class="co">#this prints it out</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Average age of the MVP since the 2015 season -&gt;  26.545454545454547</code></pre>
 </div>
 </div>
-<div id="cell-8" class="cell" data-execution_count="76">
+<div id="cell-8" class="cell" data-execution_count="26">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -510,7 +514,7 @@ dtype: object
 30</code></pre>
 </div>
 </div>
-<div id="cell-9" class="cell" data-execution_count="77">
+<div id="cell-9" class="cell" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>team_map <span class="op">=</span> {<span class="st">"DEN"</span>: <span class="st">"Denver Nuggets"</span>, </span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"PHI"</span>: <span class="st">"Philadelphia 76ers"</span>,  </span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MIL"</span>: <span class="st">"Milwaukee Bucks"</span>, </span>
@@ -543,7 +547,7 @@ dtype: object
 <span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SAC"</span>: <span class="st">"Sacramento Kings"</span>,</span>
 <span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MIN"</span>: <span class="st">"Minnesota Timberwolves"</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-10" class="cell" data-execution_count="78">
+<div id="cell-10" class="cell" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Average Win to Loss </span><span class="sc">% o</span><span class="st">f the MVP's team:"</span> , merged[<span class="st">"W/L%"</span>].mean())</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Average Conference position: "</span>, merged[<span class="st">"ConferenceRank"</span>].mean())</span>
@@ -560,7 +564,7 @@ dtype: object
 <pre><code>Skipping merged stats (not available): name 'merged' is not defined</code></pre>
 </div>
 </div>
-<div id="cell-11" class="cell" data-execution_count="79">
+<div id="cell-11" class="cell" data-execution_count="29">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#now we use machine to rank who has the best chance of winning mvp for the upcoming season and rank the top 10.</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>target_year <span class="op">=</span> df[<span class="st">"Year"</span>].<span class="bu">max</span>() <span class="co">#finds the maximum year of the years we have, since mvp data is most helpful when recent</span></span>
@@ -620,7 +624,7 @@ dtype: object
 0      1.0  Luka DonÄiÄ  26.0  LAL  PG  64.0  64.0  35.8  10.8  22.8  0.476  4.0  10.8  0.366  6.9  11.9  0.575  0.563  7.9  10.1  0.780  0.6  7.1  7.7  8.3  1.6  0.5  4.0  2.4  33.5  MVP-4,CPOY-8,AS,NBA1</code></pre>
 </div>
 </div>
-<div id="cell-12" class="cell" data-execution_count="80">
+<div id="cell-12" class="cell" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>target_year <span class="op">=</span> <span class="dv">2026</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>teams_current <span class="op">=</span> df[df[<span class="st">"Year"</span>] <span class="op">==</span> target_year].copy()</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -683,7 +687,7 @@ After removing duplicates: 583 players
 319  BKN  0.244</code></pre>
 </div>
 </div>
-<div id="cell-13" class="cell" data-execution_count="81">
+<div id="cell-13" class="cell" data-execution_count="31">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>target_year <span class="op">=</span> <span class="dv">2026</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix: Standardize team names in both dataframes to match before the merge</span></span>
@@ -747,7 +751,7 @@ Sample matched teams:                 Player Team  team_win_pct
 19       Reed Sheppard  HOU         0.634</code></pre>
 </div>
 </div>
-<div id="cell-14" class="cell" data-execution_count="82">
+<div id="cell-14" class="cell" data-execution_count="32">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>stat_cols <span class="op">=</span> [<span class="st">"PTS"</span>, <span class="st">"AST"</span>, <span class="st">"TRB"</span>, <span class="st">"STL"</span>, <span class="st">"BLK"</span>, <span class="st">"FG%"</span>, <span class="st">"team_win_pct"</span>, <span class="st">"3P%"</span>, <span class="st">"3PA"</span>, <span class="st">"TOV"</span>, <span class="st">"eFG%"</span>, <span class="st">"2P%"</span>, <span class="st">"2PA"</span>, <span class="st">'MP'</span>, <span class="st">"FT%"</span>, <span class="st">"GS"</span>] <span class="co">#these are the stats we care about for the mvp ranking, we will use these to rank the players for the upcoming season</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (players_df.columns.tolist())</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -781,92 +785,113 @@ Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%'
 Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'eFG%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'Awards'], dtype='object')</code></pre>
 </div>
 </div>
-<div id="fig-my-data-chart" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<div id="cell-15" class="cell" data-execution_count="33">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>os.makedirs(<span class="st">"docs"</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>norm_cols <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> players_df.columns <span class="cf">if</span> c.endswith(<span class="st">"_norm"</span>)]</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> norm_cols:</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Warning: no *_norm columns detected. Please run or check the normalization code first."</span>)</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Found normalized columns:"</span>, norm_cols)</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>players_df.to_json(<span class="st">"players.json"</span>, orient<span class="op">=</span><span class="st">"records"</span>, force_ascii <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Wrote players.json"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Found normalized columns: ['PTS_norm', 'AST_norm', 'TRB_norm', 'STL_norm', 'BLK_norm', 'FG%_norm', 'team_win_pct_norm', '3P%_norm', '3PA_norm', 'TOV_norm', 'eFG%_norm', '2P%_norm', '2PA_norm', 'MP_norm', 'FT%_norm', 'GS_norm']
+Wrote players.json</code></pre>
+</div>
+</div>
+<div id="fig-my-data-chart" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="34">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-my-data-chart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>players_df[<span class="st">"Player"</span>] <span class="op">=</span> (</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    players_df[<span class="st">"Player"</span>].<span class="bu">str</span>.encode(<span class="st">"latin1"</span>).<span class="bu">str</span>.decode(<span class="st">"utf-8"</span>))</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> players_df.drop_duplicates(subset<span class="op">=</span>[<span class="st">"Player"</span>])</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for minimum games played (e.g., 50 games)</span></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>min_games <span class="op">=</span> <span class="dv">60</span></span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> players_df[players_df[<span class="st">"G"</span>] <span class="op">&gt;=</span> min_games]</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"After filtering for </span><span class="sc">{</span>min_games<span class="sc">}</span><span class="ss">+ games: </span><span class="sc">{</span><span class="bu">len</span>(players_df)<span class="sc">}</span><span class="ss"> players"</span>)</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>players_df[<span class="st">"mvp_score"</span>] <span class="op">=</span>( </span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a> <span class="co">#this is the formula </span></span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.41</span> <span class="op">*</span> players_df[<span class="st">"team_win_pct_norm"</span>] <span class="op">+</span> </span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.29</span> <span class="op">*</span> players_df[<span class="st">"PTS_norm"</span>] <span class="op">+</span> <span class="co">#28 #30</span></span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.07</span> <span class="op">*</span> players_df[<span class="st">"AST_norm"</span>] <span class="op">+</span> <span class="co">#6 for the next four then 5 then 8 then 6, 1, 1 #10</span></span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.02</span> <span class="op">*</span> players_df[<span class="st">"STL_norm"</span>] <span class="op">+</span> <span class="co">#2</span></span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.06</span> <span class="op">*</span> players_df[<span class="st">"TRB_norm"</span>] <span class="op">+</span> <span class="co">#10</span></span>
-<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.05</span> <span class="op">*</span> players_df[<span class="st">"BLK_norm"</span>] <span class="op">+</span> <span class="co">#2</span></span>
-<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.01</span> <span class="op">*</span> players_df[<span class="st">"TOV_norm"</span>] <span class="op">+</span> <span class="co">#1</span></span>
-<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.04</span> <span class="op">*</span> players_df[<span class="st">"eFG%_norm"</span>] <span class="op">+</span></span>
-<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.05</span> <span class="op">*</span> players_df[<span class="st">"MP_norm"</span>]  </span>
-<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">#4 percent smth</span></span>
-<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> players_df.sort_values(<span class="st">"mvp_score"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>top10 <span class="op">=</span> players_df[[<span class="st">"Player"</span>, <span class="st">"Team"</span>, <span class="st">"PTS"</span>, <span class="st">"AST"</span>, <span class="st">"TRB"</span>, <span class="st">"eFG%_norm"</span>, <span class="st">"mvp_score"</span>]].head(<span class="dv">20</span>) </span>
-<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a>html <span class="op">=</span> <span class="ss">f""" </span></span>
-<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;h2&gt;MVP winner prediction for the </span><span class="sc">{</span>target_year<span class="sc">}</span><span class="ss"> season:&lt;/h2&gt;</span></span>
-<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;p&gt;</span><span class="sc">{</span>players_df<span class="sc">.</span>iloc[<span class="dv">0</span>][<span class="st">"Player"</span>]<span class="sc">}</span><span class="ss"> with a score of </span><span class="sc">{</span>players_df<span class="sc">.</span>iloc[<span class="dv">0</span>][<span class="st">"mvp_score"</span>]<span class="sc">:.2f}</span><span class="ss">&lt;/p&gt;</span></span>
-<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;h3&gt;Top 10 MVP Candidates:&lt;/h3&gt;</span></span>
-<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a><span class="sc">{</span>top10<span class="sc">.</span>to_html(index<span class="op">=</span><span class="va">False</span>)<span class="sc">}</span></span>
-<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span></span>
-<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-39"><a href="#cb27-39" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"mvp_prediction.html"</span>, <span class="st">"w"</span>) <span class="im">as</span> f: <span class="co">#opens a file called mvp_prediction.html and writes the html code to it, this will create a webpage that shows the predicted mvp and the top 10 candidates with their stats.</span></span>
-<span id="cb27-40"><a href="#cb27-40" aria-hidden="true" tabindex="-1"></a>    f.write(html)</span>
-<span id="cb27-41"><a href="#cb27-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-42"><a href="#cb27-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Debug: Check for NaN values and data quality</span></span>
-<span id="cb27-43"><a href="#cb27-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== DEBUG INFO ==="</span>)</span>
-<span id="cb27-44"><a href="#cb27-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total players: </span><span class="sc">{</span><span class="bu">len</span>(players_df)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb27-45"><a href="#cb27-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Players with NaN mvp_score: </span><span class="sc">{</span>players_df[<span class="st">'mvp_score'</span>]<span class="sc">.</span>isna()<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb27-46"><a href="#cb27-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Players with NaN team_win_pct: </span><span class="sc">{</span>players_df[<span class="st">'team_win_pct'</span>]<span class="sc">.</span>isna()<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb27-47"><a href="#cb27-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Sample of the top 6 players with all stats:"</span>)</span>
-<span id="cb27-48"><a href="#cb27-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(players_df[[<span class="st">"Player"</span>, <span class="st">"Team"</span>, <span class="st">"PTS"</span>, <span class="st">"AST"</span>, <span class="st">"TRB"</span>, <span class="st">"STL"</span>, <span class="st">"BLK"</span>, <span class="st">"FG%_norm"</span>, <span class="st">"3P%_norm"</span>, <span class="st">"team_win_pct"</span>, <span class="st">"PTS_norm"</span>, <span class="st">"team_win_pct_norm"</span>, <span class="st">"TOV_norm"</span>, <span class="st">"eFG%_norm"</span>, <span class="st">"mvp_score"</span>,<span class="st">"2P%_norm"</span>, <span class="st">"2PA_norm"</span>, <span class="st">"3P%_norm"</span>, <span class="st">"3PA_norm"</span>, <span class="st">"MP_norm"</span> ]].head(<span class="dv">6</span>))</span>
-<span id="cb27-49"><a href="#cb27-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"So the MVP is:"</span>, players_df.iloc[<span class="dv">0</span>][<span class="st">"Player"</span>], <span class="st">"with a score of:"</span>, players_df.iloc[<span class="dv">0</span>][<span class="st">"mvp_score"</span>]) <span class="co"># iloc means get the first row and then get the player column, and the mvp score column to print out the predicted mvp and their score.</span></span>
-<span id="cb27-50"><a href="#cb27-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-51"><a href="#cb27-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-52"><a href="#cb27-52" aria-hidden="true" tabindex="-1"></a><span class="co">#jst to see smth : </span></span>
-<span id="cb27-53"><a href="#cb27-53" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb27-54"><a href="#cb27-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Check NaN MVP scores and Anthony Edwards</span></span>
-<span id="cb27-55"><a href="#cb27-55" aria-hidden="true" tabindex="-1"></a>nan_players <span class="op">=</span> players_df[players_df[<span class="st">"mvp_score"</span>].isna()]</span>
-<span id="cb27-56"><a href="#cb27-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-57"><a href="#cb27-57" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Players with NaN MVP score:"</span>, <span class="bu">len</span>(nan_players))</span>
-<span id="cb27-58"><a href="#cb27-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-59"><a href="#cb27-59" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">"LaMelo Ball"</span> <span class="kw">in</span> players_df[<span class="st">"Player"</span>].values:</span>
-<span id="cb27-60"><a href="#cb27-60" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">LaMelo Ball row:"</span>)</span>
-<span id="cb27-61"><a href="#cb27-61" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(</span>
-<span id="cb27-62"><a href="#cb27-62" aria-hidden="true" tabindex="-1"></a>        players_df.loc[</span>
-<span id="cb27-63"><a href="#cb27-63" aria-hidden="true" tabindex="-1"></a>            players_df[<span class="st">"Player"</span>] <span class="op">==</span> <span class="st">"LaMelo Ball"</span>,</span>
-<span id="cb27-64"><a href="#cb27-64" aria-hidden="true" tabindex="-1"></a>            [</span>
-<span id="cb27-65"><a href="#cb27-65" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Player"</span>,</span>
-<span id="cb27-66"><a href="#cb27-66" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Team"</span>,</span>
-<span id="cb27-67"><a href="#cb27-67" aria-hidden="true" tabindex="-1"></a>                <span class="st">"G"</span>,</span>
-<span id="cb27-68"><a href="#cb27-68" aria-hidden="true" tabindex="-1"></a>                <span class="st">"PTS"</span>,</span>
-<span id="cb27-69"><a href="#cb27-69" aria-hidden="true" tabindex="-1"></a>                <span class="st">"AST"</span>,</span>
-<span id="cb27-70"><a href="#cb27-70" aria-hidden="true" tabindex="-1"></a>                <span class="st">"TRB"</span>,</span>
-<span id="cb27-71"><a href="#cb27-71" aria-hidden="true" tabindex="-1"></a>                <span class="st">"STL"</span>,</span>
-<span id="cb27-72"><a href="#cb27-72" aria-hidden="true" tabindex="-1"></a>                <span class="st">"BLK"</span>,</span>
-<span id="cb27-73"><a href="#cb27-73" aria-hidden="true" tabindex="-1"></a>                <span class="st">"TOV"</span>,</span>
-<span id="cb27-74"><a href="#cb27-74" aria-hidden="true" tabindex="-1"></a>                <span class="st">"3P%"</span>,</span>
-<span id="cb27-75"><a href="#cb27-75" aria-hidden="true" tabindex="-1"></a>                <span class="st">"2P%"</span>,</span>
-<span id="cb27-76"><a href="#cb27-76" aria-hidden="true" tabindex="-1"></a>                <span class="st">"3PA"</span>,</span>
-<span id="cb27-77"><a href="#cb27-77" aria-hidden="true" tabindex="-1"></a>                <span class="st">"team_win_pct"</span>,</span>
-<span id="cb27-78"><a href="#cb27-78" aria-hidden="true" tabindex="-1"></a>                <span class="st">"team_win_pct_norm"</span>,</span>
-<span id="cb27-79"><a href="#cb27-79" aria-hidden="true" tabindex="-1"></a>                <span class="st">"mvp_score"</span>,</span>
-<span id="cb27-80"><a href="#cb27-80" aria-hidden="true" tabindex="-1"></a>            ],</span>
-<span id="cb27-81"><a href="#cb27-81" aria-hidden="true" tabindex="-1"></a>        ]</span>
-<span id="cb27-82"><a href="#cb27-82" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb27-83"><a href="#cb27-83" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#def old_func():</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>players_df[<span class="st">"Player"</span>] <span class="op">=</span> (</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    players_df[<span class="st">"Player"</span>].<span class="bu">str</span>.encode(<span class="st">"latin1"</span>).<span class="bu">str</span>.decode(<span class="st">"utf-8"</span>))</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> players_df.drop_duplicates(subset<span class="op">=</span>[<span class="st">"Player"</span>])</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for minimum games played (e.g., 50 games)</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>min_games <span class="op">=</span> <span class="dv">60</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> players_df[players_df[<span class="st">"G"</span>] <span class="op">&gt;=</span> min_games]</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"After filtering for </span><span class="sc">{</span>min_games<span class="sc">}</span><span class="ss">+ games: </span><span class="sc">{</span><span class="bu">len</span>(players_df)<span class="sc">}</span><span class="ss"> players"</span>)</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>players_df[<span class="st">"mvp_score"</span>] <span class="op">=</span>( </span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a> <span class="co">#this is the formula </span></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.41</span> <span class="op">*</span> players_df[<span class="st">"team_win_pct_norm"</span>] <span class="op">+</span> </span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.29</span> <span class="op">*</span> players_df[<span class="st">"PTS_norm"</span>] <span class="op">+</span> <span class="co">#28 #30</span></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.07</span> <span class="op">*</span> players_df[<span class="st">"AST_norm"</span>] <span class="op">+</span> <span class="co">#6 for the next four then 5 then 8 then 6, 1, 1 #10</span></span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.02</span> <span class="op">*</span> players_df[<span class="st">"STL_norm"</span>] <span class="op">+</span> <span class="co">#2</span></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.06</span> <span class="op">*</span> players_df[<span class="st">"TRB_norm"</span>] <span class="op">+</span> <span class="co">#10</span></span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.05</span> <span class="op">*</span> players_df[<span class="st">"BLK_norm"</span>] <span class="op">+</span> <span class="co">#2</span></span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.01</span> <span class="op">*</span> players_df[<span class="st">"TOV_norm"</span>] <span class="op">+</span> <span class="co">#1</span></span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.04</span> <span class="op">*</span> players_df[<span class="st">"eFG%_norm"</span>] <span class="op">+</span></span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.05</span> <span class="op">*</span> players_df[<span class="st">"MP_norm"</span>]  </span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">#4 percent smth</span></span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>players_df <span class="op">=</span> players_df.sort_values(<span class="st">"mvp_score"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a>top10 <span class="op">=</span> players_df[[<span class="st">"Player"</span>, <span class="st">"Team"</span>, <span class="st">"PTS"</span>, <span class="st">"AST"</span>, <span class="st">"TRB"</span>, <span class="st">"eFG%_norm"</span>, <span class="st">"mvp_score"</span>]].head(<span class="dv">20</span>) </span>
+<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-34"><a href="#cb29-34" aria-hidden="true" tabindex="-1"></a>html <span class="op">=</span> <span class="ss">f""" </span></span>
+<span id="cb29-35"><a href="#cb29-35" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;h2&gt;MVP winner prediction for the </span><span class="sc">{</span>target_year<span class="sc">}</span><span class="ss"> season:&lt;/h2&gt;</span></span>
+<span id="cb29-36"><a href="#cb29-36" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;p&gt;</span><span class="sc">{</span>players_df<span class="sc">.</span>iloc[<span class="dv">0</span>][<span class="st">"Player"</span>]<span class="sc">}</span><span class="ss"> with a score of </span><span class="sc">{</span>players_df<span class="sc">.</span>iloc[<span class="dv">0</span>][<span class="st">"mvp_score"</span>]<span class="sc">:.2f}</span><span class="ss">&lt;/p&gt;</span></span>
+<span id="cb29-37"><a href="#cb29-37" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;h3&gt;Top 10 MVP Candidates:&lt;/h3&gt;</span></span>
+<span id="cb29-38"><a href="#cb29-38" aria-hidden="true" tabindex="-1"></a><span class="sc">{</span>top10<span class="sc">.</span>to_html(index<span class="op">=</span><span class="va">False</span>)<span class="sc">}</span></span>
+<span id="cb29-39"><a href="#cb29-39" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span></span>
+<span id="cb29-40"><a href="#cb29-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-41"><a href="#cb29-41" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"mvp_prediction.html"</span>, <span class="st">"w"</span>) <span class="im">as</span> f: <span class="co">#opens a file called mvp_prediction.html and writes the html code to it, this will create a webpage that shows the predicted mvp and the top 10 candidates with their stats.</span></span>
+<span id="cb29-42"><a href="#cb29-42" aria-hidden="true" tabindex="-1"></a>    f.write(html)</span>
+<span id="cb29-43"><a href="#cb29-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-44"><a href="#cb29-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Debug: Check for NaN values and data quality</span></span>
+<span id="cb29-45"><a href="#cb29-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== DEBUG INFO ==="</span>)</span>
+<span id="cb29-46"><a href="#cb29-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total players: </span><span class="sc">{</span><span class="bu">len</span>(players_df)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb29-47"><a href="#cb29-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Players with NaN mvp_score: </span><span class="sc">{</span>players_df[<span class="st">'mvp_score'</span>]<span class="sc">.</span>isna()<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb29-48"><a href="#cb29-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Players with NaN team_win_pct: </span><span class="sc">{</span>players_df[<span class="st">'team_win_pct'</span>]<span class="sc">.</span>isna()<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb29-49"><a href="#cb29-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Sample of the top 6 players with all stats:"</span>)</span>
+<span id="cb29-50"><a href="#cb29-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(players_df[[<span class="st">"Player"</span>, <span class="st">"Team"</span>, <span class="st">"PTS"</span>, <span class="st">"AST"</span>, <span class="st">"TRB"</span>, <span class="st">"STL"</span>, <span class="st">"BLK"</span>, <span class="st">"FG%_norm"</span>, <span class="st">"3P%_norm"</span>, <span class="st">"team_win_pct"</span>, <span class="st">"PTS_norm"</span>, <span class="st">"team_win_pct_norm"</span>, <span class="st">"TOV_norm"</span>, <span class="st">"eFG%_norm"</span>, <span class="st">"mvp_score"</span>,<span class="st">"2P%_norm"</span>, <span class="st">"2PA_norm"</span>, <span class="st">"3P%_norm"</span>, <span class="st">"3PA_norm"</span>, <span class="st">"MP_norm"</span> ]].head(<span class="dv">6</span>))</span>
+<span id="cb29-51"><a href="#cb29-51" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"So the MVP is:"</span>, players_df.iloc[<span class="dv">0</span>][<span class="st">"Player"</span>], <span class="st">"with a score of:"</span>, players_df.iloc[<span class="dv">0</span>][<span class="st">"mvp_score"</span>]) <span class="co"># iloc means get the first row and then get the player column, and the mvp score column to print out the predicted mvp and their score.</span></span>
+<span id="cb29-52"><a href="#cb29-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-53"><a href="#cb29-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-54"><a href="#cb29-54" aria-hidden="true" tabindex="-1"></a><span class="co">#jst to see smth : </span></span>
+<span id="cb29-55"><a href="#cb29-55" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb29-56"><a href="#cb29-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Check NaN MVP scores and Anthony Edwards</span></span>
+<span id="cb29-57"><a href="#cb29-57" aria-hidden="true" tabindex="-1"></a>nan_players <span class="op">=</span> players_df[players_df[<span class="st">"mvp_score"</span>].isna()]</span>
+<span id="cb29-58"><a href="#cb29-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-59"><a href="#cb29-59" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Players with NaN MVP score:"</span>, <span class="bu">len</span>(nan_players))</span>
+<span id="cb29-60"><a href="#cb29-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-61"><a href="#cb29-61" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">"LaMelo Ball"</span> <span class="kw">in</span> players_df[<span class="st">"Player"</span>].values:</span>
+<span id="cb29-62"><a href="#cb29-62" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">LaMelo Ball row:"</span>)</span>
+<span id="cb29-63"><a href="#cb29-63" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(</span>
+<span id="cb29-64"><a href="#cb29-64" aria-hidden="true" tabindex="-1"></a>        players_df.loc[</span>
+<span id="cb29-65"><a href="#cb29-65" aria-hidden="true" tabindex="-1"></a>            players_df[<span class="st">"Player"</span>] <span class="op">==</span> <span class="st">"LaMelo Ball"</span>,</span>
+<span id="cb29-66"><a href="#cb29-66" aria-hidden="true" tabindex="-1"></a>            [</span>
+<span id="cb29-67"><a href="#cb29-67" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Player"</span>,</span>
+<span id="cb29-68"><a href="#cb29-68" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Team"</span>,</span>
+<span id="cb29-69"><a href="#cb29-69" aria-hidden="true" tabindex="-1"></a>                <span class="st">"G"</span>,</span>
+<span id="cb29-70"><a href="#cb29-70" aria-hidden="true" tabindex="-1"></a>                <span class="st">"PTS"</span>,</span>
+<span id="cb29-71"><a href="#cb29-71" aria-hidden="true" tabindex="-1"></a>                <span class="st">"AST"</span>,</span>
+<span id="cb29-72"><a href="#cb29-72" aria-hidden="true" tabindex="-1"></a>                <span class="st">"TRB"</span>,</span>
+<span id="cb29-73"><a href="#cb29-73" aria-hidden="true" tabindex="-1"></a>                <span class="st">"STL"</span>,</span>
+<span id="cb29-74"><a href="#cb29-74" aria-hidden="true" tabindex="-1"></a>                <span class="st">"BLK"</span>,</span>
+<span id="cb29-75"><a href="#cb29-75" aria-hidden="true" tabindex="-1"></a>                <span class="st">"TOV"</span>,</span>
+<span id="cb29-76"><a href="#cb29-76" aria-hidden="true" tabindex="-1"></a>                <span class="st">"3P%"</span>,</span>
+<span id="cb29-77"><a href="#cb29-77" aria-hidden="true" tabindex="-1"></a>                <span class="st">"2P%"</span>,</span>
+<span id="cb29-78"><a href="#cb29-78" aria-hidden="true" tabindex="-1"></a>                <span class="st">"3PA"</span>,</span>
+<span id="cb29-79"><a href="#cb29-79" aria-hidden="true" tabindex="-1"></a>                <span class="st">"team_win_pct"</span>,</span>
+<span id="cb29-80"><a href="#cb29-80" aria-hidden="true" tabindex="-1"></a>                <span class="st">"team_win_pct_norm"</span>,</span>
+<span id="cb29-81"><a href="#cb29-81" aria-hidden="true" tabindex="-1"></a>                <span class="st">"mvp_score"</span>,</span>
+<span id="cb29-82"><a href="#cb29-82" aria-hidden="true" tabindex="-1"></a>            ],</span>
+<span id="cb29-83"><a href="#cb29-83" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb29-84"><a href="#cb29-84" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>After filtering for 60+ games: 224 players
 === DEBUG INFO ===
@@ -882,20 +907,6 @@ Sample of the top 6 players with all stats:
 345              Luka Dončić  LAL  33.5   8.3   7.7  1.6  0.5  0.571429     0.366         0.646  1.000000           0.766143     1.000   0.613959   0.795684     0.575   0.74375     0.366  0.955752  0.939560
 354          Cade Cunningham  DET  23.9   9.9   5.5  1.4  0.8  0.553421     0.342         0.732  0.713433           0.916230     0.925   0.559433   0.772167     0.514   0.80625     0.342  0.504425  0.887363
 200             Jaylen Brown  BOS  28.7   5.1   6.9  1.0  0.4  0.572629     0.347         0.683  0.856716           0.830716     0.900   0.569248   0.745183     0.523   1.00000     0.347  0.504425  0.901099
-243            Chet Holmgren  OKC  17.1   1.7   8.9  0.6  1.9  0.668667     0.362         0.780  0.510448           1.000000     0.400   0.669575   0.713919     0.646   0.48750     0.362  0.309735  0.750000
-117             Jamal Murray  DEN  25.4   7.1   4.4  0.9  0.4  0.579832     0.435         0.659  0.758209           0.788831     0.575   0.624864   0.700506     0.517   0.66250     0.435  0.663717  0.928571
-213         Donovan Mitchell  CLE  27.9   5.7   4.5  1.5  0.3  0.579832     0.364         0.634  0.832836           0.745201     0.700   0.613959   0.696601     0.577   0.70000     0.364  0.778761  0.876374
-176             De'Aaron Fox  SAS  18.6   6.2   3.8  1.2  0.3  0.583433     0.332         0.756  0.555224           0.958115     0.575   0.598691   0.695887     0.580   0.56875     0.332  0.486726  0.807692
-217              Jalen Duren  DET  19.5   2.0  10.5  0.8  0.8  0.780312       NaN         0.732  0.582090           0.916230     0.475   0.708833   0.694853     0.650   0.71875       NaN  0.000000  0.730769
-266           Stephon Castle  SAS  16.7   7.4   5.3  1.1  0.3  0.565426     0.332         0.756  0.498507           0.958115     0.800   0.568157   0.693181     0.531   0.52500     0.332  0.318584  0.780220
-60              Kevin Durant  HOU  26.0   4.8   5.5  0.8  0.9  0.624250     0.413         0.634  0.776119           0.745201     0.800   0.641221   0.689483     0.572   0.74375     0.413  0.513274  0.956044
-133            Jalen Brunson  NYK  26.0   6.8   3.3  0.8  0.1  0.560624     0.369         0.646  0.776119           0.766143     0.600   0.581243   0.681696     0.522   0.80000     0.369  0.628319  0.917582
-394          Anthony Edwards  MIN  28.8   3.7   5.0  1.4  0.8  0.587035     0.399         0.598  0.859701           0.682373     0.725   0.623773   0.677902     0.554   0.73750     0.399  0.743363  0.917582
-184           Alperen Şengün  HOU  20.4   6.2   8.9  1.2  1.1  0.623049     0.305         0.634  0.608955           0.745201     0.800   0.585605   0.665684     0.547   0.86250     0.305  0.159292  0.870879
-415             LeBron James  LAL  20.9   7.2   6.1  1.2  0.6  0.618247     0.317         0.646  0.623881           0.766143     0.750   0.607415   0.664288     0.586   0.70625     0.317  0.362832  0.868132
-215             Tyrese Maxey  PHI  28.3   6.6   4.1  1.9  0.8  0.554622     0.367         0.549  0.844776           0.596859     0.600   0.584515   0.658302     0.525   0.80625     0.367  0.761062  1.000000
-123       Karl-Anthony Towns  NYK  20.1   3.0  11.9  0.9  0.5  0.601441     0.368         0.646  0.600000           0.766143     0.625   0.606325   0.648712     0.557   0.60625     0.368  0.362832  0.807692
-172            Jalen Johnson  ATL  22.5   7.9  10.3  1.2  0.4  0.587035     0.352         0.561  0.671642           0.617801     0.850   0.585605   0.641082     0.541   0.76875     0.352  0.415929  0.923077
 So the MVP is: Shai Gilgeous-Alexander with a score of: 0.8406230797504421
 Players with NaN MVP score: 29
 
@@ -909,23 +920,23 @@ Figure&nbsp;1
 </figcaption>
 </figure>
 </div>
-<div id="cell-16" class="cell" data-execution_count="84">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>players_df.to_csv(<span class="st">"players.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Saved to:"</span>, os.path.abspath(<span class="st">"players.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-17" class="cell" data-execution_count="35">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>players_df.to_csv(<span class="st">"players.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Saved to:"</span>, os.path.abspath(<span class="st">"players.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Saved to: /Users/zohaib/Desktop/cs projects /nba_project/NBA_MVP_Project/players.csv</code></pre>
 </div>
 </div>
-<div id="cell-17" class="cell" data-execution_count="85">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Current working directory:"</span>, os.getcwd())</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Files here:"</span>, os.listdir())</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"mvp_prediction.html exists?"</span>, os.path.exists(<span class="st">"mvp_prediction.html"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-18" class="cell" data-execution_count="36">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Current working directory:"</span>, os.getcwd())</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Files here:"</span>, os.listdir())</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"mvp_prediction.html exists?"</span>, os.path.exists(<span class="st">"mvp_prediction.html"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Current working directory: /Users/zohaib/Desktop/cs projects /nba_project/NBA_MVP_Project
-Files here: ['Untitled-5.ipynb', '_quarto.yml', 'get-pip.py', 'Untitled-1.ipynb', 'mvp_prediction.html', 'styles.css', 'model.qmd', '.scrypt.ipynb.swp', 'theme-light.scss', 'index.qmd', 'Untitled-2.ipynb', 'shared.py', 'about.qmd', 'players.csv', 'scrypt.ipynb', 'mvp_live.csv', '.gitignore', '_site', '.venv', '.github', '.ipynb_checkpoints', '.git', '.quarto']
+Files here: ['Untitled-5.ipynb', '_quarto.yml', 'get-pip.py', 'requirements.txt', 'Untitled-1.ipynb', 'mvp_prediction.html', 'styles.css', 'model.qmd', '.scrypt.ipynb.swp', 'docs', 'theme-light.scss', 'index.qmd', 'Untitled-2.ipynb', 'shared.py', 'about.qmd', 'players.csv', 'scrypt.ipynb', 'mvp_live.csv', '.gitignore', '_site', '.venv', '.github', '.ipynb_checkpoints', '.git', 'players.json', '.quarto']
 mvp_prediction.html exists? True</code></pre>
 </div>
 </div>

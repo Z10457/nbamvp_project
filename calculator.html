@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>model – NBA MVP MACHINE</title>
+<title>MVP Calculator – NBA MVP MACHINE</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -100,7 +100,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home page</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./calculator.html"> 
+    <a class="nav-link active" href="./calculator.html" aria-current="page"> 
 <span class="menu-text">Calculate your own MVP</span></a>
   </li>  
   <li class="nav-item">
@@ -122,25 +122,133 @@ ul.task-list li input[type="checkbox"] {
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">MVP Calculator</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<p>title: “MVP Model” execute: python: true</p>
-<p>#now we use machine to rank who has the best chance of winning mvp for the upcoming season and rank the top 10.</p>
-<p>target_year = df[“Year”].max() #finds the maximum year of the years we have, since mvp data is most helpful when recent</p>
-<p>url = f”https://www.basketball-reference.com/leagues/NBA_2026_per_game.html” data_players = requests.get(url) soup = bs(data_players.text, “html.parser”)</p>
-<p>player_df = pd.read_html(str(soup), header = 0)[0]</p>
-<p>#print (player_df.columns) #print (player_df.head(15))</p>
-<p>stat_cols = [“PTS”, “AST”, “TRB”, “FG%”, “BLK”, “STL”]</p>
-<p>player_df = player_df[player_df[“Player”].notna()].copy() player_df = player_df[player_df[“Player”] != “Player”].copy()</p>
-<p>player_df = player_df[~player_df[“Team”].astype(str).str.contains(“TM”)].copy()</p>
-<p>print (player_df.columns) print (player_df.head(15))</p>
-<p>for col in stat_cols: if col in player_df.columns: player_df[col] = pd.to_numeric(player_df[col], errors = “coerce”)</p>
-<p>print (player_df[stat_cols].dtypes)</p>
-<p>player_df = ( player_df.sort_values(“G”, ascending=False).groupby(“Player”, as_index=False).head(1) #this code fixes it )</p>
-<p>print (player_df[player_df[“Player”].str.contains(“Luka”, na=False)]) #this fixes the luka problem where luka is printed 2x</p>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="mvp-ui">
+<h2 class="anchored">
+MVP weight editor
+</h2>
+<p>
+Change weights for normalized stats and click Compute to re-rank players client-side.
+</p>
+<div id="weights" style="margin-bottom:12px">
+
+</div>
+<button id="compute">Compute MVP</button> <button id="reset" style="margin-left:8px">Reset to defaults</button>
+<h3 style="margin-top:18px" class="anchored">
+Top candidates
+</h3>
+<div id="results">
+
+</div>
+</div>
+<script>
+window.addEventListener("DOMContentLoaded", function() {
+  const DEFAULT_WEIGHTS = {
+    "team_win_pct_norm": 0.41,
+    "PTS_norm": 0.29,
+    "AST_norm": 0.07,
+    "STL_norm": 0.02,
+    "TRB_norm": 0.06,
+    "BLK_norm": 0.05,
+    "TOV_norm": 0.01,
+    "eFG%_norm": 0.04
+  };
+
+  function mkInputs(container, weights) {
+    container.innerHTML = "";
+    Object.keys(weights).forEach(k => {
+      const row = document.createElement("div");
+      row.style.margin = "6px 0";
+      row.innerHTML = `
+        <label style="min-width:240px;display:inline-block">${k}:</label>
+        <input data-key="${k}" type="number" step="0.01" value="${weights[k]}">
+      `;
+      container.appendChild(row);
+    });
+  }
+
+  function readWeights() {
+    const inputs = document.querySelectorAll("#weights input");
+    const w = {};
+    inputs.forEach(i => w[i.dataset.key] = parseFloat(i.value) || 0);
+    return w;
+  }
+
+  function computeMVP(players, weights) {
+    return players.map(p => {
+      let s = 0;
+      for (const k in weights) {
+        const val = p[k] ?? 0;
+        s += (Number(val) || 0) * Number(weights[k]);
+      }
+      return { ...p, mvp_score: s };
+    }).sort((a, b) => b.mvp_score - a.mvp_score);
+  }
+
+  function renderTable(players) {
+    const top = players.slice(0, 10);
+    const cols = ["MVP Rank","Player", "Team", "PTS", "AST", "TRB", "eFG%_norm", "mvp_score"];
+    let html = "<table style='width:100%;border-collapse:collapse'><thead><tr>";
+    cols.forEach(c => html += `<th style="text-align:left;padding:6px;border-bottom:1px solid #ddd">${c}</th>`);
+    html += "</tr></thead><tbody>";
+
+    top.forEach(r => {
+      html += "<tr>";
+      cols.forEach(c => {
+        const v = r[c] === undefined ? "" : (c === "mvp_score" ? Number(r[c]).toFixed(4) : r[c]);
+        html += `<td style="padding:6px;border-bottom:1px solid #eee">${v}</td>`;
+      });
+      html += "</tr>";
+    });
+
+    html += "</tbody></table>";
+    document.getElementById("results").innerHTML = html;
+  }
+
+  fetch("./players.json")
+    .then(r => r.ok ? r.json() : Promise.reject("players.json not found"))
+    .then(players => {
+      mkInputs(document.getElementById("weights"), DEFAULT_WEIGHTS);
+
+      document.getElementById("compute").addEventListener("click", () => {
+        const weights = readWeights();
+        const ranked = computeMVP(players, weights);
+        renderTable(ranked);
+      });
+
+      document.getElementById("reset").addEventListener("click", () => {
+        mkInputs(document.getElementById("weights"), DEFAULT_WEIGHTS);
+        renderTable(computeMVP(players, DEFAULT_WEIGHTS));
+      });
+
+      renderTable(computeMVP(players, DEFAULT_WEIGHTS));
+    })
+    .catch(err => {
+      document.getElementById("mvp-ui").innerHTML = "<p style='color:red'>Error loading players.json. Make sure the JSON file was generated and included in the site build.</p>";
+      console.error(err);
+    });
+});
+</script>
 
 
 
