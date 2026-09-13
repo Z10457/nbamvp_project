@@ -5,8 +5,42 @@ format: html
 
 <div class="intro-text">
 <p>This is the <strong>MVP prediction machine</strong>, below are the stats and how the players rank among each other. The MVP score is a custom metric that I created to try to form a MVP winner, it takes into account various stats such as points per game, assists per game, rebounds per game, and more. The higher the MVP score, the better the player's chances of winning the MVP award.</p>
-<p class="intro-highlight">The 6 players ranked below are the players who had the best regular season.</p>
+<p class="intro-highlight">The 6 players ranked below are the players who had the best regular season. As well as respective graphs in regards to how a specific category may relate to who comes out as MVP</p>
+
+<p><i> If you want to modify the calculator yourself and set your own formula to determine the MVP winner<b><p style="text-align: center;">click below 👇</p></b></i> </p>
 </div>
+<div style="display:flex; justify-content:center;"> 
+<a href="calculator.qmd" class="button-class">  <b>CLICK HERE TO CALCULATE YOUR OWN MVP</b></a>
+</div>
+
+```{python}
+#| echo: false
+#import json , me removing import json fixed the json error loading file in browser. Since, with json the blank values would be converted to NaN in players.json and that is invalid in json but allowed in python.
+
+import pandas as pd
+
+players_df = pd.read_csv("players.csv")
+players_df.to_json("players.json", orient="records")
+
+#with open("players.json", "w", encoding="utf-8") as f:
+    #json.dump(players_df.to_dict(orient="records"), f, ensure_ascii=False)
+```
+
+```{python}
+#| code-fold: true
+#| code-summary: "Show code"
+import pandas as pd
+from itables import show
+from shared import build_players_df
+
+players_df = build_players_df()
+players_df['MVP Rank'] = players_df['mvp_score'].rank(ascending= False, method='min').astype('Int64')
+
+show(players_df[['MVP Rank', 'Player', 'mvp_score', 'Age', 'Team', 'Pos', 'PTS', 'AST', 'TRB', 'BLK', 'STL', 'team_win_pct', '3P%_norm', '2P%_norm']].sort_values('MVP Rank'),pageLength=6,lengthMenu=[10,15,20,25,30,50],paging=True,layout={'topStart':'pageLength','topEnd':'search','bottomStart':'info','bottomEnd':'paging'})#.head(6))
+ # this shows the MVP data in a nice table
+ #page length allows it to show 6 players at a time, and the length menu allows the user to change how many players they want to see at a time.
+
+```
 
 ```{python}
 #| code-fold: true
@@ -48,6 +82,10 @@ connect_line = go.Scatter( #this code allows us to connect the dots in the graph
 grid.add_trace(connect_line )
 grid.show()
 ```
+
+
+
+
 ```{python}
 #| code-fold: true
 #| code-summary: "Show code"
@@ -100,121 +138,4 @@ fig = px.scatter(players_df, x="team_win_pct", y="mvp_score", hover_name="Player
 fig.show() 
 
 ```
-
-<!--
-<div class="mvp-container"> 
-
-<button class="mvp-btn" onclick="doSystem()">
-PRESS TO GENERATE MVP
-</button>
-
-<div id="ball-container">
-<img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Basketball.png" id="ball" width="120">
-</div>
-
-</div>
-
-<div id="loader" style="display:none;">
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Basketball.png" class="ball">
-
-<div class="loading-text">
-<span id="percent">0%</span>
-<p id="loadingMessage">Loading...</p>
-</div>
-
-<button id="continueButton" onclick="goToData()" style="display:none;">
-Click to view data
-</button>
-
-</div>
-
-<div id="dataContainer"></div>
-
-<script>
-
-function doSystem() {
-
-  const loader = document.getElementById("loader");
-  const loaderText = document.getElementById("percent");
-
-  loader.style.display = "flex";
-
-  let percent = 0;
-
-  let interval = setInterval(() => {
-
-    percent++;
-
-    loaderText.textContent = percent + "%";
-
-    if (percent >= 100) {
-
-      clearInterval(interval);
-
-      document.getElementById("percent").textContent =
-        "100% Completed";
-
-      document.getElementById("loadingMessage").textContent =
-        "Data Loaded!";
-
-      document.getElementById("continueButton").style.display =
-        "block";
-
-    }
-
-  }, 10);
-}
-
-/*function goToData() {
-
-  fetch("/mvp_prediction.html")
-    .then(response => response.text())
-    .then(html => {
-      document.getElementById("dataContainer").innerHTML = "none";
-    });
-}*/
-
-function goToData() {
-
-
- fetch("/mvp_prediction.html")
-   .then(response => response.text())
-   .then(html => {
-
-     // 1. Parse HTML
-     const parser = new DOMParser();
-     const doc = parser.parseFromString(html, "text/html");
-
-     const container = document.getElementById("dataContainer");
-
-     // 2. Inject content
-     container.innerHTML = doc.body.innerHTML;
-
-     container.style.display = "block"; // show data container
-
-     // 3. Keeps loader visible while positioning
-     const loader = document.getElementById("loader");
-
-    // 4. Scroll  (before hiding anything) even though its not working
-    loader.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
-
-    // 5. hides button after click to prevent multiple clicks
-    document.getElementById("continueButton").style.display = "none";
-
-    // 6. small delay before fading loader (smooth UX)
-    setTimeout(() => {
-      loader.style.opacity = "0.6";  // how much of the loader screen is visible after loading
-    }, 300);
-
-   });
-}
-
-
-
-</script>
--->
 

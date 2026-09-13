@@ -24,6 +24,20 @@ h1{
     font-weight: 600;
 }
 
+.button-class {
+    background-color: #f7b731;
+    border: none;
+    color: rgb(34, 0, 128);
+    padding: 10px 25px;
+    text-align: center;
+    display: inline-block;
+    font-family:Lexend Deca, sans-serif;
+    font-size: 18px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 24px;
+}
+
 .itables,
 table.dataTable,
 .dataTables_wrapper {
@@ -35,6 +49,57 @@ table.dataTable th,
 table.dataTable td {
     background: transparent;
     color: #e8f7ff;
+}
+
+#mvp-ui{
+    text-align: center;
+}
+
+
+
+
+#mvp-ui input[type="number"] {
+    background: #0f172a;
+    color: #ffd966;
+    border: 1px solid #f7b731;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+#mvp-ui label {
+    color:#e8f7ff
+}
+
+#mvp-ui button {
+    background: #0f172a;
+    color: #ffd966;
+    border: 1px solid #f7b731;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#mvp-ui button:hover {
+    background: #f7b731;
+    color: #0f172a;
+}
+
+#mvp-ui h2,
+#mvp-ui h3
+{
+    color: #e8f7ff;
+}
+
+#results th{
+    color: #ffd966;
+    border-bottom: 1px solid #f7b73155 !important;
+}
+#results td{
+    border-bottom: 1px solid #ffffff1a !important;
 }
 
 

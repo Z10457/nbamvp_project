@@ -3,6 +3,7 @@ project:
 
 resources: 
   - mvp_prediction.html
+  - players.json
 
 website:
   title: "NBA MVP MACHINE"
@@ -10,7 +11,10 @@ website:
     left:
       - href: index.qmd
         text: Home page
+      - href: calculator.qmd
+        text: Calculate your own MVP
       - about.qmd
+
 
 format:
   html:
