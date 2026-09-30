@@ -17,10 +17,13 @@ format: html
 #| echo: false
 #import json , me removing import json fixed the json error loading file in browser. Since, with json the blank values would be converted to NaN in players.json and that is invalid in json but allowed in python.
 
+#merge cell block. 
+
 import pandas as pd
 
 players_df = pd.read_csv("players.csv")
 players_df.to_json("players.json", orient="records")
+players_df['MVP Rank'] = players_df['mvp_score'].rank(ascending= False, method='min').astype('Int64')
 
 #with open("players.json", "w", encoding="utf-8") as f:
     #json.dump(players_df.to_dict(orient="records"), f, ensure_ascii=False)
@@ -29,18 +32,18 @@ players_df.to_json("players.json", orient="records")
 ```{python}
 #| code-fold: true
 #| code-summary: "Show code"
+
 import pandas as pd
 from itables import show
-from shared import build_players_df
 
-players_df = build_players_df()
-players_df['MVP Rank'] = players_df['mvp_score'].rank(ascending= False, method='min').astype('Int64')
+mvp_prob_df = pd.read_csv("mvp_probability.csv")
+players_df = players_df.merge(mvp_prob_df, on="Player", how="left", suffixes=("", "_ml"))
 
-show(players_df[['MVP Rank', 'Player', 'mvp_score', 'Age', 'Team', 'Pos', 'PTS', 'AST', 'TRB', 'BLK', 'STL', 'team_win_pct', '3P%_norm', '2P%_norm']].sort_values('MVP Rank'),pageLength=6,lengthMenu=[10,15,20,25,30,50],paging=True,layout={'topStart':'pageLength','topEnd':'search','bottomStart':'info','bottomEnd':'paging'})#.head(6))
- # this shows the MVP data in a nice table
- #page length allows it to show 6 players at a time, and the length menu allows the user to change how many players they want to see at a time.
+players_df['Model Rank'] = players_df['mvp_probability'].rank(ascending=False, method = 'min').astype('Int64')
 
+show (players_df[[ 'Player', 'Model Rank', 'MVP Rank', 'mvp_probability', 'mvp_score', 'Team', 'PTS', 'AST', 'TRB', 'WS', 'team_win_pct']].sort_values('Model Rank').reset_index(drop=True), pageLength=10, lengthMenu = [10, 15, 20, 25, 50], paging = True, layout ={'topStart' : 'pageLength', 'topEnd':'search','bottomStart':'info','bottomEnd':'paging' }) #the reset_index line allows the table to look cleaner, it wont say the data stored number before the player anymore.
 ```
+
 
 ```{python}
 #| code-fold: true
@@ -109,7 +112,14 @@ fig = px.scatter(players_df, x="TOTAL_DEFENSIVE_RTNG", y="mvp_score", hover_name
 fig.show()
 
 ```
+```{python}
+#| code-fold: true
+#| code-summary: "Show code"
+#| layout-ncol: 2
 
+show(players_df[['MVP Rank', 'Model Rank', 'Player', 'mvp_score', 'Age', 'Team', 'Pos', 'PTS', 'AST', 'TRB', 'BLK', 'STL', 'team_win_pct', '3P%_norm', '2P%_norm']].sort_values('MVP Rank'), pageLength=10, lengthMenu=[10,15,20,25,30,50], paging=True, layout={'topStart':'pageLength','topEnd':'search','bottomStart':'info','bottomEnd':'paging'})
+
+```
 ```{python}
 #| code-fold: true
 #| code-summary: "Show code"
