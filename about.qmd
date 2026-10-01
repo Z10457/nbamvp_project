@@ -1,5 +1,25 @@
 ---
-title: "About"
+title: "More info"
 ---
 
-About this site
+<div class="intro-text">
+<p>This is the <strong>MVP prediction machine</strong> — below are two different ways of ranking who's having the best MVP case this season.</p>
+
+<p>The first table uses my own <strong>custom MVP score</strong>, a weighted formula I built by hand that combines stats like points per game, assists per game, rebounds per game, team win percentage, and more. I chose the weights myself based on what I think matters most for an MVP case.</p>
+
+<p>The second table uses a <strong>trained machine learning model</strong> instead. I trained a logistic regression model on 10 seasons of past MVP winners, so instead of me picking the weights, the model learned on its own which stats actually tend to separate MVP winners from everyone else. It then estimates each current player's probability of winning MVP this season based on those learned patterns.</p>
+
+<p class="intro-highlight">Comparing the two is part of the fun — sometimes they agree, sometimes they don't, and the players ranked below are whoever came out on top in each method this season. There are also graphs further down showing how individual stats relate to MVP outcomes.</p>
+
+<p><i>If you want to modify the calculator yourself and set your own formula to determine the MVP winner<b><p style="text-align: center;">click below 👇</p></b></i></p>
+</div>
+<div style="display:flex; justify-content:center;"> 
+<a href="calculator.qmd" class="button-class">  <b>CLICK HERE TO CALCULATE YOUR OWN MVP</b></a>
+</div>
+
+Special Shoutout to my mentor and peers who helped me with this project: 
+
+- Cameron Rutherford
+- Jonathan 
+
+
