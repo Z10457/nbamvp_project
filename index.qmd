@@ -4,14 +4,12 @@ format: html
 ---
 
 <div class="intro-text">
-<p>This is the <strong>MVP prediction machine</strong>, below are the stats and how the players rank among each other. The MVP score is a custom metric that I created to try to form a MVP winner, it takes into account various stats such as points per game, assists per game, rebounds per game, and more. The higher the MVP score, the better the player's chances of winning the MVP award.</p>
-<p class="intro-highlight">The 6 players ranked below are the players who had the best regular season. As well as respective graphs in regards to how a specific category may relate to who comes out as MVP</p>
-
-<p><i> If you want to modify the calculator yourself and set your own formula to determine the MVP winner<b><p style="text-align: center;">click below 👇</p></b></i> </p>
+<p>This is the <strong>MVP prediction machine</strong> — There are two different ways of ranking who's having the best MVP case this season: a hand-built weighted formula, and a trained machine learning model. <a href="about.qmd">Learn more about how each one works →</a></p>
 </div>
 <div style="display:flex; justify-content:center;"> 
 <a href="calculator.qmd" class="button-class">  <b>CLICK HERE TO CALCULATE YOUR OWN MVP</b></a>
 </div>
+
 
 ```{python}
 #| echo: false
@@ -41,9 +39,23 @@ players_df = players_df.merge(mvp_prob_df, on="Player", how="left", suffixes=(""
 
 players_df['Model Rank'] = players_df['mvp_probability'].rank(ascending=False, method = 'min').astype('Int64')
 
-show (players_df[[ 'Player', 'Model Rank', 'MVP Rank', 'mvp_probability', 'mvp_score', 'Team', 'PTS', 'AST', 'TRB', 'WS', 'team_win_pct']].sort_values('Model Rank').reset_index(drop=True), pageLength=10, lengthMenu = [10, 15, 20, 25, 50], paging = True, layout ={'topStart' : 'pageLength', 'topEnd':'search','bottomStart':'info','bottomEnd':'paging' }) #the reset_index line allows the table to look cleaner, it wont say the data stored number before the player anymore.
+
+show (players_df[[ 'Player', 'Model Rank', 'MVP Rank', 'mvp_probability', 'mvp_score', 'Team', 'PTS', 'AST', 'TRB','BLK', 'STL', 'WS', 'team_win_pct']].sort_values('Model Rank').reset_index(drop=True), pageLength=10, lengthMenu = [10, 15, 20, 25, 50], paging = True, layout ={'topStart' : 'pageLength', 'topEnd':'search','bottomStart':'info','bottomEnd':'paging' }) #the reset_index line allows the table to look cleaner, it wont say the data stored number before the player anymore.
 ```
 
+```{python}
+#| code-fold: true
+#| code-summary: "Show code"
+import pandas as pd
+import plotly.express as px
+from pathlib import Path
+
+fig = px.scatter(players_df, x="Model Rank", y="MVP Rank", hover_name="Player", title="Weighted formula score vs. ML model probability", template="plotly_dark")
+fig.update_xaxes(autorange="reversed")
+fig.update_yaxes(autorange="reversed")
+#fig.update_layout(width=800)
+fig.show()
+```
 
 ```{python}
 #| code-fold: true
@@ -60,7 +72,7 @@ grid= px.scatter(df, x="Season", y="Age", hover_name="Player", title="MVP Winner
 grid.update_layout(
     xaxis_title="AGE",
     yaxis_title="Season",
-    title="Age correlation with MVP winners",
+    title="Age correlation with past MVP winners",
     showlegend=False
 )
 order = sorted(df['Season'].unique(),key=lambda s: int(s.split('-')[0])) #this is to sort the seasons in order, since they are strings and not numbers, it will sort them by the first number in the string
@@ -115,9 +127,9 @@ fig.show()
 ```{python}
 #| code-fold: true
 #| code-summary: "Show code"
-#| layout-ncol: 2
 
-show(players_df[['MVP Rank', 'Model Rank', 'Player', 'mvp_score', 'Age', 'Team', 'Pos', 'PTS', 'AST', 'TRB', 'BLK', 'STL', 'team_win_pct', '3P%_norm', '2P%_norm']].sort_values('MVP Rank'), pageLength=10, lengthMenu=[10,15,20,25,30,50], paging=True, layout={'topStart':'pageLength','topEnd':'search','bottomStart':'info','bottomEnd':'paging'})
+
+show(players_df[['Player', 'Model Rank', 'MVP Rank', 'mvp_score', 'Age', 'Team', 'PTS', 'AST', 'TRB', 'BLK', 'STL', 'team_win_pct']].sort_values('MVP Rank'), pageLength=10, lengthMenu=[10,15,20,25,50], paging=True, layout={'topStart':'pageLength','topEnd':'search','bottomStart':'info','bottomEnd':'paging'})
 
 ```
 ```{python}
