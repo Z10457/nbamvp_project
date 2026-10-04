@@ -28,20 +28,53 @@ players_df['MVP Rank'] = players_df['mvp_score'].rank(ascending= False, method='
 ```
 
 ```{python}
+
 #| code-fold: true
 #| code-summary: "Show code"
 
 import pandas as pd
 from itables import show
+from IPython.display import display, HTML
 
 mvp_prob_df = pd.read_csv("mvp_probability.csv")
 players_df = players_df.merge(mvp_prob_df, on="Player", how="left", suffixes=("", "_ml"))
 
 players_df['Model Rank'] = players_df['mvp_probability'].rank(ascending=False, method = 'min').astype('Int64')
 
+display(HTML('<h3 style="text-align:center;">🤖 ML Model Rankings👇(scrollable)</h3>'))
+show (players_df[[ 'Player', 'Model Rank', 'mvp_probability', 'mvp_score', 'Team', 'PTS', 'AST', 'TRB','BLK', 'STL', 'WS', 'team_win_pct']].sort_values('Model Rank').reset_index(drop=True), pageLength=10, lengthMenu = [10, 15, 20, 25, 50], paging = True, layout ={'topStart' : 'pageLength', 'topEnd':'search','bottomStart':'info','bottomEnd':'paging' }) #the reset_index line allows the table to look cleaner, it wont say the data stored number before the player anymore.
 
-show (players_df[[ 'Player', 'Model Rank', 'MVP Rank', 'mvp_probability', 'mvp_score', 'Team', 'PTS', 'AST', 'TRB','BLK', 'STL', 'WS', 'team_win_pct']].sort_values('Model Rank').reset_index(drop=True), pageLength=10, lengthMenu = [10, 15, 20, 25, 50], paging = True, layout ={'topStart' : 'pageLength', 'topEnd':'search','bottomStart':'info','bottomEnd':'paging' }) #the reset_index line allows the table to look cleaner, it wont say the data stored number before the player anymore.
+display(HTML('<h3 style="text-align:center;">🏆 Weighted Formula Rankings👇(scrollable)</h3>'))
+show(players_df[['Player', 'MVP Rank', 'mvp_score', 'Age', 'Team', 'PTS', 'AST', 'TRB', 'BLK', 'STL', 'team_win_pct']].sort_values('MVP Rank'), pageLength=10, lengthMenu=[10,15,20,25,50], paging=True, layout={'topStart':'pageLength','topEnd':'search','bottomStart':'info','bottomEnd':'paging'})
+
+
 ```
+
+<div style="display:flex; gap:1.5rem; align-items:flex-start;">
+
+<div style="flex:1.25; min-width:0;">
+
+### 🤖 ML Model Rankings(scrollable)
+
+```{python}
+#| echo: false
+show(players_df[['Player', 'Model Rank', 'mvp_probability', 'Team', 'PTS', 'AST', 'TRB', 'BLK', 'STL', 'WS', 'team_win_pct']].sort_values('Model Rank').reset_index(drop=True), pageLength=10, lengthMenu=[10, 15, 20, 25, 50], paging=True, layout={'topStart':'pageLength','topEnd':'search','bottomStart':'info','bottomEnd':'paging'})
+```
+
+</div>
+
+<div style="flex:1.25; min-width:0;">
+
+### 🏆 Weighted Formula Rankings(scrollable)
+
+```{python}
+#| echo: false
+show(players_df[['Player','MVP Rank', 'mvp_score', 'Age', 'Team', 'PTS', 'AST', 'TRB', 'BLK', 'STL', 'team_win_pct']].sort_values('MVP Rank'), pageLength=10, lengthMenu=[10,15,20,25,50], paging=True, layout={'topStart':'pageLength','topEnd':'search','bottomStart':'info','bottomEnd':'paging'})
+```
+
+</div>
+
+</div>
 
 ```{python}
 #| code-fold: true
@@ -72,7 +105,7 @@ grid= px.scatter(df, x="Season", y="Age", hover_name="Player", title="MVP Winner
 grid.update_layout(
     xaxis_title="AGE",
     yaxis_title="Season",
-    title="Age correlation with past MVP winners",
+    title="Age correlation with the past MVP winners",
     showlegend=False
 )
 order = sorted(df['Season'].unique(),key=lambda s: int(s.split('-')[0])) #this is to sort the seasons in order, since they are strings and not numbers, it will sort them by the first number in the string
@@ -106,32 +139,26 @@ grid.show()
 ```{python}
 #| code-fold: true
 #| code-summary: "Show code"
-#| layout-ncol: 3 
+#| layout-ncol: 2 
 
 import plotly.express as px
 #import seaborn as sns
 #the above layout code allows the graphs to be next to eachother instead of stacked on top of eachother.
-fig = px.scatter(players_df, x="PTS", y="mvp_score", hover_name="Player", title="PPG relation to MVP", template="plotly_dark")
+top_df = players_df.sort_values('mvp_score', ascending=False).head(25)
+fig = px.scatter(top_df, x="PTS", y="mvp_score", hover_name="Player", title="PPG relation to the weighted formula")
 #fig.update_layout(height=400, width=400)
 fig.show()
 
-fig = px.scatter(players_df, x="AST", y="mvp_score", hover_name="Player", title="APG relation to MVP", template="plotly_dark")
+top_df = players_df.sort_values('mvp_probability', ascending=False).head(25)
+fig = px.scatter(top_df, x="mvp_probability", y="PTS", hover_name="Player", title="PPG relation to the ML model")
 #fig.update_layout(height=400, width=400)
 fig.show()
 
-players_df['TOTAL_DEFENSIVE_RTNG'] = players_df['STL'] + players_df["BLK"]
-fig = px.scatter(players_df, x="TOTAL_DEFENSIVE_RTNG", y="mvp_score", hover_name="Player", title="STL+BLK per game relation to MVP", template="plotly_dark")
-fig.show()
-
+#players_df['TOTAL_DEFENSIVE_RTNG'] = players_df['STL'] + players_df["BLK"]
+#fig = px.scatter(players_df, x="TOTAL_DEFENSIVE_RTNG", y="mvp_score", hover_name="Player", title="STL+BLK per game relation to MVP", template="plotly_dark")
+#fig.show()
 ```
-```{python}
-#| code-fold: true
-#| code-summary: "Show code"
 
-
-show(players_df[['Player', 'Model Rank', 'MVP Rank', 'mvp_score', 'Age', 'Team', 'PTS', 'AST', 'TRB', 'BLK', 'STL', 'team_win_pct']].sort_values('MVP Rank'), pageLength=10, lengthMenu=[10,15,20,25,50], paging=True, layout={'topStart':'pageLength','topEnd':'search','bottomStart':'info','bottomEnd':'paging'})
-
-```
 ```{python}
 #| code-fold: true
 #| code-summary: "Show code"
@@ -147,3 +174,48 @@ fig.show()
 
 ```
 
+```{python}
+#| code-fold: true
+#| code-summary: "Show code"
+
+import plotly.graph_objects as go
+
+stats = ["PTS", "AST", "TRB", "STL", "BLK", "WS", "eFG%_norm", "team_win_pct"]
+metrics = {"mvp_score": "Weighted Formula Score", "mvp_probability": "ML Model Probability"}
+
+fig = go.Figure()
+visible_index = 0
+buttons = []
+trace_index = 0
+
+for stat in stats: 
+    for metric_col, metric_label in metrics.items():
+        fig.add_trace(go.Scatter(
+            x = players_df[stat], y = players_df[metric_col],
+            mode='markers', text=players_df['Player'],
+            name= f"{stat} vs {metric_label}",
+            visible = (trace_index == 0)
+        ))
+        trace_index += 1
+        
+trace_index = 0 
+for stat in stats: 
+    for metric_col, metric_label in metrics.items():
+        visibility = [i == trace_index for i in range(len(stats) * len(metrics))]
+        buttons.append(dict(
+            label = f"{stat} vs {metric_label}",
+            method = "update",
+            args = [{"visible": visibility}, {"title": f"{stat} vs {metric_label}", "xaxis.title.text": f"{stat}", "yaxis.title.text": f"{metric_label}"}]
+        ))
+        trace_index += 1
+fig.update_layout(
+    updatemenus=[dict(active=0, buttons=buttons, x=0.5, y=1.15)],
+    #title=f"{stats[0]} vs {list(metrics.values())[0]}",
+    xaxis_title=stats[0],
+    yaxis_title=list(metrics.values())[0],
+    template="plotly_dark"
+
+)
+fig.update_layout(margin=dict(t=100))
+fig.show()
+```
