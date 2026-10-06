@@ -37,7 +37,45 @@ h1{
     line-height: 1.7;
     margin-bottom: 1.5rem;
 }
+/* Dark background behind all the DataTables controls */
+.dt-container,
+.dataTables_wrapper {
+  background: transparent !important;
+  color: #e6fffb;
+}
 
+/* Labels and info text */
+.dt-container label,
+.dt-container .dt-info,
+.dt-container .dt-length,
+.dt-container .dt-search,
+.dataTables_wrapper label,
+.dataTables_wrapper .dataTables_info {
+  color: #5eead4 !important;
+}
+
+/* Search box and page-size dropdown */
+.dt-container input,
+.dt-container select,
+.dataTables_wrapper input,
+.dataTables_wrapper select {
+  background: #0b1020 !important;
+  color: #e6fffb !important;
+  border: 1px solid #5eead4 !important;
+  border-radius: 6px;
+}
+
+/* Pagination */
+.dt-container .dt-paging .dt-paging-button,
+.dataTables_wrapper .paginate_button {
+  color: #5eead4 !important;
+  background: transparent !important;
+}
+.dt-container .dt-paging .dt-paging-button.current,
+.dataTables_wrapper .paginate_button.current {
+  background: #5eead4 !important;
+  color: #0b1020 !important;
+}
 
 .intro-text strong {
     color: #ffd966;
