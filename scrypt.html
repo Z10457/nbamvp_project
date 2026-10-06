@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b626d73c4c936ccc3cb08be7d45d1df6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-eb154682b51f02f2f9365fe4a6194a29.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
@@ -162,7 +162,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div id="cell-0" class="cell" data-execution_count="124">
+<div id="cell-0" class="cell" data-execution_count="31">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sys.executable)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sys.version)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -172,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [Clang 17.0.0 (clang-1700.6.3.2)]</code></pre>
 </div>
 </div>
-<div id="cell-1" class="cell" data-execution_count="125">
+<div id="cell-1" class="cell" data-execution_count="32">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install html5lib lxml beautifulsoup4</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install matplotlib</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install itables</span>
@@ -234,7 +234,7 @@ Requirement already satisfied: threadpoolctl&gt;=3.1.0 in ./.venv/lib/python3.9/
 Note: you may need to restart the kernel to use updated packages.</code></pre>
 </div>
 </div>
-<div id="cell-3" class="cell" data-execution_count="126">
+<div id="cell-3" class="cell" data-execution_count="33">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os <span class="co">#interacts with the operating systems ( such as creating folders/checking files)</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd <span class="co">#used to read and clean the data </span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shutil <span class="co">#copying/moving files or directories</span></span>
@@ -251,7 +251,7 @@ Note: you may need to restart the kernel to use updated packages.</code></pre>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.max_columns'</span>, <span class="dv">50</span>)</span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.width'</span>, <span class="dv">1000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-4" class="cell" data-execution_count="127">
+<div id="cell-4" class="cell" data-execution_count="34">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>team_map <span class="op">=</span> {</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"DEN"</span>: <span class="st">"Denver Nuggets"</span>,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"PHI"</span>: <span class="st">"Philadelphia 76ers"</span>,</span>
@@ -288,11 +288,11 @@ Note: you may need to restart the kernel to use updated packages.</code></pre>
 <span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>team_to_abbr <span class="op">=</span> {full:abbr <span class="cf">for</span> abbr, full <span class="kw">in</span> team_map.items()}</span>
 <span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="co">'''df["Team"] = df["Team"].map(team_to_abbr) '''</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="127">
+<div class="cell-output cell-output-display" data-execution_count="34">
 <pre><code>'df["Team"] = df["Team"].map(team_to_abbr) '</code></pre>
 </div>
 </div>
-<div id="cell-5" class="cell" data-execution_count="128">
+<div id="cell-5" class="cell" data-execution_count="35">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.basketball-reference.com/awards/mvp.html#mvp_NBA"</span> <span class="co">#this is the web page we want to scrape</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">2</span>)  <span class="co"># Be respectful to the server, avoid rate limiting, so it wont say html error too many requests.</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -339,7 +339,7 @@ Note: you may need to restart the kernel to use updated packages.</code></pre>
 11  2015-16  NBA            Stephen Curry    (V)   27  GSW  79  34.2  30.1   5.4   6.7  2.1  0.2  0.504  0.454  0.908  17.9  0.318</code></pre>
 </div>
 </div>
-<div id="cell-6" class="cell" data-execution_count="129">
+<div id="cell-6" class="cell" data-execution_count="36">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#print (mvp_df.info())</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (mvp_df.head())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -351,20 +351,20 @@ Note: you may need to restart the kernel to use updated packages.</code></pre>
 5  2021-22  NBA            Nikola JokiÄ    (V)   26  DEN  74  33.5  27.1  13.8  7.9  1.5  0.9  0.583  0.337  0.810  15.2  0.296</code></pre>
 </div>
 </div>
-<div id="cell-7" class="cell" data-execution_count="130">
+<div id="cell-7" class="cell" data-execution_count="37">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>avg_age <span class="op">=</span> mvp_df[<span class="st">'Age'</span>].mean() <span class="co">#this calculates the average age of the mvps since 2015</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"Average age of the MVP since the 2015 season -&gt; "</span>, avg_age) <span class="co">#this prints it out</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Average age of the MVP since the 2015 season -&gt;  26.545454545454547</code></pre>
 </div>
 </div>
-<div id="cell-8" class="cell" data-execution_count="131">
+<div id="cell-8" class="cell" data-execution_count="38">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>team_data <span class="op">=</span> []</span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> year <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2016</span>,<span class="dv">2027</span>):</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> year <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2016</span>,<span class="dv">2027</span>): <span class="co">#this is years </span></span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    url <span class="op">=</span> <span class="ss">f"https://www.basketball-reference.com/leagues/NBA_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">_standings.html"</span></span>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> requests.get(url)</span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    soup <span class="op">=</span> bs(data.text, <span class="st">"html.parser"</span>)</span>
@@ -521,7 +521,7 @@ dtype: object
 30</code></pre>
 </div>
 </div>
-<div id="cell-9" class="cell" data-execution_count="132">
+<div id="cell-9" class="cell" data-execution_count="39">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>team_map <span class="op">=</span> {<span class="st">"DEN"</span>: <span class="st">"Denver Nuggets"</span>, </span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"PHI"</span>: <span class="st">"Philadelphia 76ers"</span>,  </span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MIL"</span>: <span class="st">"Milwaukee Bucks"</span>, </span>
@@ -554,7 +554,7 @@ dtype: object
 <span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SAC"</span>: <span class="st">"Sacramento Kings"</span>,</span>
 <span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MIN"</span>: <span class="st">"Minnesota Timberwolves"</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-10" class="cell" data-execution_count="133">
+<div id="cell-10" class="cell" data-execution_count="40">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Average Win to Loss </span><span class="sc">% o</span><span class="st">f the MVP's team:"</span> , merged[<span class="st">"W/L%"</span>].mean())</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Average Conference position: "</span>, merged[<span class="st">"ConferenceRank"</span>].mean())</span>
@@ -571,7 +571,7 @@ dtype: object
 <pre><code>Skipping merged stats (not available): name 'merged' is not defined</code></pre>
 </div>
 </div>
-<div id="cell-11" class="cell" data-execution_count="134">
+<div id="cell-11" class="cell" data-execution_count="41">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#now we use machine to rank who has the best chance of winning mvp for the upcoming season and rank the top 10.</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>target_year <span class="op">=</span> df[<span class="st">"Year"</span>].<span class="bu">max</span>() <span class="co">#finds the maximum year of the years we have, since mvp data is most helpful when recent</span></span>
@@ -631,7 +631,7 @@ dtype: object
 0      1.0  Luka DonÄiÄ  26.0  LAL  PG  64.0  64.0  35.8  10.8  22.8  0.476  4.0  10.8  0.366  6.9  11.9  0.575  0.563  7.9  10.1  0.780  0.6  7.1  7.7  8.3  1.6  0.5  4.0  2.4  33.5  MVP-4,CPOY-8,AS,NBA1</code></pre>
 </div>
 </div>
-<div id="cell-12" class="cell" data-execution_count="135">
+<div id="cell-12" class="cell" data-execution_count="42">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>target_year <span class="op">=</span> <span class="dv">2026</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>teams_current <span class="op">=</span> df[df[<span class="st">"Year"</span>] <span class="op">==</span> target_year].copy()</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -694,7 +694,7 @@ After removing duplicates: 583 players
 319  BKN  0.244</code></pre>
 </div>
 </div>
-<div id="cell-13" class="cell" data-execution_count="136">
+<div id="cell-13" class="cell" data-execution_count="43">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>target_year <span class="op">=</span> <span class="dv">2026</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix: Standardize team names in both dataframes to match before the merge</span></span>
@@ -758,7 +758,7 @@ Sample matched teams:                 Player Team  team_win_pct
 19       Reed Sheppard  HOU         0.634</code></pre>
 </div>
 </div>
-<div id="cell-14" class="cell" data-execution_count="137">
+<div id="cell-14" class="cell" data-execution_count="44">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>stat_cols <span class="op">=</span> [<span class="st">"PTS"</span>, <span class="st">"AST"</span>, <span class="st">"TRB"</span>, <span class="st">"STL"</span>, <span class="st">"BLK"</span>, <span class="st">"FG%"</span>, <span class="st">"team_win_pct"</span>, <span class="st">"3P%"</span>, <span class="st">"3PA"</span>, <span class="st">"TOV"</span>, <span class="st">"eFG%"</span>, <span class="st">"2P%"</span>, <span class="st">"2PA"</span>, <span class="st">'MP'</span>, <span class="st">"FT%"</span>, <span class="st">"GS"</span>] <span class="co">#these are the stats we care about for the mvp ranking, we will use these to rank the players for the upcoming season</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (players_df.columns.tolist())</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -792,7 +792,7 @@ Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%'
 Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'eFG%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'Awards'], dtype='object')</code></pre>
 </div>
 </div>
-<div id="cell-15" class="cell" data-execution_count="138">
+<div id="cell-15" class="cell" data-execution_count="45">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -812,7 +812,7 @@ Index(['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'FG', 'FGA', 'FG%'
 Wrote players.json</code></pre>
 </div>
 </div>
-<div id="fig-my-data-chart" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="139">
+<div id="fig-my-data-chart" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="46">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-my-data-chart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#def old_func():</span></span>
@@ -927,14 +927,14 @@ Figure&nbsp;1
 </figcaption>
 </figure>
 </div>
-<div id="cell-17" class="cell" data-execution_count="140">
+<div id="cell-17" class="cell" data-execution_count="47">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>players_df.to_csv(<span class="st">"players.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Saved to:"</span>, os.path.abspath(<span class="st">"players.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Saved to: /Users/zohaib/Desktop/cs projects /nba_project/NBA_MVP_Project/players.csv</code></pre>
 </div>
 </div>
-<div id="cell-18" class="cell" data-execution_count="141">
+<div id="cell-18" class="cell" data-execution_count="48">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Current working directory:"</span>, os.getcwd())</span>
@@ -943,11 +943,11 @@ Figure&nbsp;1
 <span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"mvp_prediction.html exists?"</span>, os.path.exists(<span class="st">"mvp_prediction.html"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Current working directory: /Users/zohaib/Desktop/cs projects /nba_project/NBA_MVP_Project
-Files here: ['Untitled-5.ipynb', '_quarto.yml', 'get-pip.py', 'requirements.txt', 'Untitled-1.ipynb', 'mvp_prediction.html', 'styles.css', 'model.qmd', '.scrypt.ipynb.swp', 'docs', 'theme-light.scss', 'index.qmd', 'Untitled-2.ipynb', 'shared.py', 'about.qmd', 'mvp_probability.csv', 'players.csv', 'scrypt.ipynb', 'mvp_live.csv', '.gitignore', '_site', '.venv', '.github', '.ipynb_checkpoints', 'calculator.qmd', '.git', 'players.json', '.quarto']
+Files here: ['Untitled-5.ipynb', '_quarto.yml', 'get-pip.py', 'requirements.txt', 'Untitled-1.ipynb', 'mvp_prediction.html', 'styles.css', 'model.qmd', '.scrypt.ipynb.swp', 'docs', 'theme-light.scss', 'index.qmd', 'Untitled-2.ipynb', 'shared.py', 'about.qmd', 'mvp_probability.csv', 'players.csv', 'scrypt.ipynb', 'mvp_live.csv', '.gitignore', '_site', '.venv', '.github', '.ipynb_checkpoints', 'calculator.qmd', '.git', 'index.quarto_ipynb', 'players.json', '.quarto']
 mvp_prediction.html exists? True</code></pre>
 </div>
 </div>
-<div id="cell-19" class="cell" data-execution_count="142">
+<div id="cell-19" class="cell" data-execution_count="49">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> classification_report, roc_auc_score</span>
@@ -997,7 +997,7 @@ Scraping the player stats for 2026. . .
 Collected 5979 player-seasons from 2016 to 2026</code></pre>
 </div>
 </div>
-<div id="cell-20" class="cell" data-execution_count="143">
+<div id="cell-20" class="cell" data-execution_count="50">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.basketball-reference.com/leagues/NBA_2026_advanced.html"</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>adv <span class="op">=</span> pd.read_html(url, header<span class="op">=</span><span class="dv">0</span>)[<span class="dv">0</span>]  <span class="co"># first table on the page</span></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(adv.columns.tolist())           <span class="co"># every metric you could use</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1005,7 +1005,7 @@ Collected 5979 player-seasons from 2016 to 2026</code></pre>
 <pre><code>['Rk', 'Player', 'Age', 'Team', 'Pos', 'G', 'GS', 'MP', 'PER', 'TS%', '3PAr', 'FTr', 'ORB%', 'DRB%', 'TRB%', 'AST%', 'STL%', 'BLK%', 'TOV%', 'USG%', 'OWS', 'DWS', 'WS', 'WS/48', 'OBPM', 'DBPM', 'BPM', 'VORP', 'Awards']</code></pre>
 </div>
 </div>
-<div id="cell-21" class="cell" data-execution_count="144">
+<div id="cell-21" class="cell" data-execution_count="51">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>adv_rows <span class="op">=</span> []</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> year <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2016</span>,<span class="dv">2027</span>):</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="dv">2</span>)</span>
@@ -1037,7 +1037,7 @@ Collected 5979 player-seasons from 2016 to 2026</code></pre>
 Missing WS: 11</code></pre>
 </div>
 </div>
-<div id="cell-22" class="cell" data-execution_count="145">
+<div id="cell-22" class="cell" data-execution_count="52">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>history_df[<span class="st">"Team"</span>] <span class="op">=</span> history_df[<span class="st">"Team"</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.upper().<span class="bu">str</span>.strip().replace(team_fix)</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>history_df <span class="op">=</span> history_df.merge(</span>
@@ -1049,7 +1049,7 @@ Missing WS: 11</code></pre>
 <span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>history_df <span class="op">=</span> history_df.rename(columns<span class="op">=</span>{<span class="st">"W/L%"</span>: <span class="st">"team_win_pct"</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-23" class="cell" data-execution_count="146">
+<div id="cell-23" class="cell" data-execution_count="53">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>mvp_df[<span class="st">"mvp_year"</span>] <span class="op">=</span> mvp_df[<span class="st">"Season"</span>].<span class="bu">str</span>[:<span class="dv">4</span>].astype(<span class="bu">int</span>) <span class="op">+</span> <span class="dv">1</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>mvp_winners_by_year <span class="op">=</span> <span class="bu">dict</span>(<span class="bu">zip</span>(mvp_df[<span class="st">"mvp_year"</span>],mvp_df[<span class="st">"Player"</span>])) <span class="co">#formats it as 2016: X player, 2017 ...</span></span>
@@ -1066,7 +1066,7 @@ Missing WS: 11</code></pre>
 Total MVP winners found:  16</code></pre>
 </div>
 </div>
-<div id="cell-24" class="cell" data-execution_count="147">
+<div id="cell-24" class="cell" data-execution_count="54">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>model_stat_cols <span class="op">=</span> stat_cols <span class="op">+</span> [<span class="st">"WS"</span>]</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>history_df <span class="op">=</span> history_df.dropna(subset<span class="op">=</span>stat_cols <span class="op">+</span> [<span class="st">"team_win_pct"</span>])</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1081,7 +1081,7 @@ Total MVP winners found:  16</code></pre>
 <span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> history_df[feature_cols]</span>
 <span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> history_df[<span class="st">"is_mvp"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-25" class="cell" data-execution_count="148">
+<div id="cell-25" class="cell" data-execution_count="55">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>    X, y,</span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    test_size<span class="op">=</span><span class="fl">0.2</span>,</span>
@@ -1097,7 +1097,7 @@ Total MVP winners found:  16</code></pre>
 <pre><code>Model has been trained!</code></pre>
 </div>
 </div>
-<div id="cell-26" class="cell" data-execution_count="149">
+<div id="cell-26" class="cell" data-execution_count="56">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>y_pred_proba <span class="op">=</span> model.predict_proba(X_test)[:, <span class="dv">1</span>]</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"ROC-AUC score:"</span>, roc_auc_score(y_test, y_pred_proba))</span>
@@ -1115,7 +1115,7 @@ weighted avg       1.00      0.99      1.00      1800
 </code></pre>
 </div>
 </div>
-<div id="cell-27" class="cell" data-execution_count="150">
+<div id="cell-27" class="cell" data-execution_count="57">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.basketball-reference.com/leagues/NBA_2026_advanced.html"</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>resp <span class="op">=</span> requests.get(url, headers<span class="op">=</span>{<span class="st">"User-Agent"</span>: <span class="st">"Mozilla/5.0"</span>})</span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>resp.encoding <span class="op">=</span> <span class="st">"utf-8"</span></span>
@@ -1133,7 +1133,7 @@ weighted avg       1.00      0.99      1.00      1800
 <pre><code>Missing WS: 0</code></pre>
 </div>
 </div>
-<div id="cell-28" class="cell" data-execution_count="151">
+<div id="cell-28" class="cell" data-execution_count="58">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> model_stat_cols <span class="op">+</span> [<span class="st">"team_win_pct"</span>]  <span class="co"># raw stats the model uses</span></span>
@@ -1230,14 +1230,14 @@ Index: []
 245  208.0   Stephen Curry  37.0  GSW  PG  43.0  41.0  1329.0  22.6  0.637  0.606  0.277   1.4  11.7   6.5  27.0   1.8   1.2  11.9  32.5  2.9  1.2  4.1  0.147   6.3  -1.0  5.4   2.5     AS</code></pre>
 </div>
 </div>
-<div id="cell-29" class="cell" data-execution_count="154">
+<div id="cell-29" class="cell" data-execution_count="59">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>players_df[[<span class="st">"Player"</span>, <span class="st">"mvp_probability"</span>, <span class="st">'WS'</span>, <span class="st">'team_win_pct'</span>]].to_csv(<span class="st">"mvp_probability.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Saved!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Saved!</code></pre>
 </div>
 </div>
-<div id="cell-30" class="cell" data-execution_count="155">
+<div id="cell-30" class="cell" data-execution_count="60">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.read_csv(<span class="st">"mvp_probability.csv"</span>).columns.tolist())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>['Player', 'mvp_probability', 'WS', 'team_win_pct']</code></pre>
