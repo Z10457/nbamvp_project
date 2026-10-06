@@ -164,4 +164,43 @@ table.dataTable td {
     border-bottom: 1px solid #ffffff1a !important;
 }
 
+/* ===== DataTables 2 / newer itables fixes ===== */
 
+/* Dark background for the wrapper and all layout rows/cells */
+.dt-container,
+.dt-container .dt-layout-row,
+.dt-container .dt-layout-cell,
+.dt-container .dt-layout-start,
+.dt-container .dt-layout-end {
+    background: #0f172a !important;
+    color: #e8f7ff !important;
+}
+
+/* Labels and info text ("entries per page", "Search:", "Showing 1 to 10...") */
+.dt-container .dt-length,
+.dt-container .dt-search,
+.dt-container .dt-info,
+.dt-container label {
+    color: #5eead4 !important;
+}
+
+/* Search box and page-size dropdown */
+.dt-container input,
+.dt-container select {
+    background: #0f172a !important;
+    color: #ffd966 !important;
+    border: 1px solid #f7b731 !important;
+    border-radius: 6px;
+}
+
+/* Pagination buttons */
+.dt-container .dt-paging .dt-paging-button {
+    color: #ffd966 !important;
+    background: transparent !important;
+    border: 1px solid transparent !important;
+}
+
+.dt-container .dt-paging .dt-paging-button.current {
+    background: #f7b731 !important;
+    color: #0f172a !important;
+}
