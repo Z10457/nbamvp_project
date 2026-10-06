@@ -41,11 +41,11 @@ players_df = players_df.merge(mvp_prob_df, on="Player", how="left", suffixes=(""
 
 players_df['Model Rank'] = players_df['mvp_probability'].rank(ascending=False, method = 'min').astype('Int64')
 
-display(HTML('<h3 style="text-align:center;">🤖 ML Model Rankings👇(scrollable)</h3>'))
-show (players_df[[ 'Player', 'Model Rank', 'mvp_probability', 'mvp_score', 'Team', 'PTS', 'AST', 'TRB','BLK', 'STL', 'WS', 'team_win_pct']].sort_values('Model Rank').reset_index(drop=True), pageLength=10, lengthMenu = [10, 15, 20, 25, 50], paging = True, layout ={'topStart' : 'pageLength', 'topEnd':'search','bottomStart':'info','bottomEnd':'paging' }) #the reset_index line allows the table to look cleaner, it wont say the data stored number before the player anymore.
+#display(HTML('<h3 style="text-align:center;">🤖 ML Model Rankings👇(scrollable)</h3>'))
+#show (players_df[[ 'Player', 'Model Rank', 'mvp_probability', 'mvp_score', 'Team', 'PTS', 'AST', 'TRB','BLK', 'STL', 'WS', 'team_win_pct']].sort_values('Model Rank').reset_index(drop=True), pageLength=10, lengthMenu = [10, 15, 20, 25, 50], paging = True, layout ={'topStart' : 'pageLength', 'topEnd':'search','bottomStart':'info','bottomEnd':'paging' }) #the reset_index line allows the table to look cleaner, it wont say the data stored number before the player anymore.
 
-display(HTML('<h3 style="text-align:center;">🏆 Weighted Formula Rankings👇(scrollable)</h3>'))
-show(players_df[['Player', 'MVP Rank', 'mvp_score', 'Age', 'Team', 'PTS', 'AST', 'TRB', 'BLK', 'STL', 'team_win_pct']].sort_values('MVP Rank'), pageLength=10, lengthMenu=[10,15,20,25,50], paging=True, layout={'topStart':'pageLength','topEnd':'search','bottomStart':'info','bottomEnd':'paging'})
+#display(HTML('<h3 style="text-align:center;">🏆 Weighted Formula Rankings👇(scrollable)</h3>'))
+#show(players_df[['Player', 'MVP Rank', 'mvp_score', 'Age', 'Team', 'PTS', 'AST', 'TRB', 'BLK', 'STL', 'team_win_pct']].sort_values('MVP Rank'), pageLength=10, lengthMenu=[10,15,20,25,50], paging=True, layout={'topStart':'pageLength','topEnd':'search','bottomStart':'info','bottomEnd':'paging'})
 
 
 ```
@@ -132,47 +132,6 @@ grid.show()
 ```
 
 
-
-
-
-
-```{python}
-#| code-fold: true
-#| code-summary: "Show code"
-#| layout-ncol: 2 
-
-import plotly.express as px
-#import seaborn as sns
-#the above layout code allows the graphs to be next to eachother instead of stacked on top of eachother.
-top_df = players_df.sort_values('mvp_score', ascending=False).head(25)
-fig = px.scatter(top_df, x="PTS", y="mvp_score", hover_name="Player", title="PPG relation to the weighted formula")
-#fig.update_layout(height=400, width=400)
-fig.show()
-
-top_df = players_df.sort_values('mvp_probability', ascending=False).head(25)
-fig = px.scatter(top_df, x="mvp_probability", y="PTS", hover_name="Player", title="PPG relation to the ML model")
-#fig.update_layout(height=400, width=400)
-fig.show()
-
-#players_df['TOTAL_DEFENSIVE_RTNG'] = players_df['STL'] + players_df["BLK"]
-#fig = px.scatter(players_df, x="TOTAL_DEFENSIVE_RTNG", y="mvp_score", hover_name="Player", title="STL+BLK per game relation to MVP", template="plotly_dark")
-#fig.show()
-```
-
-```{python}
-#| code-fold: true
-#| code-summary: "Show code"
-#| layout-ncol: 2
-
-fig = px.scatter(players_df, x="eFG%_norm", y="mvp_score", hover_name="Player", title="EFG % relation to MVP", template="plotly_dark")
-#fig.update_layout(height=400, width=400)
-fig.show()
-
-fig = px.scatter(players_df, x="team_win_pct", y="mvp_score", hover_name="Player", title="Winning % relation to MVP", template="plotly_dark")
-#fig.update_layout(height=400, width=400)
-fig.show() 
-
-```
 
 ```{python}
 #| code-fold: true
