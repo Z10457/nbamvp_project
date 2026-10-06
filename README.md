@@ -51,7 +51,6 @@ Unlike the ML model, this formula doesn't learn from data — the weights reflec
 - **Cheap to validate**, including leave-one-season-out cross-validation.
 
 **Cons**
-- **Very few positive examples**, so results can swing depending on which seasons are held out.
 - **Assumes linear relationships** between stats and MVP likelihood, so it can miss nonlinear effects.
 - **Correlated features** (points, Win Shares, team win %) can make coefficients unstable.
 - **Stats only:** it ignores narrative, voter fatigue, and reputation.
